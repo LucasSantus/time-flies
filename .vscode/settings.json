@@ -1,0 +1,63 @@
+{
+  // editor
+  "editor.wordWrap": "on",
+  "editor.tabSize": 2,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.minimap.enabled": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.semanticHighlighting.enabled": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.parameterHints.enabled": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+
+  // workbench
+  "workbench.editor.enablePreview": false,
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.editor.untitled.hint": "hidden",
+  "workbench.editor.labelFormat": "short",
+
+  // prettier
+  "prettier.arrowParens": "always",
+  "prettier.printWidth": 120,
+  "prettier.trailingComma": "all",
+  "prettier.bracketSpacing": true,
+  "prettier.enable": true,
+  "prettier.singleQuote": true,
+  "prettier.tabWidth": 2,
+  "prettier.semi": true,
+  "prettier.jsxSingleQuote": false,
+  "prettier.bracketSameLine": false,
+
+  // files
+  "files.autoSave": "afterDelay",
+
+  // explorer
+  "explorer.compactFolders": false,
+
+  // emmet
+  "emmet.syntaxProfiles": {
+    "javascript": "jsx"
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+
+  // javascript
+  "javascript.suggest.autoImports": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+
+  // prisma
+  "[prisma]": {
+    "editor.formatOnSave": true
+  },
+
+  // others
+  "breadcrumbs.enabled": true,
+  "typescript.suggest.autoImports": true,
+
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
+}
