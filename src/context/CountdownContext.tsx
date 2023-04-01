@@ -1,64 +1,92 @@
 import { formatTime } from '@/utils/formatTime';
 import { PropsWithChildren, createContext, useEffect, useState } from 'react';
 
-export interface CountdownContextData {
-  secondsAmount: number;
-  isCountdownActive: boolean;
-  hours: string;
-  minutes: string;
-  seconds: string;
-  startCountdown: (time: number) => void;
-  pauseCountdown: () => void;
-  stopCountdown: () => void;
+interface ITimesType {
+  hourLeft: string;
+  hourRight: string;
+  minuteLeft: string;
+  minuteRight: string;
+  secondLeft: string;
+  secondRight: string;
 }
 
-const COUNTDOWN_INITIAL_TIME_IN_SECONDS = 30 * 60; // Initial value of 30 minutes
+export interface CountdownContextData {
+  secondsAmount: number;
+  isActive: boolean;
+  isRunning: boolean;
+  times: ITimesType;
+  startCountdown: (time: number) => void;
+  changeCountdown: () => void;
+  resetCountdown: () => void;
+}
+
+const COUNTDOWN_INITIAL_TIME_IN_SECONDS = 60 * 60 * 5; // Initial value of 30 minutes
 
 export const CountdownContext = createContext<CountdownContextData>({} as CountdownContextData);
 
 export const CountdownProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [secondsAmount, setSecondsAmount] = useState(COUNTDOWN_INITIAL_TIME_IN_SECONDS);
-  const [isCountdownActive, setIsCountdownActive] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+  const [isRunning, setIsRunning] = useState(false);
+
+  // useEffect(() => {
+  //   window.onbeforeunload = () => {
+  //     if (isActive) {
+  //       alert('Você perderá o progresso do countdown até aqui, tem certeza?');
+  //     }
+  //   };
+  // }, [isActive]);
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
-    if (isCountdownActive && secondsAmount > 0) {
+    if (isActive && secondsAmount > 0) {
       intervalId = setInterval(() => {
         setSecondsAmount((prevSeconds) => prevSeconds - 1);
       }, 1000);
     }
 
     return () => clearInterval(intervalId);
-  }, [isCountdownActive, secondsAmount]);
+  }, [isActive, secondsAmount]);
 
-  const hours = formatTime(Math.floor(secondsAmount / 3600));
-  const minutes = formatTime(Math.floor((secondsAmount % 3600) / 60));
-  const seconds = formatTime(secondsAmount % 60);
+  const [hourLeft, hourRight] = formatTime(Math.floor(secondsAmount / 3600)).split('');
+  const [minuteLeft, minuteRight] = formatTime(Math.floor((secondsAmount % 3600) / 60)).split('');
+  const [secondLeft, secondRight] = formatTime(secondsAmount % 60).split('');
+
+  const times: ITimesType = {
+    hourLeft,
+    hourRight,
+    minuteLeft,
+    minuteRight,
+    secondLeft,
+    secondRight,
+  };
 
   function startCountdown(time: number) {
     setSecondsAmount(time);
-    setIsCountdownActive(true);
+    setIsActive(true);
+    setIsRunning(true);
   }
 
-  function pauseCountdown() {
-    setIsCountdownActive(false);
+  function changeCountdown() {
+    setIsActive((current) => !current);
   }
 
-  function stopCountdown() {
-    setIsCountdownActive(false);
+  function resetCountdown() {
+    setSecondsAmount(COUNTDOWN_INITIAL_TIME_IN_SECONDS);
+    setIsActive(false);
+    setIsRunning(false);
   }
 
   return (
     <CountdownContext.Provider
       value={{
         secondsAmount,
-        isCountdownActive,
-        hours,
-        minutes,
-        seconds,
+        isActive,
+        isRunning,
+        times,
         startCountdown,
-        pauseCountdown,
-        stopCountdown,
+        changeCountdown,
+        resetCountdown,
       }}
     >
       {children}
