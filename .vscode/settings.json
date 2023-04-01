@@ -31,9 +31,6 @@
   "prettier.jsxSingleQuote": false,
   "prettier.bracketSameLine": false,
 
-  // files
-  "files.autoSave": "afterDelay",
-
   // explorer
   "explorer.compactFolders": false,
 
