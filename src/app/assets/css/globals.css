@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* default configs in css project */
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+
+  /* soft scroll */
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased !important;
+}
+
+ul {
+  list-style: none;
+}
