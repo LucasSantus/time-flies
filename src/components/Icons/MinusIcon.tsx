@@ -1,7 +1,14 @@
-interface MinusIconProps extends React.ComponentPropsWithoutRef<'svg'> {}
+interface MinusIconProps extends React.ComponentPropsWithoutRef<"svg"> {}
 
 export const MinusIcon = (props: MinusIconProps) => (
-  <svg width={25} height={3} viewBox="0 0 25 3" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+  <svg
+    width={25}
+    height={3}
+    viewBox="0 0 25 3"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
     <path
       fillRule="evenodd"
       clipRule="evenodd"

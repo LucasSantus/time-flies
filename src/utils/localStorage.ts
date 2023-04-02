@@ -1,6 +1,9 @@
-'use client';
+"use client";
 
-import { ILocalStorageGetDataProps, ILocalStorageSetDataProps } from '@/types/LocalStorage';
+import {
+  ILocalStorageGetDataProps,
+  ILocalStorageSetDataProps,
+} from "@/types/LocalStorage";
 
 export function getLocalStorage({ key }: ILocalStorageGetDataProps) {
   const data = localStorage.getItem(key);
@@ -12,6 +15,9 @@ export function getListLocalStorage({ key }: ILocalStorageGetDataProps) {
   return data ? JSON.parse(data) : [];
 }
 
-export function setLocalStorage<T>({ key, data }: ILocalStorageSetDataProps<T>) {
+export function setLocalStorage<T>({
+  key,
+  data,
+}: ILocalStorageSetDataProps<T>) {
   localStorage.setItem(key, JSON.stringify(data));
 }

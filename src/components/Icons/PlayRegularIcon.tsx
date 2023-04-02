@@ -1,7 +1,14 @@
-interface PlayRegularIconProps extends React.ComponentPropsWithoutRef<'svg'> {}
+interface PlayRegularIconProps extends React.ComponentPropsWithoutRef<"svg"> {}
 
 export const PlayRegularIcon = (props: PlayRegularIconProps) => (
-  <svg width={28} height={33} viewBox="0 0 28 33" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+  <svg
+    width={28}
+    height={33}
+    viewBox="0 0 28 33"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
     <path
       fillRule="evenodd"
       clipRule="evenodd"
