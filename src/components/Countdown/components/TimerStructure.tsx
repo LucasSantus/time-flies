@@ -7,7 +7,14 @@ interface ITimerStructureProps {}
 export const TimerStructure: React.FC<ITimerStructureProps> = () => {
   const { times } = useCountdown();
 
-  const { hourLeft, hourRight, minuteLeft, minuteRight, secondLeft, secondRight } = times;
+  const {
+    hourLeft,
+    hourRight,
+    minuteLeft,
+    minuteRight,
+    secondLeft,
+    secondRight,
+  } = times;
 
   return (
     <div className="grid items-center justify-center gap-3 sm:flex">

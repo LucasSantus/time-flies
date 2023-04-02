@@ -9,7 +9,13 @@ import { TimerButton } from "./components/TimerButton";
 import { TimerStructure } from "./components/TimerStructure";
 
 export const Countdown: React.FC = () => {
-  const { startCountdown, changeCountdown, resetCountdown, isActive, isRunning } = useCountdown();
+  const {
+    startCountdown,
+    changeCountdown,
+    resetCountdown,
+    isActive,
+    isRunning,
+  } = useCountdown();
 
   return (
     <div className="grid min-w-min items-center justify-center gap-4 rounded-md bg-custom-gray-800 p-7">
@@ -25,7 +31,11 @@ export const Countdown: React.FC = () => {
       ) : isRunning ? (
         <>
           <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
-            <TimerButton title="Continuar" icon={<PlayRegularIcon className="w-4" />} onClick={changeCountdown} />
+            <TimerButton
+              title="Continuar"
+              icon={<PlayRegularIcon className="w-4" />}
+              onClick={changeCountdown}
+            />
             <TimerButton
               title="Resetar"
               type="interrupt"

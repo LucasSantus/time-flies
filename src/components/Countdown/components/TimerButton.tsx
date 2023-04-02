@@ -9,7 +9,6 @@ interface IButtonProps extends PropsWithChildren {
 }
 
 export const TimerButton: React.FC<IButtonProps> = ({ title, icon, type = "start", onClick }) => {
-  const mounted = ``;
   return (
     <button
       type="button"
