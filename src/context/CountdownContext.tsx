@@ -1,26 +1,13 @@
+import { CountdownContextData, ITimesType } from '@/types/Countdown';
 import { formatTime } from '@/utils/formatTime';
+import { getLocalStorage, setLocalStorage } from '@/utils/localStorage';
 import { PropsWithChildren, createContext, useEffect, useState } from 'react';
 
-interface ITimesType {
-  hourLeft: string;
-  hourRight: string;
-  minuteLeft: string;
-  minuteRight: string;
-  secondLeft: string;
-  secondRight: string;
+if (getLocalStorage({ key: 'time_flies_countdown' }) == null) {
+  setLocalStorage<number>({ key: 'time_flies_countdown', data: 25 * 60 }); // { data: 25 * 60 } = Initial value of 30 minutes
 }
 
-export interface CountdownContextData {
-  secondsAmount: number;
-  isActive: boolean;
-  isRunning: boolean;
-  times: ITimesType;
-  startCountdown: (time: number) => void;
-  changeCountdown: () => void;
-  resetCountdown: () => void;
-}
-
-const COUNTDOWN_INITIAL_TIME_IN_SECONDS = 60 * 60 * 5; // Initial value of 30 minutes
+const COUNTDOWN_INITIAL_TIME_IN_SECONDS = parseInt(getLocalStorage({ key: 'time_flies_countdown' }));
 
 export const CountdownContext = createContext<CountdownContextData>({} as CountdownContextData);
 
@@ -28,14 +15,6 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({ children }) => 
   const [secondsAmount, setSecondsAmount] = useState(COUNTDOWN_INITIAL_TIME_IN_SECONDS);
   const [isActive, setIsActive] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
-
-  // useEffect(() => {
-  //   window.onbeforeunload = () => {
-  //     if (isActive) {
-  //       alert('Você perderá o progresso do countdown até aqui, tem certeza?');
-  //     }
-  //   };
-  // }, [isActive]);
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
