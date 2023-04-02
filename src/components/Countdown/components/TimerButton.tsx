@@ -14,7 +14,6 @@ export const TimerButton: React.FC<IButtonProps> = ({ title, icon, type = "start
       type="button"
       className={classNames(
         "flex items-center justify-center gap-1 rounded-md py-3 text-base font-semibold text-white shadow-sm",
-
         type === "interrupt"
           ? "border-custom-red-500/30 bg-custom-red-500 hover:bg-custom-red-500/90"
           : "border-custom-green-500/30 bg-custom-green-500 hover:bg-custom-green-500/90",
