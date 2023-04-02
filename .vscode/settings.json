@@ -25,7 +25,7 @@
   "prettier.trailingComma": "all",
   "prettier.bracketSpacing": true,
   "prettier.enable": true,
-  "prettier.singleQuote": true,
+  "prettier.singleQuote": false,
   "prettier.tabWidth": 2,
   "prettier.semi": true,
   "prettier.jsxSingleQuote": false,

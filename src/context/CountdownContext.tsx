@@ -1,13 +1,12 @@
-import { CountdownContextData, ITimesType } from '@/types/Countdown';
-import { formatTime } from '@/utils/formatTime';
-import { getLocalStorage, setLocalStorage } from '@/utils/localStorage';
-import { PropsWithChildren, createContext, useEffect, useState } from 'react';
+import { CountdownContextData, ITimesType } from "@/types/Countdown";
+import { formatTime } from "@/utils/formatTime";
+import { getLocalStorage, setLocalStorage } from "@/utils/localStorage";
+import { PropsWithChildren, createContext, useEffect, useState } from "react";
 
-if (getLocalStorage({ key: 'time_flies_countdown' }) == null) {
-  setLocalStorage<number>({ key: 'time_flies_countdown', data: 25 * 60 }); // { data: 25 * 60 } = Initial value of 30 minutes
-}
+if (getLocalStorage({ key: "time_flies_countdown" }) == null)
+  setLocalStorage<number>({ key: "time_flies_countdown", data: 25 * 60 }); // { data: 25 * 60 } = Initial value of 30 minutes
 
-const COUNTDOWN_INITIAL_TIME_IN_SECONDS = parseInt(getLocalStorage({ key: 'time_flies_countdown' }));
+const COUNTDOWN_INITIAL_TIME_IN_SECONDS = parseInt(getLocalStorage({ key: "time_flies_countdown" }));
 
 export const CountdownContext = createContext<CountdownContextData>({} as CountdownContextData);
 
@@ -27,9 +26,9 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({ children }) => 
     return () => clearInterval(intervalId);
   }, [isActive, secondsAmount]);
 
-  const [hourLeft, hourRight] = formatTime(Math.floor(secondsAmount / 3600)).split('');
-  const [minuteLeft, minuteRight] = formatTime(Math.floor((secondsAmount % 3600) / 60)).split('');
-  const [secondLeft, secondRight] = formatTime(secondsAmount % 60).split('');
+  const [hourLeft, hourRight] = formatTime(Math.floor(secondsAmount / 3600)).split("");
+  const [minuteLeft, minuteRight] = formatTime(Math.floor((secondsAmount % 3600) / 60)).split("");
+  const [secondLeft, secondRight] = formatTime(secondsAmount % 60).split("");
 
   const times: ITimesType = {
     hourLeft,

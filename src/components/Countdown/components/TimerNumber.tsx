@@ -3,5 +3,9 @@ interface ITimerNumberProps {
 }
 
 export const TimerNumber: React.FC<ITimerNumberProps> = ({ number }) => {
-  return <div className="p-1 text-9xl h-full rounded">{number}</div>;
+  return (
+    <div className="h-full rounded bg-[#29292E] p-2 font-mono text-9xl text-white sm:rounded-lg sm:p-0 md:p-3">
+      {number}
+    </div>
+  );
 };

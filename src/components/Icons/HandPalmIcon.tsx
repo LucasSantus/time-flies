@@ -1,7 +1,14 @@
-interface HandPalmIconProps extends React.ComponentPropsWithoutRef<'svg'> {}
+interface HandPalmIconProps extends React.ComponentPropsWithoutRef<"svg"> {}
 
 export const HandPalmIcon = (props: HandPalmIconProps) => (
-  <svg width={25} height={33} viewBox="0 0 25 33" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+  <svg
+    width={25}
+    height={33}
+    viewBox="0 0 25 33"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
     <path
       fillRule="evenodd"
       clipRule="evenodd"

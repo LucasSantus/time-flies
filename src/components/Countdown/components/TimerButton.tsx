@@ -1,16 +1,25 @@
-import React, { PropsWithChildren } from 'react';
+import classNames from "classnames";
+import React, { PropsWithChildren } from "react";
 
 interface IButtonProps extends PropsWithChildren {
   title: string;
   icon?: React.ReactNode;
+  type?: "interrupt" | "start";
   onClick: () => void;
 }
 
-export const TimerButton: React.FC<IButtonProps> = ({ title, icon, onClick }) => {
+export const TimerButton: React.FC<IButtonProps> = ({ title, icon, type = "start", onClick }) => {
+  const mounted = ``;
   return (
     <button
       type="button"
-      className="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2"
+      className={classNames(
+        "flex items-center justify-center gap-1 rounded-md py-3 text-base font-semibold text-white shadow-sm",
+
+        type === "interrupt"
+          ? "border-custom-red-500/30 bg-custom-red-500 hover:bg-custom-red-500/90"
+          : "border-custom-green-500/30 bg-custom-green-500 hover:bg-custom-green-500/90",
+      )}
       onClick={onClick}
     >
       {icon && icon}
