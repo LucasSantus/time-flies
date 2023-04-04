@@ -1,6 +1,10 @@
 "use client";
 
+import { BUTTON_ANIMATE } from "@/contants/ButtonAnimate";
+import { CONTAINER_ANIMATE } from "@/contants/ContainerAnimate";
 import { useCountdown } from "@/hooks/useCountdown";
+import { ICON_CONFIG } from "@/utils/constants";
+import { motion } from "framer-motion";
 import React from "react";
 import { HandPalmIcon } from "../Icons/HandPalmIcon";
 import { PlayRegularIcon } from "../Icons/PlayRegularIcon";
@@ -12,35 +16,47 @@ export const Countdown: React.FC = () => {
   const { startCountdown, changeCountdown, resetCountdown, isActive, isRunning } = useCountdown();
 
   return (
-    <div className="grid min-w-min items-center justify-center gap-4 rounded-md bg-custom-gray-800 p-7">
+    <motion.div
+      {...CONTAINER_ANIMATE()}
+      className="grid min-w-min items-center justify-center gap-4 rounded-md bg-custom-gray-800 p-7"
+    >
       <TimerStructure />
 
-      {isActive ? (
-        <TimerButton
-          title="Interromper"
-          type="interrupt"
-          icon={<HandPalmIcon className="w-4" />}
-          onClick={changeCountdown}
-        />
-      ) : isRunning ? (
-        <>
-          <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
-            <TimerButton title="Continuar" icon={<PlayRegularIcon className="w-4" />} onClick={changeCountdown} />
+      {isRunning ? (
+        <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
+          {isActive ? (
             <TimerButton
-              title="Resetar"
+              title="Interromper"
               type="interrupt"
-              icon={<TimerRegularIcon className="w-4" />}
-              onClick={resetCountdown}
+              icon={<HandPalmIcon {...ICON_CONFIG} />}
+              variantsAnimation={BUTTON_ANIMATE({ delay: 1 })}
+              onClick={changeCountdown}
             />
-          </div>
-        </>
+          ) : (
+            <TimerButton
+              title="Continuar"
+              icon={<PlayRegularIcon {...ICON_CONFIG} />}
+              variantsAnimation={BUTTON_ANIMATE({ delay: 1 })}
+              onClick={changeCountdown}
+            />
+          )}
+
+          <TimerButton
+            title="Resetar"
+            type="interrupt"
+            icon={<TimerRegularIcon {...ICON_CONFIG} />}
+            variantsAnimation={BUTTON_ANIMATE({ delay: 2 })}
+            onClick={resetCountdown}
+          />
+        </div>
       ) : (
         <TimerButton
           title="Começar"
-          icon={<PlayRegularIcon className="w-4" />}
+          icon={<PlayRegularIcon {...ICON_CONFIG} />}
+          variantsAnimation={BUTTON_ANIMATE({ delay: 1 })}
           onClick={() => startCountdown(60 * 25)}
         />
       )}
-    </div>
+    </motion.div>
   );
 };

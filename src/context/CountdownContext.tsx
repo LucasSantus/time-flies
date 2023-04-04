@@ -1,4 +1,4 @@
-import { CountdownContextData, ITimesType } from "@/types/Countdown";
+import { CountdownContextData, ITimesType } from "@/components/Countdown/types/Countdown";
 import { formatTime } from "@/utils/formatTime";
 import { PropsWithChildren, createContext, useEffect, useState } from "react";
 
