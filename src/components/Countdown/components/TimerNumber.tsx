@@ -9,7 +9,7 @@ export const TimerNumber: React.FC<ITimerNumberProps> = ({ number, animateVarian
   return (
     <motion.div
       {...animateVariants!}
-      className="h-full rounded bg-[#29292E] p-2 font-mono text-9xl text-white sm:rounded-lg sm:p-0 md:p-3"
+      className="h-full select-none rounded bg-[#29292E] p-2 font-mono text-9xl text-white sm:rounded-lg sm:p-0 md:p-3"
     >
       {number}
     </motion.div>
