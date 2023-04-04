@@ -5,7 +5,6 @@
   "editor.bracketPairColorization.enabled": true,
   "editor.minimap.enabled": true,
   "editor.formatOnSave": true,
-  "editor.formatOnPaste": true,
   "editor.semanticHighlighting.enabled": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.parameterHints.enabled": true,
