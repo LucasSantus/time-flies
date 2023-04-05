@@ -21,7 +21,7 @@ export const TimerButton: React.FC<IButtonProps> = ({ title, icon, type = "start
       {...variantsAnimation}
       type="button"
       className={classNames(
-        "flex items-center justify-center gap-1 rounded-md py-3 text-base font-semibold text-white shadow-sm transition-all",
+        "flex items-center justify-center gap-1 rounded-md py-3 text-base font-semibold text-white shadow-sm",
         TYPE_BUTTON,
       )}
       onClick={onClick}
