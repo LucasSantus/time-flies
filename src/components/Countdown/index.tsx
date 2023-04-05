@@ -1,7 +1,6 @@
 "use client";
 
-import { BUTTON_ANIMATE } from "@/contants/ButtonAnimate";
-import { CONTAINER_ANIMATE } from "@/contants/ContainerAnimate";
+import { animateButton, animateContainer } from "@/contants/animate";
 import { useCountdown } from "@/hooks/useCountdown";
 import { ICON_CONFIG } from "@/utils/constants";
 import { motion } from "framer-motion";
@@ -17,10 +16,12 @@ export const Countdown: React.FC = () => {
 
   return (
     <motion.div
-      {...CONTAINER_ANIMATE()}
+      {...animateContainer()}
       className="grid min-w-min items-center justify-center gap-4 rounded-md bg-custom-gray-800 p-7"
     >
-      <TimerStructure />
+      <motion.div {...animateButton({ delay: 0.7 })}>
+        <TimerStructure />
+      </motion.div>
 
       {isRunning ? (
         <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
@@ -29,14 +30,14 @@ export const Countdown: React.FC = () => {
               title="Interromper"
               type="interrupt"
               icon={<HandPalmIcon {...ICON_CONFIG} />}
-              variantsAnimation={BUTTON_ANIMATE({ delay: 1 })}
+              variantsAnimation={animateButton({ delay: 0.7 })}
               onClick={changeCountdown}
             />
           ) : (
             <TimerButton
               title="Continuar"
               icon={<PlayRegularIcon {...ICON_CONFIG} />}
-              variantsAnimation={BUTTON_ANIMATE({ delay: 1 })}
+              variantsAnimation={animateButton({ delay: 0.7 })}
               onClick={changeCountdown}
             />
           )}
@@ -45,7 +46,7 @@ export const Countdown: React.FC = () => {
             title="Resetar"
             type="interrupt"
             icon={<TimerRegularIcon {...ICON_CONFIG} />}
-            variantsAnimation={BUTTON_ANIMATE({ delay: 2 })}
+            variantsAnimation={animateButton({ delay: 1.4 })}
             onClick={resetCountdown}
           />
         </div>
@@ -53,7 +54,7 @@ export const Countdown: React.FC = () => {
         <TimerButton
           title="Começar"
           icon={<PlayRegularIcon {...ICON_CONFIG} />}
-          variantsAnimation={BUTTON_ANIMATE({ delay: 1 })}
+          variantsAnimation={animateButton({ delay: 0.7 })}
           onClick={() => startCountdown(60 * 25)}
         />
       )}

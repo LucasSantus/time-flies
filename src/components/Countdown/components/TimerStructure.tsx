@@ -1,5 +1,6 @@
-import { BUTTON_ANIMATE } from "@/contants/ButtonAnimate";
+import { animateButton } from "@/contants/animate";
 import { useCountdown } from "@/hooks/useCountdown";
+import { Fragment } from "react";
 import { TimerColon } from "./TimerColon";
 import { TimerNumber } from "./TimerNumber";
 
@@ -8,24 +9,20 @@ interface ITimerStructureProps {}
 export const TimerStructure: React.FC<ITimerStructureProps> = () => {
   const { times } = useCountdown();
 
-  const { hourLeft, hourRight, minuteLeft, minuteRight, secondLeft, secondRight } = times;
+  const animationValues = Object.values(times);
 
   return (
     <div className="grid items-center justify-center gap-3 sm:flex">
-      <div className="flex gap-2">
-        <TimerNumber number={hourLeft} animateVariants={BUTTON_ANIMATE({ delay: 1 })} />
-        <TimerNumber number={hourRight} animateVariants={BUTTON_ANIMATE({ delay: 2 })} />
-      </div>
-      <TimerColon animateVariants={BUTTON_ANIMATE({ delay: 3 })} />
-      <div className="flex gap-2">
-        <TimerNumber number={minuteLeft} animateVariants={BUTTON_ANIMATE({ delay: 4 })} />
-        <TimerNumber number={minuteRight} animateVariants={BUTTON_ANIMATE({ delay: 5 })} />
-      </div>
-      <TimerColon animateVariants={BUTTON_ANIMATE({ delay: 6 })} />
-      <div className="flex gap-2">
-        <TimerNumber number={secondLeft} animateVariants={BUTTON_ANIMATE({ delay: 7 })} />
-        <TimerNumber number={secondRight} animateVariants={BUTTON_ANIMATE({ delay: 8 })} />
-      </div>
+      {animationValues.map((value, index) => {
+        const isShowTimerColon = index % 2 !== 0 && index !== animationValues.length - 1;
+
+        return (
+          <Fragment key={`timer-${value}-${index}`}>
+            <TimerNumber number={value} animateVariants={animateButton({ delay: 0, transition: 0.4 })} />
+            {isShowTimerColon && <TimerColon animateVariants={animateButton({ delay: 0 })} />}
+          </Fragment>
+        );
+      })}
     </div>
   );
 };
