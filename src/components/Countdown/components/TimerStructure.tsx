@@ -13,12 +13,21 @@ export const TimerStructure: React.FC<ITimerStructureProps> = () => {
 
   return (
     <div className="grid items-center justify-center gap-3 sm:flex">
-      {animationValues.map((value, index) => {
-        const isShowTimerColon = index % 2 !== 0 && index !== animationValues.length - 1;
+      {Array.from({ length: animationValues.length / 2 }).map((_, index) => {
+        const isShowTimerColon = index !== animationValues.length / 2 - 1;
 
         return (
-          <Fragment key={`timer-${value}-${index}`}>
-            <TimerNumber number={value} animateVariants={animateButton({ delay: 0, transition: 0.4 })} />
+          <Fragment key={`timer-${index}`}>
+            <div className="flex gap-2">
+              <TimerNumber
+                number={animationValues[index * 2]}
+                animateVariants={animateButton({ delay: 0, transition: 0.4 })}
+              />
+              <TimerNumber
+                number={animationValues[index * 2 + 1]}
+                animateVariants={animateButton({ delay: 0, transition: 0.4 })}
+              />
+            </div>
             {isShowTimerColon && <TimerColon animateVariants={animateButton({ delay: 0 })} />}
           </Fragment>
         );
