@@ -1,18 +1,26 @@
-"use client";
-
 import { animateButton, animateContainer } from "@/contants/animate";
+import { EColorButton } from "@/contants/button";
 import { useCountdown } from "@/hooks/useCountdown";
 import { ICON_CONFIG } from "@/utils/constants";
 import { motion } from "framer-motion";
-import React from "react";
+import { PencilSimple } from "phosphor-react";
+import React, { useState } from "react";
 import { HandPalmIcon } from "../Icons/HandPalmIcon";
 import { PlayRegularIcon } from "../Icons/PlayRegularIcon";
 import { TimerRegularIcon } from "../Icons/TimerRegularIcon";
-import { TimerButton } from "./components/TimerButton";
-import { TimerStructure } from "./components/TimerStructure";
+import { Modal } from "../Modal";
+import { TimerButton } from "./TimerButton";
+import { TimerForm } from "./TimerForm";
+import { TimerStructure } from "./TimerStructure";
 
 export const Countdown: React.FC = () => {
   const { startCountdown, changeCountdown, resetCountdown, isActive, isRunning } = useCountdown();
+
+  const [isModalActive, setIsModalActive] = useState(false);
+
+  const closeModal = () => {
+    setIsModalActive(false);
+  };
 
   return (
     <motion.div
@@ -23,18 +31,23 @@ export const Countdown: React.FC = () => {
         <TimerStructure />
       </motion.div>
 
+      <Modal title="Edit" isActive={isModalActive} onCloseModal={closeModal}>
+        <TimerForm onSubmit={closeModal} />
+      </Modal>
+
       {isRunning ? (
         <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
           {isActive ? (
             <TimerButton
+              className={EColorButton.RED}
               title="Interromper"
-              type="interrupt"
               icon={<HandPalmIcon {...ICON_CONFIG} />}
               variantsAnimation={animateButton({ delay: 0.7 })}
               onClick={changeCountdown}
             />
           ) : (
             <TimerButton
+              className={EColorButton.GREEN}
               title="Continuar"
               icon={<PlayRegularIcon {...ICON_CONFIG} />}
               variantsAnimation={animateButton({ delay: 0.7 })}
@@ -43,20 +56,32 @@ export const Countdown: React.FC = () => {
           )}
 
           <TimerButton
+            className={EColorButton.RED}
             title="Resetar"
-            type="interrupt"
             icon={<TimerRegularIcon {...ICON_CONFIG} />}
             variantsAnimation={animateButton({ delay: 1.4 })}
             onClick={resetCountdown}
           />
         </div>
       ) : (
-        <TimerButton
-          title="Começar"
-          icon={<PlayRegularIcon {...ICON_CONFIG} />}
-          variantsAnimation={animateButton({ delay: 0.7 })}
-          onClick={() => startCountdown(60 * 25)}
-        />
+        <div className="flex gap-2">
+          <TimerButton
+            className={EColorButton.GREEN}
+            title="Começar"
+            icon={<PlayRegularIcon {...ICON_CONFIG} />}
+            variantsAnimation={animateButton({ delay: 0.7 })}
+            onClick={() => startCountdown()}
+          />
+
+          <div className="w-16">
+            <TimerButton
+              className={EColorButton.GRAY}
+              icon={<PencilSimple size={27} className="h-8" />}
+              variantsAnimation={animateButton({ delay: 0.7 })}
+              onClick={() => setIsModalActive(true)}
+            />
+          </div>
+        </div>
       )}
     </motion.div>
   );
