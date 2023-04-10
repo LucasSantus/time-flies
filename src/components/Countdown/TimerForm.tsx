@@ -1,28 +1,25 @@
 import { animateButton } from "@/contants/animate";
 import { EColorButton } from "@/contants/button";
 import { useCountdown } from "@/hooks/useCountdown";
+import { useLocale } from "@/hooks/useLocale";
+import generalTranslations from "@/locales/general";
 import { formatTimeInSeconds } from "@/utils/formatTimeInSeconds";
+import { CreateUserFormData, createUserFormSchema } from "@/validation/timer-registration";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FloppyDiskBack } from "phosphor-react";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import { z } from "zod";
-import { TimerButton } from "./TimerButton";
-
-const createUserFormSchema = z.object({
-  hours: z.coerce.number().min(0, "O campo hora não pode ser menor que 1").max(24),
-  minutes: z.coerce.number().min(0, "O campo minuto não pode ser menor que 1").max(60),
-  seconds: z.coerce.number().min(0, "O campo segundo não pode ser menor que 1").max(60),
-});
-
-type CreateUserFormData = z.infer<typeof createUserFormSchema>;
+import { Button } from "../Button";
 
 interface ITimerFormProps {
   onSubmit: () => void;
 }
 
 export const TimerForm: React.FC<ITimerFormProps> = ({ onSubmit }) => {
+  const { locale } = useLocale();
+  const translations = generalTranslations[locale];
+
   const {
     register,
     handleSubmit,
@@ -35,9 +32,7 @@ export const TimerForm: React.FC<ITimerFormProps> = ({ onSubmit }) => {
 
   function createTimeOut(data: CreateUserFormData) {
     const timeInSeconds = formatTimeInSeconds(data);
-
     setTimeInSeconds(timeInSeconds);
-
     onSubmit();
   }
 
@@ -69,12 +64,12 @@ export const TimerForm: React.FC<ITimerFormProps> = ({ onSubmit }) => {
         </div>
       </div>
 
-      <TimerButton
+      <Button
         className={EColorButton.GREEN}
         type="submit"
-        title="Salvar"
-        icon={<FloppyDiskBack size={27} className="h-8" />}
-        variantsAnimation={animateButton({ delay: 0.7 })}
+        title={translations.save}
+        icon={<FloppyDiskBack size={20} />}
+        variants={animateButton({ delay: 0.7 })}
         onClick={() => {}}
       />
     </form>
