@@ -1,22 +1,24 @@
 import { animateButton, animateContainer } from "@/contants/animate";
 import { EColorButton } from "@/contants/button";
 import { useCountdown } from "@/hooks/useCountdown";
-import { ICON_CONFIG } from "@/utils/constants";
+import { useLocale } from "@/hooks/useLocale";
+import generalTranslations from "@/locales/general";
+import classNames from "classnames";
 import { motion } from "framer-motion";
-import { PencilSimple } from "phosphor-react";
+import { HandPalm, PencilSimple, Play, Timer } from "phosphor-react";
 import React, { useState } from "react";
-import { HandPalmIcon } from "../Icons/HandPalmIcon";
-import { PlayRegularIcon } from "../Icons/PlayRegularIcon";
-import { TimerRegularIcon } from "../Icons/TimerRegularIcon";
+import { Button } from "../Button";
 import { Modal } from "../Modal";
-import { TimerButton } from "./TimerButton";
 import { TimerForm } from "./TimerForm";
 import { TimerStructure } from "./TimerStructure";
 
 export const Countdown: React.FC = () => {
   const { startCountdown, changeCountdown, resetCountdown, isActive, isRunning } = useCountdown();
 
-  const [isModalActive, setIsModalActive] = useState(false);
+  const { locale } = useLocale();
+  const traslations = generalTranslations[locale];
+
+  const [, setIsModalActive] = useState(false);
 
   const closeModal = () => {
     setIsModalActive(false);
@@ -31,55 +33,56 @@ export const Countdown: React.FC = () => {
         <TimerStructure />
       </motion.div>
 
-      <Modal title="Edit" isActive={isModalActive} onCloseModal={closeModal}>
-        <TimerForm onSubmit={closeModal} />
-      </Modal>
-
       {isRunning ? (
         <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
           {isActive ? (
-            <TimerButton
+            <Button
               className={EColorButton.RED}
-              title="Interromper"
-              icon={<HandPalmIcon {...ICON_CONFIG} />}
-              variantsAnimation={animateButton({ delay: 0.7 })}
+              title={traslations.interrupt}
+              icon={<HandPalm size={20} />}
+              variants={animateButton({ delay: 0.7 })}
               onClick={changeCountdown}
             />
           ) : (
-            <TimerButton
+            <Button
               className={EColorButton.GREEN}
-              title="Continuar"
-              icon={<PlayRegularIcon {...ICON_CONFIG} />}
-              variantsAnimation={animateButton({ delay: 0.7 })}
+              title={traslations.continue}
+              icon={<Play size={20} />}
+              variants={animateButton({ delay: 0.7 })}
               onClick={changeCountdown}
             />
           )}
 
-          <TimerButton
+          <Button
             className={EColorButton.RED}
-            title="Resetar"
-            icon={<TimerRegularIcon {...ICON_CONFIG} />}
-            variantsAnimation={animateButton({ delay: 1.4 })}
+            title={traslations.reset}
+            icon={<Timer size={20} />}
+            variants={animateButton({ delay: 1.4 })}
             onClick={resetCountdown}
           />
         </div>
       ) : (
         <div className="flex gap-2">
-          <TimerButton
+          <Button
             className={EColorButton.GREEN}
-            title="Começar"
-            icon={<PlayRegularIcon {...ICON_CONFIG} />}
-            variantsAnimation={animateButton({ delay: 0.7 })}
+            title={traslations.start}
+            icon={<Play size={20} />}
+            variants={animateButton({ delay: 0.7 })}
             onClick={() => startCountdown()}
           />
 
           <div className="w-16">
-            <TimerButton
-              className={EColorButton.GRAY}
-              icon={<PencilSimple size={27} className="h-8" />}
-              variantsAnimation={animateButton({ delay: 0.7 })}
-              onClick={() => setIsModalActive(true)}
-            />
+            <Modal
+              button={{
+                className: classNames(EColorButton.GRAY, "p-5"),
+                icon: <PencilSimple size={20} />,
+                variants: animateButton({ delay: 0.7 }),
+                onClick: () => {},
+              }}
+              title={traslations.editCountdown}
+            >
+              <TimerForm onSubmit={closeModal} />
+            </Modal>
           </div>
         </div>
       )}

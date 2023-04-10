@@ -1,3 +1,5 @@
+"use client";
+
 import { Variants, motion } from "framer-motion";
 
 interface ITimerNumberProps {
@@ -5,7 +7,10 @@ interface ITimerNumberProps {
   animateVariants?: Variants;
 }
 
-export const TimerNumber: React.FC<ITimerNumberProps> = ({ number, animateVariants }) => {
+export const TimerNumber: React.FC<ITimerNumberProps> = ({
+  number,
+  animateVariants,
+}) => {
   return (
     <motion.div
       {...animateVariants}
