@@ -19,10 +19,18 @@ export const TimerStructure: React.FC<ITimerStructureProps> = () => {
         return (
           <Fragment key={`timer-${index}`}>
             <div className="flex gap-2">
-              <TimerNumber number={animationValues[index * 2]} animateVariants={animateButton({ delay: 0.2 })} />
-              <TimerNumber number={animationValues[index * 2 + 1]} animateVariants={animateButton({ delay: 0.2 })} />
+              <TimerNumber
+                number={animationValues[index * 2]}
+                animateVariants={animateButton({ delay: 0.2 })}
+              />
+              <TimerNumber
+                number={animationValues[index * 2 + 1]}
+                animateVariants={animateButton({ delay: 0.2 })}
+              />
             </div>
-            {isShowTimerColon && <TimerColon animateVariants={animateButton({ delay: 0 })} />}
+            {isShowTimerColon && (
+              <TimerColon animateVariants={animateButton({ delay: 0 })} />
+            )}
           </Fragment>
         );
       })}
