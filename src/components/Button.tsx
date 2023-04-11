@@ -5,7 +5,7 @@ import React from "react";
 export interface IButtonProps {
   className: string;
   variants: Variants;
-  onClick: () => void;
+  onClick?: () => void;
   title?: string;
   icon?: React.ReactNode;
   type?: "button" | "reset" | "submit" | undefined;

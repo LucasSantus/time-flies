@@ -17,7 +17,7 @@ export const Settings: React.FC = () => {
       button={{
         className: classNames(EColorButton.GRAY, "p-5"),
         title: translations.settings,
-        icon: <Gear size={20} />,
+        icon: <Gear size={SIZE_ICON} />,
         variants: animateButton({ delay: 0.7 }),
         onClick: () => {},
       }}

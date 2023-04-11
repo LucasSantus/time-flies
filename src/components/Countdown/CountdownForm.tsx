@@ -1,9 +1,10 @@
 import { animateButton } from "@/contants/animate";
 import { EColorButton } from "@/contants/button";
+import { SIZE_ICON } from "@/contants/globals";
 import { useCountdown } from "@/hooks/useCountdown";
 import { useLocale } from "@/hooks/useLocale";
 import generalTranslations from "@/locales/general";
-import { formatTimeInSeconds } from "@/utils/formatTimeInSeconds";
+import { convertTimeInSeconds } from "@/utils/formatTimeInSeconds";
 import { CreateUserFormData, createUserFormSchema } from "@/validation/timer-registration";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FloppyDiskBack } from "phosphor-react";
@@ -12,11 +13,11 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { Button } from "../Button";
 
-interface ITimerFormProps {
+interface ICountdownFormProps {
   onSubmit: () => void;
 }
 
-export const TimerForm: React.FC<ITimerFormProps> = ({ onSubmit }) => {
+export const CountdownForm: React.FC<ICountdownFormProps> = ({ onSubmit }) => {
   const { locale } = useLocale();
   const translations = generalTranslations[locale];
 
@@ -31,7 +32,7 @@ export const TimerForm: React.FC<ITimerFormProps> = ({ onSubmit }) => {
   const { setTimeInSeconds } = useCountdown();
 
   function createTimeOut(data: CreateUserFormData) {
-    const timeInSeconds = formatTimeInSeconds(data);
+    const timeInSeconds = convertTimeInSeconds(data);
     setTimeInSeconds(timeInSeconds);
     onSubmit();
   }
@@ -68,9 +69,8 @@ export const TimerForm: React.FC<ITimerFormProps> = ({ onSubmit }) => {
         className={EColorButton.GREEN}
         type="submit"
         title={translations.save}
-        icon={<FloppyDiskBack size={20} />}
+        icon={<FloppyDiskBack size={SIZE_ICON} />}
         variants={animateButton({ delay: 0.7 })}
-        onClick={() => {}}
       />
     </form>
   );

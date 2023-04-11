@@ -1,12 +1,12 @@
 import { animateButton } from "@/contants/animate";
 import { useCountdown } from "@/hooks/useCountdown";
 import { Fragment } from "react";
-import { TimerColon } from "./TimerColon";
-import { TimerNumber } from "./TimerNumber";
+import { CountdownColon } from "./CountdownColon";
+import { CountdownNumber } from "./CountdownNumber";
 
-interface ITimerStructureProps {}
+interface ICountdownStructureProps {}
 
-export const TimerStructure: React.FC<ITimerStructureProps> = () => {
+export const CountdownStructure: React.FC<ICountdownStructureProps> = () => {
   const { times } = useCountdown();
 
   const animationValues = Object.values(times);
@@ -19,18 +19,13 @@ export const TimerStructure: React.FC<ITimerStructureProps> = () => {
         return (
           <Fragment key={`timer-${index}`}>
             <div className="flex gap-2">
-              <TimerNumber
-                number={animationValues[index * 2]}
-                animateVariants={animateButton({ delay: 0.2 })}
-              />
-              <TimerNumber
+              <CountdownNumber number={animationValues[index * 2]} animateVariants={animateButton({ delay: 0.2 })} />
+              <CountdownNumber
                 number={animationValues[index * 2 + 1]}
                 animateVariants={animateButton({ delay: 0.2 })}
               />
             </div>
-            {isShowTimerColon && (
-              <TimerColon animateVariants={animateButton({ delay: 0 })} />
-            )}
+            {isShowTimerColon && <CountdownColon animateVariants={animateButton({ delay: 0 })} />}
           </Fragment>
         );
       })}
