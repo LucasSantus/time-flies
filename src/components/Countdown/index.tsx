@@ -19,10 +19,10 @@ export const Countdown: React.FC = () => {
 
   return (
     <motion.div
-      variants={animateContainer()}
+      {...animateContainer()}
       className="grid min-w-min items-center justify-center gap-4 rounded-md bg-[#f6f7f8] p-7 dark:bg-custom-gray-700"
     >
-      <motion.div variants={animateButton({ delay: 0.7 })}>
+      <motion.div {...animateButton({ delay: 0.7 })}>
         <CountdownStructure />
       </motion.div>
 

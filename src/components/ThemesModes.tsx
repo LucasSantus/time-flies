@@ -1,6 +1,8 @@
+import { animateButton } from "@/contants/animate";
 import { THEME_MODES } from "@/contants/themes";
 import { useThemeMode } from "@/hooks/Themes/useThemeMode";
 import { IThemeTypes } from "@/types/Theme";
+import { Button } from "./Button";
 
 export const ThemesMode: React.FC = () => {
   const { getThemeMode, setThemeMode } = useThemeMode();
@@ -12,9 +14,13 @@ export const ThemesMode: React.FC = () => {
   return (
     <>
       {THEME_MODES.filter(({ theme }) => theme !== getThemeMode()).map(({ icon, theme }, index) => (
-        <button key={index} onClick={() => handleClick(theme)}>
-          {icon}
-        </button>
+        <Button
+          className=""
+          icon={icon}
+          variants={animateButton({ delay: 0.7 })}
+          key={index}
+          onClick={() => handleClick(theme)}
+        />
       ))}
     </>
   );
