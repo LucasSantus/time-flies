@@ -1,13 +1,13 @@
 import { Variants, motion } from "framer-motion";
 import React from "react";
 
-interface ITimerColonProps {
-  animateVariants?: Variants;
+interface ICountdownColonProps {
+  variants?: Variants;
 }
 
-export const TimerColon: React.FC<ITimerColonProps> = ({ animateVariants }) => {
+export const CountdownColon: React.FC<ICountdownColonProps> = ({ variants }) => {
   return (
-    <motion.div {...animateVariants}>
+    <motion.div variants={variants}>
       <span className="hidden select-none items-center justify-center pb-10 text-5xl text-custom-green-500 sm:flex sm:text-9xl">
         :
       </span>

@@ -1,6 +1,6 @@
 import { ITimeInSecondsType } from "@/types/TimeInSeconds";
 
-export function formatTimeInSeconds(time: ITimeInSecondsType) {
+export function convertTimeInSeconds(time: ITimeInSecondsType) {
   const { hours, minutes, seconds } = time;
 
   const hour = hours * 60 * 60;
