@@ -2,12 +2,12 @@ import { Variants, motion } from "framer-motion";
 import React from "react";
 
 interface ICountdownColonProps {
-  animateVariants?: Variants;
+  variants?: Variants;
 }
 
-export const CountdownColon: React.FC<ICountdownColonProps> = ({ animateVariants }) => {
+export const CountdownColon: React.FC<ICountdownColonProps> = ({ variants }) => {
   return (
-    <motion.div variants={animateVariants}>
+    <motion.div variants={variants}>
       <span className="hidden select-none items-center justify-center pb-10 text-5xl text-custom-green-500 sm:flex sm:text-9xl">
         :
       </span>

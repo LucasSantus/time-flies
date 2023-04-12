@@ -1,6 +1,10 @@
 import { IThemeContextProps, IThemeTypes } from "@/types/Theme";
 import { FC, PropsWithChildren, createContext, useEffect, useState } from "react";
 
+/**
+ *
+ * @returns
+ */
 const getTheme = (): IThemeTypes["theme"] => {
   if (typeof window !== "undefined" && window.localStorage) {
     const storedPrefs = window.localStorage.getItem("theme");
