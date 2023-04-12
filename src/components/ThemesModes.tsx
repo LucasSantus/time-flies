@@ -1,6 +1,6 @@
+import { THEME_MODES } from "@/contants/themes";
 import { useThemeMode } from "@/hooks/Themes/useThemeMode";
 import { IThemeTypes } from "@/types/Theme";
-import { THEME_MODES } from "./constants";
 
 export const ThemesMode: React.FC = () => {
   const { getThemeMode, setThemeMode } = useThemeMode();
