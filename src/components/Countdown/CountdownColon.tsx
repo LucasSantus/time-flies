@@ -7,7 +7,7 @@ interface ICountdownColonProps {
 
 export const CountdownColon: React.FC<ICountdownColonProps> = ({ variants }) => {
   return (
-    <motion.div variants={variants}>
+    <motion.div {...variants}>
       <span className="hidden select-none items-center justify-center pb-10 text-5xl text-custom-green-500 sm:flex sm:text-9xl">
         :
       </span>
