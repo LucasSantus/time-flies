@@ -2,7 +2,7 @@ import { animateButton } from "@/contants/animate";
 import { EColorButton } from "@/contants/button";
 import { SIZE_ICON } from "@/contants/globals";
 import { useCountdown } from "@/hooks/useCountdown";
-import { useTranslation } from "@/hooks/useTranslations";
+import { useTranslations } from "@/hooks/useTranslations";
 import { convertTimeInSeconds } from "@/utils/convertTimeInSeconds";
 import { CreateCountdownFormData, createCountdownFormSchema } from "@/validation/countdown-registration";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,7 +15,7 @@ import { Button } from "../Button";
 interface ICountdownFormProps {}
 
 export const CountdownForm: React.FC<ICountdownFormProps> = () => {
-  const translations = useTranslation("general");
+  const translations = useTranslations("general");
 
   const {
     register,

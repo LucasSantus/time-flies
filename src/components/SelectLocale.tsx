@@ -1,7 +1,7 @@
 import { animateButton } from "@/contants/animate";
 import { EColorButton } from "@/contants/button";
 import { useLocale } from "@/hooks/useLocale";
-import { useTranslation } from "@/hooks/useTranslations";
+import { useTranslations } from "@/hooks/useTranslations";
 import { Locale } from "@/locales/general";
 import classNames from "classnames";
 import { Gear } from "phosphor-react";
@@ -16,7 +16,7 @@ interface ILanguageTypes {
 export const SelectLocale: React.FC = () => {
   const { setLocale } = useLocale();
 
-  const translations = useTranslation("general");
+  const translations = useTranslations("general");
 
   const handleLocaleChange = (newLocale: Locale) => {
     setLocale(newLocale);
