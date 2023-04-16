@@ -1,18 +1,18 @@
 "use client";
 
+import { AnimatePresence } from "framer-motion";
 import React, { PropsWithChildren } from "react";
 import { CountdownProvider } from "./CountdownContext";
 import { LocaleProvider } from "./LocaleContext";
-import { ThemeContextWrapper } from "./ThemeContext";
-import { AnimatePresence } from "framer-motion";
+import { MultiThemeProvider } from "./MultiThemeContext.";
 
 export const Contexts: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <AnimatePresence>
       <LocaleProvider>
-        <ThemeContextWrapper>
+        <MultiThemeProvider>
           <CountdownProvider>{children}</CountdownProvider>
-        </ThemeContextWrapper>
+        </MultiThemeProvider>
       </LocaleProvider>
     </AnimatePresence>
   );

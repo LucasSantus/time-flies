@@ -8,10 +8,10 @@ const translations = {
 
 type Translations = typeof translations;
 
-export function useTranslation<T extends keyof Translations>(component: T): Translations[T][Locale] {
+export function useTranslations<T extends keyof Translations>(component: T): Translations[T][Locale] {
   const { locale } = useContext(LocaleContext as Context<LocaleContextType>);
 
   const moduleTranslate = translations[component];
 
-  return moduleTranslate[locale] ?? moduleTranslate["pt-BR"];
+  return moduleTranslate[locale] ?? moduleTranslate["en-US"];
 }
