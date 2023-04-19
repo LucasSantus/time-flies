@@ -1,5 +1,22 @@
-export interface ITheme {
+export interface IThemeCustomTest {
   name: string;
+  body: string;
+  primary: string;
+  secondary: string;
+  third: string;
+  success: string;
+  danger: string;
+  info: string;
+  light: string;
+  dark: string;
+}
+
+export interface INameTheme {
+  name: "dark" | "light";
+}
+
+export interface ITheme {
+  name: INameTheme["name"];
   backgroundPrimary: string;
   backgroundSecondary: string;
   backgroundThird: string;
@@ -13,6 +30,33 @@ export interface ITheme {
   textError: string;
   textLight: string;
 }
+
+// export const themes: IThemeCustomTest[] = [
+//   {
+//     name: "dark",
+//     body: "custom-gray-800",
+//     primary: "custom-gray-700",
+//     secondary: "custom-gray-600",
+//     third: "",
+//     success: "",
+//     danger: "",
+//     info: "",
+//     light: "",
+//     dark: "",
+//   },
+//   {
+//     name: "light",
+//     body: "",
+//     primary: "",
+//     secondary: "",
+//     third: "",
+//     success: "",
+//     danger: "",
+//     info: "",
+//     light: "",
+//     dark: "",
+//   },
+// ];
 
 export const themes: ITheme[] = [
   {
@@ -32,9 +76,9 @@ export const themes: ITheme[] = [
   },
   {
     name: "light",
-    backgroundPrimary: "bg-red-800",
-    backgroundSecondary: "bg-red-700",
-    backgroundThird: "bg-red-600",
+    backgroundPrimary: "bg-slate-800",
+    backgroundSecondary: "bg-slate-700",
+    backgroundThird: "bg-slate-600",
     backgroundSuccess: "",
     backgroundError: "",
     backgroundLight: "",
@@ -46,6 +90,3 @@ export const themes: ITheme[] = [
     textLight: "",
   },
 ];
-
-export const DEFAULT_THEME_NAME = themes[0].name;
-export const DEFAULT_THEME = themes[0];

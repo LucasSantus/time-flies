@@ -1,6 +1,6 @@
+import { KEY_TIME_COOKIE } from "@/contants/globals";
 import { CountdownContextData } from "@/types/CountdownContextData";
 import { ITimesType } from "@/types/Times";
-import { KEY_TIME_COOKIE } from "@/utils/constants";
 import { formatTime } from "@/utils/formatTime";
 import { parseCookies, setCookie } from "nookies";
 import { PropsWithChildren, createContext, useEffect, useState } from "react";
@@ -25,15 +25,10 @@ export function getTimeFromCookie(key: string): number {
   return isNaN(time) ? DEFAULT_TIME : time;
 }
 
-export const CountdownProvider: React.FC<PropsWithChildren> = ({
-  children,
-}) => {
-  if (!getTimeFromCookie(KEY_TIME_COOKIE))
-    setTimeInCookie(KEY_TIME_COOKIE, 60 * 25);
+export const CountdownProvider: React.FC<PropsWithChildren> = ({ children }) => {
+  if (!getTimeFromCookie(KEY_TIME_COOKIE)) setTimeInCookie(KEY_TIME_COOKIE, 60 * 25);
 
-  const [secondsAmount, setSecondsAmount] = useState(
-    getTimeFromCookie(KEY_TIME_COOKIE)
-  );
+  const [secondsAmount, setSecondsAmount] = useState(getTimeFromCookie(KEY_TIME_COOKIE));
   const [isActive, setIsActive] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
 
@@ -48,12 +43,8 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({
     return () => clearInterval(intervalId);
   }, [isActive, secondsAmount]);
 
-  const [hourLeft, hourRight] = formatTime(
-    Math.floor(secondsAmount / 3600)
-  ).split("");
-  const [minuteLeft, minuteRight] = formatTime(
-    Math.floor((secondsAmount % 3600) / 60)
-  ).split("");
+  const [hourLeft, hourRight] = formatTime(Math.floor(secondsAmount / 3600)).split("");
+  const [minuteLeft, minuteRight] = formatTime(Math.floor((secondsAmount % 3600) / 60)).split("");
   const [secondLeft, secondRight] = formatTime(secondsAmount % 60).split("");
 
   const times: ITimesType = {
