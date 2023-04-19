@@ -12,8 +12,6 @@ interface ICountdownNumberProps {
 export const CountdownNumber: React.FC<ICountdownNumberProps> = ({ number, variants }) => {
   const { backgroundThird } = useMultiTheme();
 
-  console.log(backgroundThird);
-
   return (
     <motion.div
       {...variants}

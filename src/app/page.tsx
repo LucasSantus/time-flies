@@ -27,7 +27,7 @@ export default function Home() {
               icon: <Gear size={SIZE_ICON} />,
               variants: animateButton({ delay: 0.7 }),
             }}
-            title={translations.editCountdown}
+            title=""
           >
             <MultiThemeSelector />
           </Modal>

@@ -1,6 +1,7 @@
 "use client";
 
-import { DEFAULT_THEME, ITheme } from "@/contants/themes";
+import { DEFAULT_THEME } from "@/contants/globals";
+import { ITheme } from "@/contants/themes";
 import { getTheme, getThemeNameFromCookie, setThemeNameFromCookie } from "@/utils/themes";
 import { FC, PropsWithChildren, createContext, useEffect, useState } from "react";
 
@@ -14,9 +15,30 @@ export const MultiThemeContext = createContext<MultiThemeContextProps>({
   setSelectedTheme: () => {},
 });
 
+// interface IMountedThemeTypes {
+//   name: string;
+//   body: string;
+//   primary: string;
+//   secondary: string;
+//   third: string;
+//   success: string;
+//   danger: string;
+//   info: string;
+//   light: string;
+//   dark: string;
+// }
+
+// const mountedColors = ["bg", "text"];
+
 export const MultiThemeProvider: FC<PropsWithChildren> = ({ children }) => {
   const [themeName, setThemeName] = useState(getThemeNameFromCookie());
   const [theme, setTheme] = useState(getTheme(themeName));
+
+  // const mountedTheme = useMemo(() => {
+  //   mountedColors;
+
+  //   return theme;
+  // }, [theme]);
 
   useEffect(() => {
     setThemeNameFromCookie(themeName);
