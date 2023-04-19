@@ -1,7 +1,8 @@
 import { animateButton } from "@/contants/animate";
 import { EColorButton } from "@/contants/button";
 import { useLocale } from "@/hooks/useLocale";
-import generalTranslations, { Locale } from "@/locales/general";
+import { useTranslations } from "@/hooks/useTranslations";
+import { Locale } from "@/locales/general";
 import classNames from "classnames";
 import { Gear } from "phosphor-react";
 import { Dropdown } from "./Dropdown";
@@ -13,7 +14,9 @@ interface ILanguageTypes {
 }
 
 export const SelectLocale: React.FC = () => {
-  const { locale, setLocale } = useLocale();
+  const { setLocale } = useLocale();
+
+  const translations = useTranslations("general");
 
   const handleLocaleChange = (newLocale: Locale) => {
     setLocale(newLocale);
@@ -22,14 +25,14 @@ export const SelectLocale: React.FC = () => {
   const LANGUAGES: ILanguageTypes[] = [
     {
       id: "pt-BR",
-      title: generalTranslations[locale].portuguese,
+      title: translations.portuguese,
       onClick: () => {
         handleLocaleChange("pt-BR");
       },
     },
     {
       id: "en-US",
-      title: generalTranslations[locale].english,
+      title: translations.english,
       onClick: () => {
         handleLocaleChange("en-US");
       },
@@ -39,11 +42,10 @@ export const SelectLocale: React.FC = () => {
   return (
     <Dropdown
       button={{
-        title: generalTranslations[locale].languages,
+        title: translations.languages,
         icon: <Gear size={18} />,
         className: classNames(EColorButton.GRAY, "w-32 px-3"),
         variants: animateButton({ delay: 0.7 }),
-        onClick: () => {},
       }}
       items={LANGUAGES}
     />

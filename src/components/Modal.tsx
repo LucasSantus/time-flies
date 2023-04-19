@@ -1,5 +1,6 @@
 import { animateButton } from "@/contants/animate";
 import { EColorButton } from "@/contants/button";
+import { SIZE_ICON } from "@/contants/globals";
 import { Dialog } from "@headlessui/react";
 import classNames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
@@ -21,7 +22,7 @@ export const Modal: React.FC<IModalProps> = ({ button, title, children }) => {
         <Button
           title={title}
           className={classNames(EColorButton.GRAY, "p-5")}
-          icon={<PencilSimple size={20} />}
+          icon={<PencilSimple size={SIZE_ICON} />}
           variants={animateButton({ delay: 0.7 })}
           onClick={() => setIsOpen(true)}
         />

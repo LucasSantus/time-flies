@@ -1,36 +1,31 @@
 import { animateButton, animateContainer } from "@/contants/animate";
 import { EColorButton } from "@/contants/button";
+import { SIZE_ICON } from "@/contants/globals";
 import { useCountdown } from "@/hooks/useCountdown";
-import { useLocale } from "@/hooks/useLocale";
-import generalTranslations from "@/locales/general";
+import { useMultiTheme } from "@/hooks/useMultiTheme";
+import { useTranslations } from "@/hooks/useTranslations";
 import classNames from "classnames";
 import { motion } from "framer-motion";
 import { HandPalm, PencilSimple, Play, Timer } from "phosphor-react";
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "../Button";
 import { Modal } from "../Modal";
-import { TimerForm } from "./TimerForm";
-import { TimerStructure } from "./TimerStructure";
+import { CountdownForm } from "./CountdownForm";
+import { CountdownStructure } from "./CountdownStructure";
 
 export const Countdown: React.FC = () => {
   const { startCountdown, changeCountdown, resetCountdown, isActive, isRunning } = useCountdown();
+  const { backgroundSecondary } = useMultiTheme();
 
-  const { locale } = useLocale();
-  const traslations = generalTranslations[locale];
-
-  const [, setIsModalActive] = useState(false);
-
-  const closeModal = () => {
-    setIsModalActive(false);
-  };
+  const translations = useTranslations("general");
 
   return (
     <motion.div
       {...animateContainer()}
-      className="grid min-w-min items-center justify-center gap-4 rounded-md bg-custom-gray-800 p-7"
+      className={classNames("grid min-w-min items-center justify-center gap-4 rounded-md p-7", backgroundSecondary)}
     >
       <motion.div {...animateButton({ delay: 0.7 })}>
-        <TimerStructure />
+        <CountdownStructure />
       </motion.div>
 
       {isRunning ? (
@@ -38,16 +33,16 @@ export const Countdown: React.FC = () => {
           {isActive ? (
             <Button
               className={EColorButton.RED}
-              title={traslations.interrupt}
-              icon={<HandPalm size={20} />}
+              title={translations.interrupt}
+              icon={<HandPalm size={SIZE_ICON} />}
               variants={animateButton({ delay: 0.7 })}
               onClick={changeCountdown}
             />
           ) : (
             <Button
               className={EColorButton.GREEN}
-              title={traslations.continue}
-              icon={<Play size={20} />}
+              title={translations.continue}
+              icon={<Play size={SIZE_ICON} />}
               variants={animateButton({ delay: 0.7 })}
               onClick={changeCountdown}
             />
@@ -55,8 +50,8 @@ export const Countdown: React.FC = () => {
 
           <Button
             className={EColorButton.RED}
-            title={traslations.reset}
-            icon={<Timer size={20} />}
+            title={translations.reset}
+            icon={<Timer size={SIZE_ICON} />}
             variants={animateButton({ delay: 1.4 })}
             onClick={resetCountdown}
           />
@@ -65,23 +60,22 @@ export const Countdown: React.FC = () => {
         <div className="flex gap-2">
           <Button
             className={EColorButton.GREEN}
-            title={traslations.start}
-            icon={<Play size={20} />}
+            title={translations.start}
+            icon={<Play size={SIZE_ICON} />}
             variants={animateButton({ delay: 0.7 })}
-            onClick={() => startCountdown()}
+            onClick={startCountdown}
           />
 
           <div className="w-16">
             <Modal
               button={{
                 className: classNames(EColorButton.GRAY, "p-5"),
-                icon: <PencilSimple size={20} />,
+                icon: <PencilSimple size={SIZE_ICON} />,
                 variants: animateButton({ delay: 0.7 }),
-                onClick: () => {},
               }}
-              title={traslations.editCountdown}
+              title={translations.editCountdown}
             >
-              <TimerForm onSubmit={closeModal} />
+              <CountdownForm />
             </Modal>
           </div>
         </div>
