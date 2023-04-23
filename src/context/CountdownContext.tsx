@@ -1,5 +1,6 @@
 import { KEY_TIME_COOKIE } from "@/contants/globals";
 import { CountdownContextData } from "@/types/CountdownContextData";
+import { ITimeInSecondsType } from "@/types/TimeInSeconds";
 import { ITimesType } from "@/types/Times";
 import { formatTime } from "@/utils/formatTime";
 import { parseCookies, setCookie } from "nookies";
@@ -56,6 +57,12 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({ children }) => 
     secondRight,
   };
 
+  const separateTime: ITimeInSecondsType = {
+    hours: Number(`${hourLeft}${hourRight}`),
+    minutes: Number(`${minuteLeft}${minuteRight}`),
+    seconds: Number(`${secondLeft}${secondRight}`),
+  };
+
   function startCountdown() {
     setIsActive(true);
     setIsRunning(true);
@@ -83,6 +90,7 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({ children }) => 
         isActive,
         isRunning,
         times,
+        separateTime,
         startCountdown,
         changeCountdown,
         resetCountdown,
