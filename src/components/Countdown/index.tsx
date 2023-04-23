@@ -2,7 +2,6 @@ import { animateButton, animateContainer } from "@/contants/animate";
 import { EColorButton } from "@/contants/button";
 import { SIZE_ICON } from "@/contants/globals";
 import { useCountdown } from "@/hooks/useCountdown";
-import { useMultiTheme } from "@/hooks/useMultiTheme";
 import { useTranslations } from "@/hooks/useTranslations";
 import classNames from "classnames";
 import { motion } from "framer-motion";
@@ -15,14 +14,12 @@ import { CountdownStructure } from "./CountdownStructure";
 
 export const Countdown: React.FC = () => {
   const { startCountdown, changeCountdown, resetCountdown, isActive, isRunning } = useCountdown();
-  const { backgroundSecondary } = useMultiTheme();
-
   const translations = useTranslations("general");
 
   return (
     <motion.div
       {...animateContainer()}
-      className={classNames("grid min-w-min items-center justify-center gap-4 rounded-md p-7", backgroundSecondary)}
+      className="grid min-w-min items-center justify-center gap-4 rounded-md bg-slate-700 p-7 dark:bg-custom-gray-700"
     >
       <motion.div {...animateButton({ delay: 0.7 })}>
         <CountdownStructure />

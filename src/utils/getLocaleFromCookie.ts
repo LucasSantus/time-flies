@@ -1,10 +1,6 @@
 import { DEFAULT_LOCALE, KEY_LOCALE_COOKIE } from "@/contants/globals";
 import generalTranslations, { Locale } from "@/locales/general";
-import { getCookieInBrowser, setCookieInBrowser } from "./cookies";
-
-export function setLocaleFromCookie(locale: string) {
-  setCookieInBrowser(KEY_LOCALE_COOKIE, locale);
-}
+import { getCookieInBrowser } from "./cookies";
 
 export function getLocaleFromCookie(): Locale {
   const locale = getCookieInBrowser(KEY_LOCALE_COOKIE);

@@ -2,23 +2,23 @@
 
 import { Countdown } from "@/components/Countdown";
 import { Modal } from "@/components/Modal";
-import { MultiThemeSelector } from "@/components/MultiThemeSelector";
+import { SelectLocale } from "@/components/SelectLocale";
+import { ThemesMode } from "@/components/ThemesMode";
 import { animateButton } from "@/contants/animate";
 import { EColorButton } from "@/contants/button";
 import { SIZE_ICON } from "@/contants/globals";
-import { useMultiTheme } from "@/hooks/useMultiTheme";
 import { useTranslations } from "@/hooks/useTranslations";
 import classNames from "classnames";
 import { Gear } from "phosphor-react";
 import "react-toastify/dist/ReactToastify.min.css";
 
 export default function Home() {
-  const { backgroundPrimary } = useMultiTheme();
   const translations = useTranslations("general");
 
   return (
-    <div className={classNames("flex h-screen w-screen flex-col", backgroundPrimary)}>
+    <div className="flex h-screen w-screen flex-col bg-slate-800 dark:bg-custom-gray-800">
       <div className="flex justify-end">
+        <SelectLocale />
         <div className="m-5">
           <Modal
             button={{
@@ -29,7 +29,7 @@ export default function Home() {
             }}
             title=""
           >
-            <MultiThemeSelector />
+            <ThemesMode />
           </Modal>
         </div>
       </div>

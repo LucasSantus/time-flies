@@ -47,6 +47,7 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
   return (
     <form className="flex w-full flex-col items-center justify-center" onSubmit={handleSubmit(createCountdown)}>
       <div className="grid h-10 w-full grid-cols-3 gap-2">
+        {/* TODO: Criar componente para inputs do countdowm */}
         <div>
           <input type="number" className="h-8 w-full rounded border pl-1" {...register("hours")} />
         </div>
