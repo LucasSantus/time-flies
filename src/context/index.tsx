@@ -8,12 +8,12 @@ import { ThemeProvider } from "./ThemeContext";
 
 export const Contexts: React.FC<PropsWithChildren> = ({ children }) => {
   return (
-    <AnimatePresence>
-      <LocaleProvider>
-        <ThemeProvider>
-          <CountdownProvider>{children}</CountdownProvider>
-        </ThemeProvider>
-      </LocaleProvider>
-    </AnimatePresence>
+    <LocaleProvider>
+      <ThemeProvider>
+        <CountdownProvider>
+          <AnimatePresence>{children}</AnimatePresence>
+        </CountdownProvider>
+      </ThemeProvider>
+    </LocaleProvider>
   );
 };

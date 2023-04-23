@@ -1,4 +1,5 @@
 import { animateButton } from "@/contants/animate";
+import { TRANSITION_DURATION } from "@/contants/globals";
 import { useCountdown } from "@/hooks/useCountdown";
 import { motion } from "framer-motion";
 import { Fragment } from "react";
@@ -9,26 +10,23 @@ interface ICountdownStructureProps {}
 
 export const CountdownStructure: React.FC<ICountdownStructureProps> = () => {
   const { times } = useCountdown();
-
-  const values = Object.values(times);
+  const values: string[] = Object.values(times);
 
   return (
     <div className="grid items-center justify-center gap-3 sm:flex">
-      {Array.from({ length: values.length / 2 }).map((_, index) => {
-        const isShowCountdownColon = index !== values.length / 2 - 1;
+      <motion.div className="flex gap-2">
+        {values.map((value, index) => {
+          const isShowCountdownColon = index % 2 !== 0 && index !== values.length - 1;
+          const time = index + TRANSITION_DURATION / 2;
 
-        const time = index * 2 * 0.7;
-
-        return (
-          <Fragment key={`timer-${index}`}>
-            <motion.div {...animateButton({ delay: time })} className="flex gap-2">
-              <CountdownNumber number={values[index * 2]} variants={animateButton({ delay: time })} />
-              <CountdownNumber number={values[index * 2 + 1]} variants={animateButton({ delay: time * 2 })} />
-            </motion.div>
-            {isShowCountdownColon && <CountdownColon variants={animateButton({ delay: 0 })} />}
-          </Fragment>
-        );
-      })}
+          return (
+            <Fragment key={`timer-${index}`}>
+              <CountdownNumber variants={animateButton({ delay: time + 0.2 })} number={value} />
+              {isShowCountdownColon && <CountdownColon variants={animateButton({ delay: time + 0.4 })} />}
+            </Fragment>
+          );
+        })}
+      </motion.div>
     </div>
   );
 };
