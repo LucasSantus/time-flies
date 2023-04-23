@@ -1,5 +1,6 @@
 import { Locale } from "@/locales/general";
-import { getLocaleFromCookie, setLocaleFromCookie } from "@/utils/locales";
+import { getLocaleFromCookie } from "@/utils/getLocaleFromCookie";
+import { setLocaleFromCookie } from "@/utils/setLocaleFromCookie";
 import { PropsWithChildren, createContext, useState } from "react";
 
 export interface LocaleContextType {

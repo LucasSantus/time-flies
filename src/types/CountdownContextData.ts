@@ -1,3 +1,4 @@
+import { ITimeInSecondsType } from "./TimeInSeconds";
 import { ITimesType } from "./Times";
 
 export interface CountdownContextData {
@@ -5,6 +6,7 @@ export interface CountdownContextData {
   isActive: boolean;
   isRunning: boolean;
   times: ITimesType;
+  separateTime: ITimeInSecondsType;
   startCountdown: () => void;
   changeCountdown: () => void;
   resetCountdown: () => void;
