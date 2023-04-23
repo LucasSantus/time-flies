@@ -2,10 +2,7 @@ import { IStructureAnimateTypes } from "@/types/StructureAnimate";
 import { Variants } from "framer-motion";
 import { TRANSITION_DURATION } from "./globals";
 
-export function animateButton({
-  delay = 1,
-  transition = TRANSITION_DURATION,
-}: IStructureAnimateTypes): Variants {
+export function animateButton({ delay = 1, transition = TRANSITION_DURATION }: IStructureAnimateTypes): Variants {
   return {
     initial: {
       opacity: 0,

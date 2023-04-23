@@ -4,7 +4,7 @@ import { Variants, motion } from "framer-motion";
 
 interface ICountdownNumberProps {
   number: string;
-  variants?: Variants;
+  variants: Variants;
 }
 
 export const CountdownNumber: React.FC<ICountdownNumberProps> = ({ number, variants }) => {
