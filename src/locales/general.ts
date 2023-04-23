@@ -16,6 +16,9 @@ export interface Translations {
   editCountdown: string;
   languages: string;
   selectThemes: string;
+  hours: string;
+  minutes: string;
+  seconds: string;
 }
 
 const generalTranslations: Record<Locale, Translations> = {
@@ -31,6 +34,9 @@ const generalTranslations: Record<Locale, Translations> = {
     editCountdown: "Editar Contagem",
     languages: "Linguagens",
     selectThemes: "Seletor de Temas",
+    hours: "Horas",
+    minutes: "Minutos",
+    seconds: "Segundos",
   },
   "en-US": {
     portuguese: "Portuguese",
@@ -44,6 +50,9 @@ const generalTranslations: Record<Locale, Translations> = {
     editCountdown: "Edit Countdown",
     languages: "Languages",
     selectThemes: "Theme Chooser",
+    hours: "Hours",
+    minutes: "Minutes",
+    seconds: "Seconds",
   },
 };
 
