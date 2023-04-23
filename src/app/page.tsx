@@ -18,8 +18,8 @@ export default function Home() {
   return (
     <div className="flex h-screen w-screen flex-col bg-slate-800 dark:bg-custom-gray-800">
       <div className="flex justify-end">
-        <SelectLocale />
-        <div className="m-5">
+        <div className="m-5 flex gap-2">
+          <SelectLocale />
           <Modal
             button={{
               title: translations.settings,
