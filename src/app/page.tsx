@@ -1,36 +1,15 @@
 "use client";
 
 import { Countdown } from "@/components/Countdown";
-import { Modal } from "@/components/Modal";
-import { SelectLocale } from "@/components/SelectLocale";
-import { ThemesMode } from "@/components/ThemesMode";
-import { animateButton } from "@/contants/animate";
-import { EColorButton } from "@/contants/button";
-import { SIZE_ICON } from "@/contants/globals";
-import { useTranslations } from "@/hooks/useTranslations";
-import classNames from "classnames";
-import { Gear } from "phosphor-react";
+import { SelectorTheme } from "@/components/SelectorTheme";
 import "react-toastify/dist/ReactToastify.min.css";
 
 export default function Home() {
-  const translations = useTranslations("general");
-
   return (
     <div className="flex h-screen w-screen flex-col bg-slate-800 dark:bg-custom-gray-800">
       <div className="flex justify-end">
         <div className="m-5 flex gap-2">
-          <SelectLocale />
-          <Modal
-            button={{
-              title: translations.settings,
-              className: classNames(EColorButton.GRAY, "px-4 py-1"),
-              icon: <Gear size={SIZE_ICON} />,
-              variants: animateButton({ delay: 0.7 }),
-            }}
-            title=""
-          >
-            <ThemesMode />
-          </Modal>
+          <SelectorTheme />
         </div>
       </div>
 

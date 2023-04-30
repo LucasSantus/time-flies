@@ -1,19 +1,19 @@
-import { IThemeTypes } from "@/types/Themes";
+import { ITheme } from "@/types/Themes";
 import { useCallback } from "react";
 import { useTheme } from "./useTheme";
 
 export const useThemeMode = () => {
-  const { theme, setTheme } = useTheme();
+  const { title: theme, setTheme } = useTheme();
 
   const setThemeMode = useCallback(
-    (theme: IThemeTypes["theme"]) => {
+    (theme: ITheme["title"]) => {
       setTheme(theme);
     },
     [setTheme],
   );
 
-  const getThemeMode = useCallback((): IThemeTypes["theme"] => {
-    return theme as IThemeTypes["theme"];
+  const getThemeMode = useCallback((): ITheme["title"] => {
+    return theme as ITheme["title"];
   }, [theme]);
 
   return { setThemeMode, getThemeMode };

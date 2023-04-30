@@ -2,7 +2,6 @@ import { animateButton, animateContainer } from "@/contants/animate";
 import { EColorButton } from "@/contants/button";
 import { SIZE_ICON } from "@/contants/globals";
 import { useCountdown } from "@/hooks/useCountdown";
-import { useTranslations } from "@/hooks/useTranslations";
 import classNames from "classnames";
 import { motion } from "framer-motion";
 import { HandPalm, PencilSimple, Play, Timer } from "phosphor-react";
@@ -14,7 +13,6 @@ import { CountdownStructure } from "./CountdownStructure";
 
 export const Countdown: React.FC = () => {
   const { startCountdown, changeCountdown, resetCountdown, isActive, isRunning } = useCountdown();
-  const translations = useTranslations("general");
 
   return (
     <motion.div
@@ -30,7 +28,7 @@ export const Countdown: React.FC = () => {
           {isActive ? (
             <Button
               className={EColorButton.RED}
-              title={translations.interrupt}
+              title="Interromper"
               icon={<HandPalm size={SIZE_ICON} />}
               variants={animateButton({ delay: 0.7 })}
               onClick={changeCountdown}
@@ -38,7 +36,7 @@ export const Countdown: React.FC = () => {
           ) : (
             <Button
               className={EColorButton.GREEN}
-              title={translations.continue}
+              title="Continuar"
               icon={<Play size={SIZE_ICON} />}
               variants={animateButton({ delay: 0.7 })}
               onClick={changeCountdown}
@@ -47,7 +45,7 @@ export const Countdown: React.FC = () => {
 
           <Button
             className={EColorButton.RED}
-            title={translations.reset}
+            title="Resetar"
             icon={<Timer size={SIZE_ICON} />}
             variants={animateButton({ delay: 1.4 })}
             onClick={resetCountdown}
@@ -57,7 +55,7 @@ export const Countdown: React.FC = () => {
         <div className="flex gap-2">
           <Button
             className={EColorButton.GREEN}
-            title={translations.start}
+            title="Começar"
             icon={<Play size={SIZE_ICON} />}
             variants={animateButton({ delay: 0.7 })}
             onClick={startCountdown}
@@ -70,7 +68,7 @@ export const Countdown: React.FC = () => {
                 icon: <PencilSimple size={SIZE_ICON} />,
                 variants: animateButton({ delay: 0.7 }),
               }}
-              title={translations.editCountdown}
+              title="Editar Contagem"
             >
               <CountdownForm />
             </Modal>
