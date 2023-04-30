@@ -1,11 +1,11 @@
-export interface IThemeTypes {
-  theme: "dark" | "light";
+export interface ITheme {
+  title: "dark" | "light";
 }
 
-export interface IThemesModeTypes extends IThemeTypes {
-  icon?: JSX.Element;
+export interface ISelectorTheme extends ITheme {
+  icon: JSX.Element;
 }
 
-export interface IThemeContextProps extends IThemeTypes {
-  setTheme: React.Dispatch<React.SetStateAction<IThemeTypes["theme"]>>;
+export interface IThemeContextProps extends ITheme {
+  setTheme: React.Dispatch<React.SetStateAction<ITheme["title"]>>;
 }
