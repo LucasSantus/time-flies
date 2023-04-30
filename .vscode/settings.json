@@ -12,12 +12,6 @@
     "source.organizeImports": true
   },
 
-  // workbench
-  "workbench.editor.enablePreview": false,
-  "workbench.startupEditor": "newUntitledFile",
-  "workbench.editor.untitled.hint": "hidden",
-  "workbench.editor.labelFormat": "short",
-
   // prettier
   "prettier.arrowParens": "always",
   "prettier.printWidth": 120,
@@ -30,30 +24,13 @@
   "prettier.jsxSingleQuote": false,
   "prettier.bracketSameLine": false,
 
-  // explorer
-  "explorer.compactFolders": false,
-
-  // emmet
-  "emmet.syntaxProfiles": {
-    "javascript": "jsx"
-  },
-  "emmet.includeLanguages": {
-    "javascript": "javascriptreact"
-  },
-
   // javascript
   "javascript.suggest.autoImports": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
 
-  // prisma
-  "[prisma]": {
-    "editor.formatOnSave": true
-  },
-
   // others
   "breadcrumbs.enabled": true,
   "typescript.suggest.autoImports": true,
-
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "typescript.enablePromptUseWorkspaceTsdk": true
 }
