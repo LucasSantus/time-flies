@@ -2,7 +2,6 @@ import { animateButton } from "@/contants/animate";
 import { EColorButton } from "@/contants/button";
 import { SIZE_ICON, TRANSITION_DURATION } from "@/contants/globals";
 import { useCountdown } from "@/hooks/useCountdown";
-import { useTranslations } from "@/hooks/useTranslations";
 import { convertTimeInSeconds } from "@/utils/convertTimeInSeconds";
 import { CreateCountdownFormData, createCountdownFormSchema } from "@/validation/countdown-registration";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,7 +16,6 @@ interface ICountdownFormProps {}
 
 export const CountdownForm: React.FC<ICountdownFormProps> = () => {
   const { setTimeInSeconds, separateTime } = useCountdown();
-  const translations = useTranslations("general");
 
   const {
     register,
@@ -46,22 +44,22 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
     setTimeInSeconds(timeInSeconds);
   }
 
-  interface mountedFormTypes {
+  interface MountedForm {
     label: string;
     reference: "hours" | "minutes" | "seconds";
   }
 
-  const mountedForm: mountedFormTypes[] = [
+  const mountedForm: MountedForm[] = [
     {
-      label: translations.hours,
+      label: "Horas",
       reference: "hours",
     },
     {
-      label: translations.minutes,
+      label: "Minutos",
       reference: "minutes",
     },
     {
-      label: translations.seconds,
+      label: "Segundos",
       reference: "seconds",
     },
   ];
@@ -74,7 +72,6 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
       <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-3">
         {mountedForm.map(({ label, reference }, index) => {
           const delay = TRANSITION_DURATION + index * 0.2;
-
           const value = separateTime[reference];
 
           return (
@@ -93,7 +90,7 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
       <Button
         className={EColorButton.GREEN}
         type="submit"
-        title={translations.save}
+        title="Salvar"
         icon={<FloppyDiskBack size={SIZE_ICON} />}
         variants={animateButton({ delay: TRANSITION_DURATION / 2 })}
       />
