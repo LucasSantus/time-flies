@@ -1,5 +1,4 @@
 import { animateButton } from "@/contants/animate";
-import { EColorButton } from "@/contants/button";
 import { SIZE_ICON, TRANSITION_DURATION } from "@/contants/globals";
 import { useCountdown } from "@/hooks/useCountdown";
 import { convertTimeInSeconds } from "@/utils/convertTimeInSeconds";
@@ -88,11 +87,11 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
       </div>
 
       <Button
-        className={EColorButton.GREEN}
-        type="submit"
         title="Salvar"
         icon={<FloppyDiskBack size={SIZE_ICON} />}
         variants={animateButton({ delay: TRANSITION_DURATION / 2 })}
+        color="success"
+        type="submit"
       />
     </form>
   );
