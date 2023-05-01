@@ -1,37 +1,31 @@
 import { animateButton } from "@/contants/animate";
 import { EColorButton } from "@/contants/button";
-import { SIZE_ICON } from "@/contants/globals";
+import { SIZE_ICON, TRANSITION_DURATION } from "@/contants/globals";
 import { useCountdown } from "@/hooks/useCountdown";
-import { useTranslations } from "@/hooks/useTranslations";
 import { convertTimeInSeconds } from "@/utils/convertTimeInSeconds";
 import { CreateCountdownFormData, createCountdownFormSchema } from "@/validation/countdown-registration";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FloppyDiskBack } from "phosphor-react";
 import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { Button } from "../Button";
+import { CountdownInput } from "./CountdownInput";
 
 interface ICountdownFormProps {}
 
 export const CountdownForm: React.FC<ICountdownFormProps> = () => {
-  const translations = useTranslations("general");
+  const { setTimeInSeconds, separateTime } = useCountdown();
 
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
   } = useForm<CreateCountdownFormData>({
     resolver: zodResolver(createCountdownFormSchema),
   });
 
-  const { setTimeInSeconds } = useCountdown();
-
-  function createCountdown(data: CreateCountdownFormData) {
-    const timeInSeconds = convertTimeInSeconds(data);
-    setTimeInSeconds(timeInSeconds);
-  }
-
+  // check if any field has an error
   useEffect(() => {
     const keys = Object.keys(errors) as Array<keyof CreateCountdownFormData>;
 
@@ -44,28 +38,61 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
     }
   }, [errors]);
 
+  function createCountdown(data: CreateCountdownFormData) {
+    const timeInSeconds = convertTimeInSeconds(data);
+    setTimeInSeconds(timeInSeconds);
+  }
+
+  interface MountedForm {
+    label: string;
+    attribute: "hours" | "minutes" | "seconds";
+  }
+
+  const mountedForm: MountedForm[] = [
+    {
+      label: "Horas",
+      attribute: "hours",
+    },
+    {
+      label: "Minutos",
+      attribute: "minutes",
+    },
+    {
+      label: "Segundos",
+      attribute: "seconds",
+    },
+  ];
+
   return (
-    <form className="flex w-full flex-col items-center justify-center" onSubmit={handleSubmit(createCountdown)}>
-      <div className="grid h-10 w-full grid-cols-3 gap-2">
-        <div>
-          <input type="number" className="h-8 w-full rounded border pl-1" {...register("hours")} />
-        </div>
+    <form
+      className="flex w-full flex-col items-center justify-center gap-2 pt-2"
+      onSubmit={handleSubmit(createCountdown)}
+    >
+      <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-3">
+        {mountedForm.map(({ label, attribute }, index) => {
+          const delay = TRANSITION_DURATION + index * 0.2;
+          const value = separateTime[attribute];
 
-        <div>
-          <input type="number" className="h-8 w-full rounded border pl-1" {...register("minutes")} />
-        </div>
-
-        <div>
-          <input type="number" className="h-8 w-full rounded border pl-1" {...register("seconds")} />
-        </div>
+          return (
+            <Controller
+              key={attribute}
+              name={attribute}
+              control={control}
+              defaultValue={value}
+              render={({ field }) => (
+                <CountdownInput label={label} attribute={attribute} variants={animateButton({ delay })} {...field} />
+              )}
+            />
+          );
+        })}
       </div>
 
       <Button
         className={EColorButton.GREEN}
         type="submit"
-        title={translations.save}
+        title="Salvar"
         icon={<FloppyDiskBack size={SIZE_ICON} />}
-        variants={animateButton({ delay: 0.7 })}
+        variants={animateButton({ delay: TRANSITION_DURATION / 2 })}
       />
     </form>
   );
