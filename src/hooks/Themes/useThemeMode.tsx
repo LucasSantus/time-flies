@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { useTheme } from "./useTheme";
 
 export const useThemeMode = () => {
-  const { title: theme, setTheme } = useTheme();
+  const { title, setTheme } = useTheme();
 
   const setThemeMode = useCallback(
     (theme: ITheme["title"]) => {
@@ -13,8 +13,8 @@ export const useThemeMode = () => {
   );
 
   const getThemeMode = useCallback((): ITheme["title"] => {
-    return theme as ITheme["title"];
-  }, [theme]);
+    return title as ITheme["title"];
+  }, [title]);
 
   return { setThemeMode, getThemeMode };
 };

@@ -1,13 +1,13 @@
-import { ISelectorTheme } from "@/types/Themes";
+import { IThemeSelector } from "@/types/Themes";
 import classNames from "classnames";
 
-interface ISelectedThemeProps {
-  icon: ISelectorTheme["icon"];
+interface IThemeSelectorOptionProps {
+  icon: IThemeSelector["icon"];
   isSelected: boolean;
   onSelectTheme: () => void;
 }
 
-export const SelectedTheme: React.FC<ISelectedThemeProps> = ({ icon, isSelected, onSelectTheme }) => {
+export const ThemeSelectorOption: React.FC<IThemeSelectorOptionProps> = ({ icon, isSelected, onSelectTheme }) => {
   return (
     <button
       className={classNames("rounded-lg p-1.5", {
