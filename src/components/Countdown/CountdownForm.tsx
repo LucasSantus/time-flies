@@ -7,7 +7,7 @@ import { CreateCountdownFormData, createCountdownFormSchema } from "@/validation
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FloppyDiskBack } from "phosphor-react";
 import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { Button } from "../Button";
 import { CountdownInput } from "./CountdownInput";
@@ -18,7 +18,7 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
   const { setTimeInSeconds, separateTime } = useCountdown();
 
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
   } = useForm<CreateCountdownFormData>({
@@ -39,28 +39,27 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
   }, [errors]);
 
   function createCountdown(data: CreateCountdownFormData) {
-    console.log(data);
     const timeInSeconds = convertTimeInSeconds(data);
     setTimeInSeconds(timeInSeconds);
   }
 
   interface MountedForm {
     label: string;
-    reference: "hours" | "minutes" | "seconds";
+    attribute: "hours" | "minutes" | "seconds";
   }
 
   const mountedForm: MountedForm[] = [
     {
       label: "Horas",
-      reference: "hours",
+      attribute: "hours",
     },
     {
       label: "Minutos",
-      reference: "minutes",
+      attribute: "minutes",
     },
     {
       label: "Segundos",
-      reference: "seconds",
+      attribute: "seconds",
     },
   ];
 
@@ -70,18 +69,19 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
       onSubmit={handleSubmit(createCountdown)}
     >
       <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-3">
-        {mountedForm.map(({ label, reference }, index) => {
+        {mountedForm.map(({ label, attribute }, index) => {
           const delay = TRANSITION_DURATION + index * 0.2;
-          const value = separateTime[reference];
+          const value = separateTime[attribute];
 
           return (
-            <CountdownInput
-              key={reference}
-              label={label}
-              reference={reference}
-              variants={animateButton({ delay })}
-              {...register(reference)}
+            <Controller
+              key={attribute}
+              name={attribute}
+              control={control}
               defaultValue={value}
+              render={({ field }) => (
+                <CountdownInput label={label} attribute={attribute} variants={animateButton({ delay })} {...field} />
+              )}
             />
           );
         })}
