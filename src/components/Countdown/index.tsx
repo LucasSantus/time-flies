@@ -1,7 +1,7 @@
 "use client";
 
 import { animateButton, animateContainer } from "@/contants/animate";
-import { SIZE_ICON } from "@/contants/globals";
+import { ICON_STYLES } from "@/contants/icon";
 import { useCountdown } from "@/hooks/useCountdown";
 import { motion } from "framer-motion";
 import { HandPalm, PencilSimple, Play, Timer } from "phosphor-react";
@@ -28,7 +28,7 @@ export const Countdown: React.FC = () => {
           {isActive ? (
             <Button
               title="Interromper"
-              icon={<HandPalm size={SIZE_ICON} />}
+              icon={<HandPalm {...ICON_STYLES} />}
               variants={animateButton({ delay: 0.7 })}
               color="error"
               onClick={changeCountdown}
@@ -36,7 +36,7 @@ export const Countdown: React.FC = () => {
           ) : (
             <Button
               title="Continuar"
-              icon={<Play size={SIZE_ICON} />}
+              icon={<Play {...ICON_STYLES} />}
               variants={animateButton({ delay: 0.7 })}
               color="success"
               onClick={changeCountdown}
@@ -45,7 +45,7 @@ export const Countdown: React.FC = () => {
 
           <Button
             title="Resetar"
-            icon={<Timer size={SIZE_ICON} />}
+            icon={<Timer {...ICON_STYLES} />}
             variants={animateButton({ delay: 1.4 })}
             color="warning"
             onClick={resetCountdown}
@@ -55,7 +55,7 @@ export const Countdown: React.FC = () => {
         <div className="flex gap-2">
           <Button
             title="Começar"
-            icon={<Play size={SIZE_ICON} />}
+            icon={<Play {...ICON_STYLES} />}
             variants={animateButton({ delay: 0.7 })}
             color="info"
             onClick={startCountdown}
@@ -65,7 +65,7 @@ export const Countdown: React.FC = () => {
             <Modal
               button={{
                 color: "gray",
-                icon: <PencilSimple size={SIZE_ICON} />,
+                icon: <PencilSimple {...ICON_STYLES} />,
                 variants: animateButton({ delay: 0.7 }),
               }}
               title="Editar Contagem"
