@@ -1,5 +1,6 @@
 import { animateButton } from "@/contants/animate";
-import { SIZE_ICON, TRANSITION_DURATION } from "@/contants/globals";
+import { TRANSITION_DURATION } from "@/contants/globals";
+import { ICON_STYLES } from "@/contants/icon";
 import { useCountdown } from "@/hooks/useCountdown";
 import { convertTimeInSeconds } from "@/utils/convertTimeInSeconds";
 import { CreateCountdownFormData, createCountdownFormSchema } from "@/validation/countdown-registration";
@@ -88,7 +89,7 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
 
       <Button
         title="Salvar"
-        icon={<FloppyDiskBack size={SIZE_ICON} />}
+        icon={<FloppyDiskBack {...ICON_STYLES} />}
         variants={animateButton({ delay: TRANSITION_DURATION / 2 })}
         color="success"
         type="submit"
