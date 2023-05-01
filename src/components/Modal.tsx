@@ -1,8 +1,6 @@
 import { animateButton } from "@/contants/animate";
-import { EColorButton } from "@/contants/button";
-import { SIZE_ICON } from "@/contants/globals";
+import { ICON_STYLES } from "@/contants/icon";
 import { Dialog } from "@headlessui/react";
-import classNames from "classnames";
 import { motion } from "framer-motion";
 import { PencilSimple } from "phosphor-react";
 import React, { Fragment, PropsWithChildren, useState } from "react";
@@ -18,17 +16,13 @@ export const Modal: React.FC<IModalProps> = ({ button, title, children }) => {
 
   return (
     <Fragment>
-      {!button ? (
-        <Button
-          title={title}
-          className={classNames(EColorButton.GRAY, "p-5")}
-          icon={<PencilSimple size={SIZE_ICON} />}
-          variants={animateButton({ delay: 0.7 })}
-          onClick={() => setIsOpen(true)}
-        />
-      ) : (
-        <Button {...button} onClick={() => setIsOpen(true)} />
-      )}
+      <Button
+        title={button?.title ?? ""}
+        icon={button?.icon ?? <PencilSimple {...ICON_STYLES} />}
+        variants={button?.variants ?? animateButton({ delay: 0.7 })}
+        color={button?.color ?? "gray"}
+        onClick={() => setIsOpen(true)}
+      />
 
       {isOpen && (
         <Dialog as={motion.div} static open={isOpen} onClose={() => setIsOpen(false)} className="relative z-10">
