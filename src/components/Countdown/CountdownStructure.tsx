@@ -1,4 +1,4 @@
-import { animateButton } from "@/contants/animate";
+import { easeInOutAnimationDislocate } from "@/contants/animate";
 import { useCountdown } from "@/hooks/useCountdown";
 import { Fragment } from "react";
 import { CountdownColon } from "./CountdownColon";
@@ -20,10 +20,13 @@ export const CountdownStructure: React.FC<ICountdownStructureProps> = () => {
         return (
           <Fragment key={`timer-${index}`}>
             <div className="flex gap-2">
-              <CountdownNumber number={values[index * 2]} variants={animateButton({ delay: time })} />
-              <CountdownNumber number={values[index * 2 + 1]} variants={animateButton({ delay: time + 0.3 })} />
+              <CountdownNumber number={values[index * 2]} variants={easeInOutAnimationDislocate({ delay: time })} />
+              <CountdownNumber
+                number={values[index * 2 + 1]}
+                variants={easeInOutAnimationDislocate({ delay: time + 0.3 })}
+              />
             </div>
-            {isShowCountdownColon && <CountdownColon variants={animateButton({ delay: 0 })} />}
+            {isShowCountdownColon && <CountdownColon variants={easeInOutAnimationDislocate({ delay: 0 })} />}
           </Fragment>
         );
       })}
