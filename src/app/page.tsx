@@ -1,19 +1,17 @@
-"use client";
-
 import { Countdown } from "@/components/Countdown";
-import { SelectorTheme } from "@/components/SelectorTheme";
-import "react-toastify/dist/ReactToastify.min.css";
+import { ThemeSelector } from "@/components/ThemeSelector";
 
 export default function Home() {
   return (
-    <div className="flex h-screen w-screen flex-col bg-slate-800 dark:bg-custom-gray-800">
+    <div className="flex flex-col">
       <div className="flex justify-end">
         <div className="m-5 flex gap-2">
-          <SelectorTheme />
+          <ThemeSelector />
         </div>
       </div>
 
-      <div className="flex h-screen w-screen items-center justify-center">
+      {/* TODO: Centralizar corretamente o componente abaixo */}
+      <div className="flex items-center justify-center">
         <Countdown />
       </div>
     </div>
