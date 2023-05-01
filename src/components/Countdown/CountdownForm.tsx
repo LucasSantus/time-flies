@@ -1,6 +1,6 @@
-import { animateButton } from "@/contants/animate";
-import { EColorButton } from "@/contants/button";
-import { SIZE_ICON, TRANSITION_DURATION } from "@/contants/globals";
+import { easeInOutAnimationDislocate } from "@/contants/animate";
+import { TRANSITION_DURATION } from "@/contants/globals";
+import { ICON_STYLES } from "@/contants/icon";
 import { useCountdown } from "@/hooks/useCountdown";
 import { convertTimeInSeconds } from "@/utils/convertTimeInSeconds";
 import { CreateCountdownFormData, createCountdownFormSchema } from "@/validation/countdown-registration";
@@ -80,7 +80,12 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
               control={control}
               defaultValue={value}
               render={({ field }) => (
-                <CountdownInput label={label} attribute={attribute} variants={animateButton({ delay })} {...field} />
+                <CountdownInput
+                  label={label}
+                  attribute={attribute}
+                  variants={easeInOutAnimationDislocate({ delay })}
+                  {...field}
+                />
               )}
             />
           );
@@ -88,11 +93,11 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
       </div>
 
       <Button
-        className={EColorButton.GREEN}
-        type="submit"
         title="Salvar"
-        icon={<FloppyDiskBack size={SIZE_ICON} />}
-        variants={animateButton({ delay: TRANSITION_DURATION / 2 })}
+        icon={<FloppyDiskBack {...ICON_STYLES} />}
+        variants={easeInOutAnimationDislocate({ delay: TRANSITION_DURATION / 2 })}
+        color="success"
+        type="submit"
       />
     </form>
   );

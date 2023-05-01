@@ -1,26 +1,24 @@
+import { BUTTON_STYLES } from "@/contants/button";
 import classNames from "classnames";
-import { motion, Variants } from "framer-motion";
+import { motion, MotionProps, Variants } from "framer-motion";
 import React from "react";
 
-export interface IButtonProps {
-  className: string;
-  variants: Variants;
-  onClick?: () => void;
+export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   title?: string;
-  icon?: React.ReactNode;
-  type?: "button" | "reset" | "submit" | undefined;
+  icon: React.ReactNode;
+  variants: Variants;
+  color: "success" | "error" | "warning" | "info" | "gray" | "dark";
 }
 
-export const Button: React.FC<IButtonProps> = ({ title, icon, className, variants, onClick, type = "button" }) => {
+export const Button: React.FC<IButtonProps & MotionProps> = ({ title, icon, variants, color, ...rest }) => {
   return (
     <motion.button
+      {...rest}
       {...variants}
-      type={type}
       className={classNames(
         "flex h-12 w-full items-center justify-center gap-1 rounded-md py-3 text-base font-semibold text-white shadow-md",
-        className,
+        BUTTON_STYLES[color],
       )}
-      onClick={onClick}
     >
       {icon && icon}
       {title}

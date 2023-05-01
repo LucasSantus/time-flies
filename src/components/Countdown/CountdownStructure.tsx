@@ -1,4 +1,6 @@
-import { animateButton } from "@/contants/animate";
+"use client";
+
+import { easeInOutAnimationDislocate } from "@/contants/animate";
 import { useCountdown } from "@/hooks/useCountdown";
 import { Fragment } from "react";
 import { CountdownColon } from "./CountdownColon";
@@ -14,16 +16,20 @@ export const CountdownStructure: React.FC<ICountdownStructureProps> = () => {
   return (
     <div className="grid gap-3 sm:flex sm:items-center sm:justify-center">
       {Array.from({ length: values.length / 2 }).map((_, index) => {
+        // check for show colon ':' in structure
         const isShowCountdownColon = index !== values.length / 2 - 1;
-        const time = index * 0.6;
+        const time = index * 0.2;
 
         return (
           <Fragment key={`timer-${index}`}>
             <div className="flex gap-2">
-              <CountdownNumber number={values[index * 2]} variants={animateButton({ delay: time })} />
-              <CountdownNumber number={values[index * 2 + 1]} variants={animateButton({ delay: time + 0.3 })} />
+              <CountdownNumber number={values[index * 2]} variants={easeInOutAnimationDislocate({ delay: time })} />
+              <CountdownNumber
+                number={values[index * 2 + 1]}
+                variants={easeInOutAnimationDislocate({ delay: time + 0.1 })}
+              />
             </div>
-            {isShowCountdownColon && <CountdownColon variants={animateButton({ delay: 0 })} />}
+            {isShowCountdownColon && <CountdownColon variants={easeInOutAnimationDislocate({ delay: 0 })} />}
           </Fragment>
         );
       })}
