@@ -1,4 +1,4 @@
-import { animateButton } from "@/contants/animate";
+import { easeInOutAnimationDislocate } from "@/contants/animate";
 import { ICON_STYLES } from "@/contants/icon";
 import { Dialog } from "@headlessui/react";
 import { motion } from "framer-motion";
@@ -19,7 +19,7 @@ export const Modal: React.FC<IModalProps> = ({ button, title, children }) => {
       <Button
         title={button?.title ?? ""}
         icon={button?.icon ?? <PencilSimple {...ICON_STYLES} />}
-        variants={button?.variants ?? animateButton({ delay: 0.7 })}
+        variants={button?.variants ?? easeInOutAnimationDislocate({ delay: 0.7 })}
         color={button?.color ?? "gray"}
         onClick={() => setIsOpen(true)}
       />
@@ -33,7 +33,7 @@ export const Modal: React.FC<IModalProps> = ({ button, title, children }) => {
                 <Dialog.Title
                   as={motion.h3}
                   className="text-lg font-medium leading-6 text-gray-900 dark:text-custom-gray-100"
-                  {...animateButton({})}
+                  {...easeInOutAnimationDislocate({})}
                 >
                   {title}
                 </Dialog.Title>

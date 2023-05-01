@@ -1,6 +1,6 @@
 "use client";
 
-import { animateButton, animateContainer } from "@/contants/animate";
+import { easeInOutAnimationDislocate, easeInOutAnimationScale } from "@/contants/animate";
 import { ICON_STYLES } from "@/contants/icon";
 import { useCountdown } from "@/hooks/useCountdown";
 import { motion } from "framer-motion";
@@ -16,10 +16,10 @@ export const Countdown: React.FC = () => {
 
   return (
     <motion.div
-      {...animateContainer()}
+      {...easeInOutAnimationScale()}
       className="grid min-w-min items-center justify-center gap-4 rounded-md bg-slate-700 p-7 dark:bg-custom-gray-700"
     >
-      <motion.div {...animateButton({ delay: 0.7 })}>
+      <motion.div {...easeInOutAnimationDislocate({ delay: 0.7 })}>
         <CountdownStructure />
       </motion.div>
 
@@ -29,7 +29,7 @@ export const Countdown: React.FC = () => {
             <Button
               title="Interromper"
               icon={<HandPalm {...ICON_STYLES} />}
-              variants={animateButton({ delay: 0.7 })}
+              variants={easeInOutAnimationDislocate({ delay: 0.7 })}
               color="error"
               onClick={changeCountdown}
             />
@@ -37,7 +37,7 @@ export const Countdown: React.FC = () => {
             <Button
               title="Continuar"
               icon={<Play {...ICON_STYLES} />}
-              variants={animateButton({ delay: 0.7 })}
+              variants={easeInOutAnimationDislocate({ delay: 0.7 })}
               color="success"
               onClick={changeCountdown}
             />
@@ -46,7 +46,7 @@ export const Countdown: React.FC = () => {
           <Button
             title="Resetar"
             icon={<Timer {...ICON_STYLES} />}
-            variants={animateButton({ delay: 1.4 })}
+            variants={easeInOutAnimationDislocate({ delay: 1.4 })}
             color="warning"
             onClick={resetCountdown}
           />
@@ -56,8 +56,8 @@ export const Countdown: React.FC = () => {
           <Button
             title="Começar"
             icon={<Play {...ICON_STYLES} />}
-            variants={animateButton({ delay: 0.7 })}
-            color="info"
+            variants={easeInOutAnimationDislocate({ delay: 0.7 })}
+            color="success"
             onClick={startCountdown}
           />
 
@@ -66,7 +66,7 @@ export const Countdown: React.FC = () => {
               button={{
                 color: "gray",
                 icon: <PencilSimple {...ICON_STYLES} />,
-                variants: animateButton({ delay: 0.7 }),
+                variants: easeInOutAnimationDislocate({ delay: 0.7 }),
               }}
               title="Editar Contagem"
             >

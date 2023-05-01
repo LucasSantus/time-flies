@@ -1,4 +1,4 @@
-import { animateButton } from "@/contants/animate";
+import { easeInOutAnimationDislocate } from "@/contants/animate";
 import { TRANSITION_DURATION } from "@/contants/globals";
 import { ICON_STYLES } from "@/contants/icon";
 import { useCountdown } from "@/hooks/useCountdown";
@@ -80,7 +80,12 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
               control={control}
               defaultValue={value}
               render={({ field }) => (
-                <CountdownInput label={label} attribute={attribute} variants={animateButton({ delay })} {...field} />
+                <CountdownInput
+                  label={label}
+                  attribute={attribute}
+                  variants={easeInOutAnimationDislocate({ delay })}
+                  {...field}
+                />
               )}
             />
           );
@@ -90,7 +95,7 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
       <Button
         title="Salvar"
         icon={<FloppyDiskBack {...ICON_STYLES} />}
-        variants={animateButton({ delay: TRANSITION_DURATION / 2 })}
+        variants={easeInOutAnimationDislocate({ delay: TRANSITION_DURATION / 2 })}
         color="success"
         type="submit"
       />
