@@ -2,7 +2,7 @@ export interface ITheme {
   title: "dark" | "light";
 }
 
-export interface IThemeSelector extends ITheme {
+export interface ISelectorTheme extends ITheme {
   icon: JSX.Element;
 }
 
