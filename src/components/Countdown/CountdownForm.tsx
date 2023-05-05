@@ -7,7 +7,7 @@ import { CreateCountdownFormData, createCountdownFormSchema } from "@/validation
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FloppyDiskBack } from "phosphor-react";
 import React, { useEffect } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { Button } from "../Button";
 import { CountdownInput } from "./CountdownInput";
@@ -18,7 +18,6 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
   const { setTimeInSeconds, separateTime } = useCountdown();
 
   const {
-    control,
     handleSubmit,
     formState: { errors },
   } = useForm<CreateCountdownFormData>({
@@ -45,7 +44,7 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
 
   interface MountedForm {
     label: string;
-    attribute: "hours" | "minutes" | "seconds";
+    attribute: keyof CreateCountdownFormData;
   }
 
   const mountedForm: MountedForm[] = [
@@ -74,19 +73,12 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
           const value = separateTime[attribute];
 
           return (
-            <Controller
+            <CountdownInput
               key={attribute}
-              name={attribute}
-              control={control}
+              label={label}
+              attribute={attribute}
+              variants={easeInOutAnimationDislocate({ delay })}
               defaultValue={value}
-              render={({ field }) => (
-                <CountdownInput
-                  label={label}
-                  attribute={attribute}
-                  variants={easeInOutAnimationDislocate({ delay })}
-                  {...field}
-                />
-              )}
             />
           );
         })}

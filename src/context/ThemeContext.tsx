@@ -1,21 +1,7 @@
 import { ITheme, IThemeContextProps } from "@/types/Themes";
+import { getThemeFromCookie } from "@/utils/getThemeFromCookie";
+import { setThemeFromCookie } from "@/utils/setThemeFromCookie";
 import { FC, PropsWithChildren, createContext, useEffect, useState } from "react";
-
-/**
- *
- * @returns
- */
-const getTheme = (): ITheme["title"] => {
-  if (typeof window !== "undefined" && window.localStorage) {
-    const storedPrefs = window.localStorage.getItem("theme");
-    if (typeof storedPrefs === "string") return storedPrefs as ITheme["title"];
-
-    const userMedia = window.matchMedia("(prefers-color-scheme: dark)");
-    if (userMedia.matches) return "dark";
-  }
-
-  return "light";
-};
 
 const defaultValue: IThemeContextProps = {
   title: "light" as ITheme["title"],
@@ -25,7 +11,7 @@ const defaultValue: IThemeContextProps = {
 export const ThemeContext = createContext(defaultValue as IThemeContextProps);
 
 export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [theme, setTheme] = useState<ITheme["title"]>(getTheme);
+  const [theme, setTheme] = useState<ITheme["title"]>(getThemeFromCookie);
 
   const themesForSelect = ["dark", "light"];
 
@@ -35,7 +21,7 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
     themesForSelect.forEach((type) => root.remove(type));
     root.add(rawTheme);
 
-    localStorage.setItem("theme", rawTheme);
+    setThemeFromCookie(rawTheme);
   };
 
   useEffect(() => {

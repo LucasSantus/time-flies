@@ -11,3 +11,5 @@ export const KEY_LOCALE_COOKIE = "locale";
 export const DEFAULT_LOCALE = "en-US";
 
 export const DEFAULT_THEME = "dark";
+
+export const DEFAULT_TIME = 60 * 25;
