@@ -7,7 +7,7 @@ import { CreateCountdownFormData, createCountdownFormSchema } from "@/validation
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FloppyDiskBack } from "phosphor-react";
 import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { Button } from "../Button";
 import { CountdownInput } from "./CountdownInput";
@@ -17,12 +17,14 @@ interface ICountdownFormProps {}
 export const CountdownForm: React.FC<ICountdownFormProps> = () => {
   const { setTimeInSeconds, separateTime } = useCountdown();
 
+  const createCountdownForm = useForm<CreateCountdownFormData>({
+    resolver: zodResolver(createCountdownFormSchema),
+  });
+
   const {
     handleSubmit,
     formState: { errors },
-  } = useForm<CreateCountdownFormData>({
-    resolver: zodResolver(createCountdownFormSchema),
-  });
+  } = createCountdownForm;
 
   // check if any field has an error
   useEffect(() => {
@@ -63,34 +65,36 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
   ];
 
   return (
-    <form
-      className="flex w-full flex-col items-center justify-center gap-2 pt-2"
-      onSubmit={handleSubmit(createCountdown)}
-    >
-      <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-3">
-        {mountedForm.map(({ label, attribute }, index) => {
-          const delay = TRANSITION_DURATION + index * 0.2;
-          const value = separateTime[attribute];
+    <FormProvider {...createCountdownForm}>
+      <form
+        className="flex w-full flex-col items-center justify-center gap-2 pt-2"
+        onSubmit={handleSubmit(createCountdown)}
+      >
+        <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-3">
+          {mountedForm.map(({ label, attribute }, index) => {
+            const delay = TRANSITION_DURATION + index * 0.2;
+            const value = separateTime[attribute];
 
-          return (
-            <CountdownInput
-              key={attribute}
-              label={label}
-              attribute={attribute}
-              variants={easeInOutAnimationDislocate({ delay })}
-              defaultValue={value}
-            />
-          );
-        })}
-      </div>
+            return (
+              <CountdownInput
+                key={attribute}
+                label={label}
+                attribute={attribute}
+                variants={easeInOutAnimationDislocate({ delay })}
+                defaultValue={value}
+              />
+            );
+          })}
+        </div>
 
-      <Button
-        title="Salvar"
-        icon={<FloppyDiskBack {...ICON_STYLES} />}
-        variants={easeInOutAnimationDislocate({ delay: TRANSITION_DURATION / 2 })}
-        color="success"
-        type="submit"
-      />
-    </form>
+        <Button
+          title="Salvar"
+          icon={<FloppyDiskBack {...ICON_STYLES} />}
+          variants={easeInOutAnimationDislocate({ delay: TRANSITION_DURATION / 2 })}
+          color="success"
+          type="submit"
+        />
+      </form>
+    </FormProvider>
   );
 };
