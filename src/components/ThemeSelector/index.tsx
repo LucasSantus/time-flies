@@ -1,7 +1,7 @@
 "use client";
 
 import { THEME_MODES } from "@/contants/themes";
-import { useThemeMode } from "@/hooks/Themes/useThemeMode";
+import { useThemeMode } from "@/hooks/useThemeMode";
 import { ITheme } from "@/types/Themes";
 import { ThemeSelectorOption } from "./ThemeSelectorOption";
 

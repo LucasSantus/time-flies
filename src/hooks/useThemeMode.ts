@@ -1,6 +1,8 @@
+import { ThemeContext } from "@/context/ThemeContext";
 import { ITheme } from "@/types/Themes";
-import { useCallback } from "react";
-import { useTheme } from "./useTheme";
+import { useCallback, useContext } from "react";
+
+const useTheme = () => useContext(ThemeContext);
 
 export const useThemeMode = () => {
   const { title, setTheme } = useTheme();
