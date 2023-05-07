@@ -1,3 +1,5 @@
+import { ICountdownForm } from "@/types/CountdownForm";
+
 export const TRANSITION_DURATION = 0.7;
 
 // KEYS OF COOKIES
@@ -13,3 +15,18 @@ export const DEFAULT_LOCALE = "en-US";
 export const DEFAULT_THEME = "dark";
 
 export const DEFAULT_TIME = 60 * 25;
+
+export const COUNTDOWN_FORM: ICountdownForm[] = [
+  {
+    label: "Horas",
+    attribute: "hours",
+  },
+  {
+    label: "Minutos",
+    attribute: "minutes",
+  },
+  {
+    label: "Segundos",
+    attribute: "seconds",
+  },
+];
