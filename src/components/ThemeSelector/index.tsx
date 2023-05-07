@@ -1,26 +1,33 @@
 "use client";
 
-import { THEME_MODES } from "@/contants/themes";
-import { useThemeMode } from "@/hooks/Themes/useThemeMode";
-import { ITheme } from "@/types/Themes";
+import { THEMES } from "@/contants/themes";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 import { ThemeSelectorOption } from "./ThemeSelectorOption";
 
 export const ThemeSelector: React.FC = () => {
-  const { getThemeMode, setThemeMode } = useThemeMode();
+  const [mounted, setMounted] = useState(false);
+  const { theme: seletedTheme, setTheme } = useTheme();
 
-  const handleClick = async (theme: ITheme["title"]) => {
-    setThemeMode(theme);
-  };
+  // useEffect only runs on the client, so now we can safely show the UI
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <div className="flex flex-col gap-3">
       <div className="flex gap-1 rounded-lg bg-slate-700 p-1 dark:bg-custom-gray-600">
-        {THEME_MODES.map(({ title, icon }) => (
+        {THEMES.map(({ theme, icon }) => (
           <ThemeSelectorOption
-            key={title}
+            key={theme}
+            theme={theme}
             icon={icon}
-            isSelected={getThemeMode() === title}
-            onSelectTheme={() => handleClick(title)}
+            isSelected={theme === seletedTheme}
+            onSelectTheme={() => setTheme(theme)}
           />
         ))}
       </div>

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const createCountdownFormSchema = z.object({
+export const countdownFormSchema = z.object({
   hours: z.coerce
     .number()
     .min(0, "O campo Horas não pode ser menor que 1")
@@ -15,4 +15,4 @@ export const createCountdownFormSchema = z.object({
     .max(60, "O campo Segundos não pode ser maior que 60"),
 });
 
-export type CreateCountdownFormData = z.infer<typeof createCountdownFormSchema>;
+export type CountdownFormData = z.infer<typeof countdownFormSchema>;

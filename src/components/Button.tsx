@@ -10,18 +10,17 @@ export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEleme
   color: "success" | "error" | "warning" | "info" | "gray" | "dark";
 }
 
-export const Button: React.FC<IButtonProps & MotionProps> = ({ title, icon, variants, color, ...rest }) => {
-  return (
-    <motion.button
-      {...rest}
-      {...variants}
-      className={classNames(
-        "flex h-12 w-full items-center justify-center gap-1 rounded-md py-3 text-base font-semibold text-white shadow-md",
-        BUTTON_STYLES[color],
-      )}
-    >
-      {icon && icon}
-      {title}
-    </motion.button>
-  );
-};
+export const Button: React.FC<IButtonProps & MotionProps> = ({ title, icon, variants, color, ...rest }) => (
+  <motion.button
+    {...rest}
+    {...variants}
+    aria-label={title}
+    className={classNames(
+      "flex h-12 w-full items-center justify-center gap-1 rounded-md py-3 text-base font-semibold text-white shadow-md",
+      BUTTON_STYLES[color],
+    )}
+  >
+    {icon}
+    {title && title}
+  </motion.button>
+);

@@ -1,37 +1,22 @@
-import { KEY_TIME_COOKIE } from "@/contants/globals";
+import { DEFAULT_TIME } from "@/contants/globals";
 import { CountdownContextData } from "@/types/CountdownContextData";
+import { ISeparatedTimes } from "@/types/SeparatedTimes";
 import { ITimeInSecondsType } from "@/types/TimeInSeconds";
-import { ITimesType } from "@/types/Times";
 import { formatTime } from "@/utils/formatTime";
-import { parseCookies, setCookie } from "nookies";
+import { getTimeFromCookie } from "@/utils/getTimeFromCookie";
+import { setTimeFromCookie } from "@/utils/setTimeFromCookie";
 import { PropsWithChildren, createContext, useEffect, useState } from "react";
 
 export const CountdownContext = createContext({} as CountdownContextData);
 
-// Função para escrever os dados no cookie com a chave "time"
-export function setTimeInCookie(key: string, time: number): void {
-  setCookie(null, key, String(time));
-}
-
-const DEFAULT_TIME = 0;
-
-/**
- * Lê o valor do tempo armazenado no cookie com a chave "time".
- * Se o cookie não existir ou não for um número válido, retorna o valor padrão 0.
- */
-export function getTimeFromCookie(key: string): number {
-  const cookies = parseCookies();
-  const timeString = cookies[key];
-  const time = timeString ? Number(timeString) : NaN;
-  return isNaN(time) ? DEFAULT_TIME : time;
-}
-
 export const CountdownProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  if (!getTimeFromCookie(KEY_TIME_COOKIE)) setTimeInCookie(KEY_TIME_COOKIE, 60 * 25);
-
-  const [secondsAmount, setSecondsAmount] = useState(getTimeFromCookie(KEY_TIME_COOKIE));
+  const [secondsAmount, setSecondsAmount] = useState(DEFAULT_TIME);
   const [isActive, setIsActive] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
+
+  useEffect(() => {
+    setSecondsAmount(getTimeFromCookie());
+  }, []);
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
@@ -48,7 +33,7 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({ children }) => 
   const [minuteLeft, minuteRight] = formatTime(Math.floor((secondsAmount % 3600) / 60)).split("");
   const [secondLeft, secondRight] = formatTime(secondsAmount % 60).split("");
 
-  const times: ITimesType = {
+  const times: ISeparatedTimes = {
     hourLeft,
     hourRight,
     minuteLeft,
@@ -73,13 +58,13 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({ children }) => 
   }
 
   function resetCountdown() {
-    setSecondsAmount(getTimeFromCookie(KEY_TIME_COOKIE));
+    setSecondsAmount(getTimeFromCookie());
     setIsActive(false);
     setIsRunning(false);
   }
 
   function setTimeInSeconds(time: number) {
-    setTimeInCookie(KEY_TIME_COOKIE, time);
+    setTimeFromCookie(time);
     setSecondsAmount(time);
   }
 

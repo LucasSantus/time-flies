@@ -2,7 +2,7 @@ import { parseCookies, setCookie } from "nookies";
 
 export function setCookieInBrowser(key: string, value: string) {
   setCookie(null, key, value, {
-    maxAge: 12 * 30 * 24 * 60 * 60,
+    maxAge: 12 * 30 * 24 * 60 * 60 * 10,
     path: "/",
   });
 }
