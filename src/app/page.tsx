@@ -26,7 +26,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* TODO: Centralizar corretamente o componente abaixo */}
         <div className="flex h-full w-full items-start justify-center sm:items-center">
           <Countdown />
         </div>
