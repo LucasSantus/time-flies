@@ -1,9 +1,9 @@
 import { easeInOutAnimationDislocate } from "@/contants/animate";
-import { TRANSITION_DURATION } from "@/contants/globals";
+import { COUNTDOWN_FORM, TRANSITION_DURATION } from "@/contants/globals";
 import { ICON_STYLES } from "@/contants/icon";
 import { useCountdown } from "@/hooks/useCountdown";
 import { convertTimeInSeconds } from "@/utils/convertTimeInSeconds";
-import { CreateCountdownFormData, createCountdownFormSchema } from "@/validation/countdown-registration";
+import { CountdownFormData, countdownFormSchema } from "@/validation/countdown-registration";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FloppyDiskBack } from "phosphor-react";
 import React, { useEffect } from "react";
@@ -17,18 +17,18 @@ interface ICountdownFormProps {}
 export const CountdownForm: React.FC<ICountdownFormProps> = () => {
   const { setTimeInSeconds, separateTime } = useCountdown();
 
-  const createCountdownForm = useForm<CreateCountdownFormData>({
-    resolver: zodResolver(createCountdownFormSchema),
+  const countdownForm = useForm<CountdownFormData>({
+    resolver: zodResolver(countdownFormSchema),
   });
 
   const {
     handleSubmit,
     formState: { errors },
-  } = createCountdownForm;
+  } = countdownForm;
 
   // check if any field has an error
   useEffect(() => {
-    const keys = Object.keys(errors) as Array<keyof CreateCountdownFormData>;
+    const keys = Object.keys(errors) as Array<keyof CountdownFormData>;
 
     if (keys.length) {
       keys.forEach((key) => {
@@ -39,39 +39,19 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
     }
   }, [errors]);
 
-  function createCountdown(data: CreateCountdownFormData) {
+  function handleChangeCountdown(data: CountdownFormData) {
     const timeInSeconds = convertTimeInSeconds(data);
     setTimeInSeconds(timeInSeconds);
   }
 
-  interface MountedForm {
-    label: string;
-    attribute: keyof CreateCountdownFormData;
-  }
-
-  const mountedForm: MountedForm[] = [
-    {
-      label: "Horas",
-      attribute: "hours",
-    },
-    {
-      label: "Minutos",
-      attribute: "minutes",
-    },
-    {
-      label: "Segundos",
-      attribute: "seconds",
-    },
-  ];
-
   return (
-    <FormProvider {...createCountdownForm}>
+    <FormProvider {...countdownForm}>
       <form
         className="flex w-full flex-col items-center justify-center gap-2 pt-2"
-        onSubmit={handleSubmit(createCountdown)}
+        onSubmit={handleSubmit(handleChangeCountdown)}
       >
         <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-3">
-          {mountedForm.map(({ label, attribute }, index) => {
+          {COUNTDOWN_FORM.map(({ label, attribute }, index) => {
             const delay = TRANSITION_DURATION + index * 0.2;
             const value = separateTime[attribute];
 
