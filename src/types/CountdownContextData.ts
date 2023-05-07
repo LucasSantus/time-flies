@@ -1,5 +1,5 @@
+import { ISeparatedTimes } from "./SeparatedTimes";
 import { ITimeInSecondsType } from "./TimeInSeconds";
-import { ISeparatedTimes } from "./Times";
 
 export interface CountdownContextData {
   secondsAmount: number;

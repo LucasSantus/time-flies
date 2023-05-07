@@ -1,7 +1,7 @@
 import { DEFAULT_TIME } from "@/contants/globals";
 import { CountdownContextData } from "@/types/CountdownContextData";
+import { ISeparatedTimes } from "@/types/SeparatedTimes";
 import { ITimeInSecondsType } from "@/types/TimeInSeconds";
-import { ISeparatedTimes } from "@/types/Times";
 import { formatTime } from "@/utils/formatTime";
 import { getTimeFromCookie } from "@/utils/getTimeFromCookie";
 import { setTimeFromCookie } from "@/utils/setTimeFromCookie";
