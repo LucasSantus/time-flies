@@ -1,4 +1,4 @@
-export interface ITimesType {
+export interface ISeparatedTimes {
   hourLeft: string;
   hourRight: string;
   minuteLeft: string;
