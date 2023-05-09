@@ -1,11 +1,11 @@
-import { IStructureAnimateTypes } from "@/types/StructureAnimate";
+import { IStructureAnimate } from "@/types/StructureAnimate";
 import { Variants } from "framer-motion";
 import { TRANSITION_DURATION } from "./globals";
 
 export function easeInOutAnimationDislocate({
   delay = 1,
   transition = TRANSITION_DURATION,
-}: IStructureAnimateTypes): Variants {
+}: IStructureAnimate): Variants {
   return {
     initial: {
       opacity: 0,
