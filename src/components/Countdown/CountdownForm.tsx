@@ -42,6 +42,10 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
   function handleChangeCountdown(data: CountdownFormData) {
     const timeInSeconds = convertTimeInSeconds(data);
     setTimeInSeconds(timeInSeconds);
+
+    toast("Contagem alterada!", {
+      type: "success",
+    });
   }
 
   return (
