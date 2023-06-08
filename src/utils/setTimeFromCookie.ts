@@ -1,4 +1,4 @@
-import { KEY_TIME_COOKIE } from "@/contants/globals";
+import { KEY_TIME_COOKIE } from "@/constants/globals";
 import { setCookieInBrowser } from "./cookies";
 
 export function setTimeFromCookie(time: number) {

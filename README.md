@@ -1,3 +1,37 @@
+<<<<<<< HEAD
+
+<h6 align="center"> 
+	If you want to view the system, click on <a href="https://time-flies.vercel.app/">here</a>.
+</h6>
+
+<h6 align="center"> 
+  If you want to view the staging system, click on <a href="https://time-flies-staging.vercel.app/">here</a>.
+</h6>
+
+<h3 id="about">:information_source: About</h3>
+
+> This project was developed using Nextjs, React, TypeScript, TailwindCSS.
+
+The idea is:
+_"Create a simple time-flies project. Aiming at building the application in order to improve learning in NextJS, React, TypeScript and TailwindCSS."_
+
+---
+
+<h3 id="content-table">:ab: Contents</h3>
+
+- [About](#about)
+- [Contents](#content-table)
+- [Status](#status)
+- [Why](#why)
+- [Technologies](#tecnologies)
+- [Project Installation](#running)
+- [Author](#author)
+- [License](#license)
+
+---
+
+=======
+
 <h1 align="center">Time Flies</h1>
 
 <h6 align="center"> 
@@ -15,20 +49,22 @@
 The idea is:
 _"Create a simple countdown project. Aiming at building the application in order to improve learning in NextJS, React, TypeScript and TailwindCSS."_
 
---------------------------------------------------------------------------------------
+---
 
 <h3 id="contents">:ab: Contents</h3>
 
-* [About](#about)
-* [Contents](#contents)
-* [Status](#status)
-* [Why](#why)
-* [Technologies](#tecnologies)
-* [Project Installation](#install)
-* [Author](#author)
-* [License](#license)
+- [About](#about)
+- [Contents](#contents)
+- [Status](#status)
+- [Why](#why)
+- [Technologies](#tecnologies)
+- [Project Installation](#install)
+- [Author](#author)
+- [License](#license)
 
---------------------------------------------------------------------------------------
+---
+
+> > > > > > > develop
 
 <h3 id="status">:heavy_exclamation_mark: Status</h3>
 
@@ -36,7 +72,7 @@ _"Create a simple countdown project. Aiming at building the application in order
  :construction: Project in progress... :construction:
 </h4>
 
---------------------------------------------------------------------------------------
+---
 
 <h3 id="why">:question: Why</h3>
 
@@ -46,31 +82,45 @@ You can use this project however you want, whether it's for studying, making imp
 
 This is a totally free project!
 
---------------------------------------------------------------------------------------
+---
 
 <h3 id="tecnologies">:rocket: Tecnologies</h3>
 
 Used tools:
 
-- [Next JS v13.4.0](https://nextjs.org/)
+- [NextJS v13.4.4](https://nextjs.org/)
+- [Next Themes v0.2.1](https://github.com/pacocoursey/next-themes)
+- [CLSX v1.2.1](https://www.npmjs.com/package/clsx)
+- [Eslint v8.42.0](https://github.com/eslint/eslint)
+- [Lucide React v0.240.0](https://lucide.dev/)
+- [Prettier v2.8.8](https://prettier.io/)
 - [React v18.2.0](https://pt-br.reactjs.org/)
-- [TypeScript v5.0.3](https://www.typescriptlang.org/)
-- [TailwindCSS v3.3.1](https://tailwindcss.com/docs/installation)
-- [ClassNames v2.3.2](https://www.npmjs.com/package/classnames)
-- [Framer Motion v10.10.0](https://www.npmjs.com/package/framer-motion)
-- [Phosphor Icons v1.4.1](https://phosphoricons.com/)
-- [Headless UI v1.7.13](https://headlessui.com/)
+- [TypeScript v5.1.3](https://www.typescriptlang.org/)
+- [TailwindCSS v3.3.2](https://tailwindcss.com/docs/installation)
+- [Framer Motion v10.12.16](https://www.npmjs.com/package/framer-motion)
 
---------------------------------------------------------------------------------------
+---
 
-<h3 id="install">:computer: Project Installation</h3>
+<h3 id="running">:computer: Project Installation</h3>
 
 <h4>
 	<strong>Installing Dependencies</strong>
 </h4>
 
 ```
-yarn install or npm install
+yarn
+```
+
+or
+
+```
+npm install
+```
+
+or
+
+```
+pnpm install
 ```
 
 <h4>
@@ -78,10 +128,22 @@ yarn install or npm install
 </h4>
 
 ```
-yarn dev or npm run dev
+yarn dev
 ```
 
---------------------------------------------------------------------------------------
+or
+
+```
+npm run dev
+```
+
+or
+
+```
+pnpm dev
+```
+
+---
 
 <h3 id="author">:bust_in_silhouette: Author</h3>
 
@@ -103,7 +165,7 @@ yarn dev or npm run dev
 Made with ❤️ by Lucas Santus!<br />
 Thanks for visiting and good coding!<br />
 
---------------------------------------------------------------------------------------
+---
 
 <h3 id="license">:memo: License</h3>
 

@@ -1,72 +1,71 @@
 "use client";
 
-import { easeInOutAnimationDislocate, easeInOutAnimationScale } from "@/contants/animate";
-import { ICON_STYLES } from "@/contants/icon";
 import { useCountdown } from "@/hooks/useCountdown";
+import { easeInOutAnimationScale } from "@/utils/animation/easeInOutAnimationScale";
 import { motion } from "framer-motion";
-import { HandPalm, PencilSimple, Play, Timer } from "phosphor-react";
+import { Edit, Pause, Play, Timer } from "lucide-react";
 import React from "react";
-import { Button } from "../Button";
 import { Modal } from "../Modal";
+import { CountdownButton } from "./CountdownButton";
 import { CountdownForm } from "./CountdownForm";
 import { CountdownStructure } from "./CountdownStructure";
 
 export const Countdown: React.FC = () => {
-  const { startCountdown, changeCountdown, resetCountdown, isActive, isRunning } = useCountdown();
+  const {
+    startCountdown,
+    changeCountdown,
+    resetCountdown,
+    isActive,
+    isRunning,
+  } = useCountdown();
 
   return (
-    <motion.div
-      {...easeInOutAnimationScale()}
+    <motion.section
+      {...easeInOutAnimationScale({})}
       className="grid min-w-min items-center justify-center gap-4 rounded-md bg-slate-700 p-7 dark:bg-custom-gray-700"
     >
-      <motion.div {...easeInOutAnimationDislocate({ delay: 0.7 })}>
-        <CountdownStructure />
-      </motion.div>
+      <CountdownStructure />
 
       {isRunning ? (
         <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
           {isActive ? (
-            <Button
+            <CountdownButton
               title="Interromper"
-              icon={<HandPalm {...ICON_STYLES} />}
-              variants={easeInOutAnimationDislocate({ delay: 0.7 })}
-              color="error"
+              icon={<Pause />}
+              variant="error"
               onClick={changeCountdown}
             />
           ) : (
-            <Button
+            <CountdownButton
               title="Continuar"
-              icon={<Play {...ICON_STYLES} />}
-              variants={easeInOutAnimationDislocate({ delay: 0.7 })}
-              color="success"
+              icon={<Play />}
+              variant="success"
               onClick={changeCountdown}
             />
           )}
 
-          <Button
+          <CountdownButton
             title="Resetar"
-            icon={<Timer {...ICON_STYLES} />}
-            variants={easeInOutAnimationDislocate({ delay: 1.4 })}
-            color="warning"
+            icon={<Timer />}
+            variant="warning"
             onClick={resetCountdown}
           />
         </div>
       ) : (
-        <div className="flex gap-2">
-          <Button
+        <div className="flex gap-1">
+          <CountdownButton
             title="Começar"
-            icon={<Play {...ICON_STYLES} />}
-            variants={easeInOutAnimationDislocate({ delay: 0.7 })}
-            color="success"
+            icon={<Play />}
+            variant="success"
             onClick={startCountdown}
           />
 
           <div className="w-16">
             <Modal
               button={{
-                color: "gray",
-                icon: <PencilSimple {...ICON_STYLES} />,
-                variants: easeInOutAnimationDislocate({ delay: 0.7 }),
+                type: "default",
+                variant: "gray",
+                icon: <Edit />,
               }}
               title="Editar Contagem"
             >
@@ -75,6 +74,6 @@ export const Countdown: React.FC = () => {
           </div>
         </div>
       )}
-    </motion.div>
+    </motion.section>
   );
 };

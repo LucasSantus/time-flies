@@ -1,11 +1,14 @@
-import { easeInOutAnimationDislocate } from "@/contants/animate";
-import { COUNTDOWN_FORM, TRANSITION_DURATION } from "@/contants/globals";
-import { ICON_STYLES } from "@/contants/icon";
+"use client";
+
 import { useCountdown } from "@/hooks/useCountdown";
-import { convertTimeInSeconds } from "@/utils/convertTimeInSeconds";
-import { CountdownFormData, countdownFormSchema } from "@/validation/countdown-registration";
+import { easeInOutAnimationVerticalDislocate } from "@/utils/animation/easeInOutAnimationVerticalDislocate";
+import { convertFormDataInSeconds } from "@/utils/convertFormDataInSeconds";
+import {
+  CountdownFormData,
+  countdownFormSchema,
+} from "@/validation/countdown-registration";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FloppyDiskBack } from "phosphor-react";
+import { Save } from "lucide-react";
 import React, { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -15,7 +18,7 @@ import { CountdownInput } from "./CountdownInput";
 interface ICountdownFormProps {}
 
 export const CountdownForm: React.FC<ICountdownFormProps> = () => {
-  const { setTimeInSeconds, separateTime } = useCountdown();
+  const { setTimeInSeconds, times } = useCountdown();
 
   const countdownForm = useForm<CountdownFormData>({
     resolver: zodResolver(countdownFormSchema),
@@ -40,7 +43,7 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
   }, [errors]);
 
   function handleChangeCountdown(data: CountdownFormData) {
-    const timeInSeconds = convertTimeInSeconds(data);
+    const timeInSeconds = convertFormDataInSeconds(data);
     setTimeInSeconds(timeInSeconds);
 
     toast("Contagem alterada!", {
@@ -54,30 +57,61 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
         className="flex w-full flex-col items-center justify-center gap-2 pt-2"
         onSubmit={handleSubmit(handleChangeCountdown)}
       >
-        <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-3">
-          {COUNTDOWN_FORM.map(({ label, attribute }, index) => {
-            const delay = TRANSITION_DURATION + index * 0.2;
-            const value = separateTime[attribute];
+        <div className="grid w-full grid-cols-12 gap-2">
+          <fieldset className="col-span-6 sm:col-span-2">
+            <CountdownInput
+              attribute="hourLeft"
+              defaultValue={times.hourLeft}
+            />
+          </fieldset>
 
-            return (
-              <CountdownInput
-                key={attribute}
-                label={label}
-                attribute={attribute}
-                variants={easeInOutAnimationDislocate({ delay })}
-                defaultValue={value}
-              />
-            );
-          })}
+          <fieldset className="col-span-6 sm:col-span-2">
+            <CountdownInput
+              attribute="hourRight"
+              defaultValue={times.hourRight}
+            />
+          </fieldset>
+
+          <fieldset className="col-span-6 sm:col-span-2">
+            <CountdownInput
+              attribute="minuteLeft"
+              defaultValue={times.minuteLeft}
+            />
+          </fieldset>
+
+          <fieldset className="col-span-6 sm:col-span-2">
+            <CountdownInput
+              attribute="minuteRight"
+              defaultValue={times.minuteRight}
+            />
+          </fieldset>
+
+          <fieldset className="col-span-6 sm:col-span-2">
+            <CountdownInput
+              attribute="secondLeft"
+              defaultValue={times.secondLeft}
+            />
+          </fieldset>
+
+          <fieldset className="col-span-6 sm:col-span-2">
+            <CountdownInput
+              attribute="secondRight"
+              defaultValue={times.secondRight}
+            />
+          </fieldset>
         </div>
 
         <Button
-          title="Salvar"
-          icon={<FloppyDiskBack {...ICON_STYLES} />}
-          variants={easeInOutAnimationDislocate({ delay: TRANSITION_DURATION / 2 })}
-          color="success"
+          variant="success"
+          aria-label="Close"
+          framerMotionAnimation={easeInOutAnimationVerticalDislocate({
+            delay: 0.5,
+          })}
           type="submit"
-        />
+        >
+          <Save />
+          Salvar
+        </Button>
       </form>
     </FormProvider>
   );
