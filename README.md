@@ -1,9 +1,9 @@
 <h6 align="center"> 
-	If you want to view the system, click on <a href="https://countdown.vercel.app/">here</a>.
+	If you want to view the system, click on <a href="https://time-flies.vercel.app/">here</a>.
 </h6>
 
 <h6 align="center"> 
-  If you want to view the staging system, click on <a href="https://countdown-staging.vercel.app/">here</a>.
+  If you want to view the staging system, click on <a href="https://time-flies-staging.vercel.app/">here</a>.
 </h6>
 
 <h3 id="about">:information_source: About</h3>
@@ -11,22 +11,22 @@
 > This project was developed using Nextjs, React, TypeScript, TailwindCSS.
 
 The idea is:
-_"Create a simple countdown project. Aiming at building the application in order to improve learning in NextJS, React, TypeScript and TailwindCSS."_
+_"Create a simple time-flies project. Aiming at building the application in order to improve learning in NextJS, React, TypeScript and TailwindCSS."_
 
---------------------------------------------------------------------------------------
+---
 
 <h3 id="content-table">:ab: Contents</h3>
 
-* [About](#about)
-* [Contents](#content-table)
-* [Status](#status)
-* [Why](#why)
-* [Technologies](#tecnologies)
-* [Project Installation](#running)
-* [Author](#author)
-* [License](#license)
+- [About](#about)
+- [Contents](#content-table)
+- [Status](#status)
+- [Why](#why)
+- [Technologies](#tecnologies)
+- [Project Installation](#running)
+- [Author](#author)
+- [License](#license)
 
---------------------------------------------------------------------------------------
+---
 
 <h3 id="status">:heavy_exclamation_mark: Status</h3>
 
@@ -34,7 +34,7 @@ _"Create a simple countdown project. Aiming at building the application in order
  :construction: Project in progress... :construction:
 </h4>
 
---------------------------------------------------------------------------------------
+---
 
 <h3 id="why">:question: Why</h3>
 
@@ -44,7 +44,7 @@ You can use this project however you want, whether it's for studying, making imp
 
 This is a totally free project!
 
---------------------------------------------------------------------------------------
+---
 
 <h3 id="tecnologies">:rocket: Tecnologies</h3>
 
@@ -61,7 +61,7 @@ Used tools:
 - [TailwindCSS v3.3.2](https://tailwindcss.com/docs/installation)
 - [Framer Motion v10.12.16](https://www.npmjs.com/package/framer-motion)
 
---------------------------------------------------------------------------------------
+---
 
 <h3 id="running">:computer: Project Installation</h3>
 
@@ -105,7 +105,7 @@ or
 pnpm dev
 ```
 
---------------------------------------------------------------------------------------
+---
 
 <h3 id="author">:bust_in_silhouette: Author</h3>
 
@@ -127,8 +127,8 @@ pnpm dev
 Made with ❤️ by Lucas Santus!<br />
 Thanks for visiting and good coding!<br />
 
---------------------------------------------------------------------------------------
+---
 
 <h3 id="license">:memo: License</h3>
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/LucasSantus/countdown/blob/master/LICENSE) for better details.
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/LucasSantus/time-flies/blob/master/LICENSE) for better details.

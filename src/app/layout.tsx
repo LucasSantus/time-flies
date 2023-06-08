@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "CountDown",
+  title: "Time Flies",
   description: "Social data personal of  dev tree",
 };
 

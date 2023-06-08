@@ -10,7 +10,6 @@ import { AlertOctagon } from "lucide-react";
 import React from "react";
 import { Button } from "../Button";
 import { Modal } from "../Modal";
-import { CountdownForm } from "./CountdownForm";
 import { CountdownStructure } from "./CountdownStructure";
 
 export const Countdown: React.FC = () => {
@@ -31,7 +30,18 @@ export const Countdown: React.FC = () => {
         <CountdownStructure />
       </motion.div>
 
-      {isRunning ? (
+      <Button
+        variant="info"
+        size="lg"
+        framerAnimation={easeInOutAnimationDislocate({ delay: 0.7 })}
+      >
+        <AlertOctagon />
+        Interromper
+      </Button>
+
+      <Modal title="testando modal">teste</Modal>
+
+      {/* {isRunning ? (
         <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
           {isActive ? (
             <Button
@@ -88,7 +98,7 @@ export const Countdown: React.FC = () => {
             </Modal>
           </div>
         </div>
-      )}
+      )} */}
     </motion.div>
   );
 };
