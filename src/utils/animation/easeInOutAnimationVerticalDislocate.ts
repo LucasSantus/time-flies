@@ -2,7 +2,7 @@ import { TRANSITION_DURATION } from "@/constants/globals";
 import { StructureAnimation } from "@/types/StructureAnimation";
 import { Variants } from "framer-motion";
 
-export function easeInOutAnimationDislocate({
+export function easeInOutAnimationVerticalDislocate({
   delay = 1,
   transition = TRANSITION_DURATION,
 }: StructureAnimation): Variants {
@@ -19,6 +19,14 @@ export function easeInOutAnimationDislocate({
         duration: transition,
         delay: transition * delay,
         ease: "easeInOut",
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: 30,
+      transition: {
+        duration: transition,
+        delay: transition * delay,
       },
     },
   };

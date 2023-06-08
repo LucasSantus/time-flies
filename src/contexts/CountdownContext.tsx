@@ -1,7 +1,6 @@
 import { DEFAULT_TIME } from "@/constants/globals";
 import { CountdownContextData } from "@/types/CountdownContextData";
 import { ISeparatedTimes } from "@/types/SeparatedTimes";
-import { ITimeInSecondsType } from "@/types/TimeInSeconds";
 import { formatTime } from "@/utils/formatTime";
 import { getTimeFromCookie } from "@/utils/getTimeFromCookie";
 import { setTimeFromCookie } from "@/utils/setTimeFromCookie";
@@ -48,12 +47,6 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({
     secondRight,
   };
 
-  const separateTime: ITimeInSecondsType = {
-    hours: Number(`${hourLeft}${hourRight}`),
-    minutes: Number(`${minuteLeft}${minuteRight}`),
-    seconds: Number(`${secondLeft}${secondRight}`),
-  };
-
   function startCountdown() {
     setIsActive(true);
     setIsRunning(true);
@@ -81,7 +74,6 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({
         isActive,
         isRunning,
         times,
-        separateTime,
         startCountdown,
         changeCountdown,
         resetCountdown,

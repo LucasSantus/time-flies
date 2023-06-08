@@ -1,6 +1,8 @@
 "use client";
 
 import { THEMES } from "@/data/themes";
+import { bounceAnimationHorizontalDislocate } from "@/utils/animation/bounceAnimationHorizontalDislocate";
+import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { ThemeSelectorOption } from "./ThemeSelectorOption";
@@ -19,18 +21,22 @@ export const ThemeSelector: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col gap-3">
-      <div className="flex gap-1 rounded-lg bg-slate-700 p-1 dark:bg-custom-gray-600">
-        {THEMES.map(({ theme, icon }) => (
+    <div className="flex">
+      {THEMES.map(({ theme, icon }) => (
+        <motion.div
+          key={theme}
+          {...bounceAnimationHorizontalDislocate({
+            delay: 0.2,
+          })}
+        >
           <ThemeSelectorOption
-            key={theme}
             theme={theme}
             icon={icon}
-            isSelected={theme === seletedTheme}
+            isSelected={theme !== seletedTheme}
             onSelectTheme={() => setTheme(theme)}
           />
-        ))}
-      </div>
+        </motion.div>
+      ))}
     </div>
   );
 };

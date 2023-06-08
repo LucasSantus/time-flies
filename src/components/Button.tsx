@@ -1,37 +1,3 @@
-// import { BUTTON_STYLES } from "@/constants/button";
-// import clsx from "clsx";
-// import { motion, MotionProps, Variants } from "framer-motion";
-// import React from "react";
-
-// export interface IButtonProps
-//   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-//   title?: string;
-//   icon: React.ReactNode;
-//   variants: Variants;
-//   color: "success" | "error" | "warning" | "info" | "gray" | "dark";
-// }
-
-// export const Button: React.FC<IButtonProps & MotionProps> = ({
-//   title,
-//   icon,
-//   variants,
-//   color,
-//   ...rest
-// }) => (
-//   <motion.button
-//     {...rest}
-//     {...variants}
-//     aria-label={title}
-//     className={clsx(
-//       "flex h-12 w-full items-center justify-center gap-1 rounded-md py-3 text-base font-semibold text-white shadow-md",
-//       BUTTON_STYLES[color]
-//     )}
-//   >
-//     {icon}
-//     {title && title}
-//   </motion.button>
-// );
-
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import clsx from "clsx";
@@ -70,17 +36,26 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
-  framerAnimation?: Variants;
+  framerMotionAnimation?: Variants;
 }
+
+type ButtonVariantsProps = VariantProps<typeof buttonVariants>["variant"];
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { className, variant, size, asChild = false, framerAnimation, ...props },
+    {
+      className,
+      variant,
+      size,
+      asChild = false,
+      framerMotionAnimation,
+      ...props
+    },
     ref
   ) => {
     const Comp = asChild ? Slot : "button";
     return (
-      <motion.div {...framerAnimation}>
+      <motion.div {...framerMotionAnimation} className="w-full">
         <Comp
           className={clsx(buttonVariants({ variant, size, className }))}
           ref={ref}
@@ -93,4 +68,5 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
 Button.displayName = "Button";
 
-export { Button, buttonVariants };
+export { Button };
+export type { ButtonVariantsProps };

@@ -4,16 +4,18 @@
 
 /* CSS Reset */
 
-/* Box sizing border-box by default on all elements */
+/* box sizing border-box by default on all elements */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  outline: 0;
+  box-sizing: border-box;
 }
 
-/* Remove text decoration */
+/* remove text decoration */
 a,
 a:hover,
 a:focus,
@@ -22,21 +24,26 @@ a:active {
   color: inherit;
 }
 
-/* Remove list-style from unordered and ordered lists */
+html,
+body,
+#root {
+  height: 100%;
+
+  /* soft scroll */
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased !important;
+}
+
+/* remove list-style from unordered and ordered lists */
 ul,
 ol {
   list-style: none;
 }
 
-/* Remove default margin from list items */
-ul,
-ol,
-li {
-  margin: 0;
-  padding: 0;
-}
-
-/* Remove button styles */
+/* remove button styles */
 button,
 input,
 optgroup,
@@ -48,7 +55,7 @@ textarea {
   margin: 0;
 }
 
-/* Remove default button appearance */
+/* remove default button appearance */
 button,
 input[type="button"],
 input[type="reset"],
@@ -58,7 +65,7 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-/* Remove automatic text breaks on text-type inputs */
+/* remove automatic text breaks on text-type inputs */
 input[type="text"],
 input[type="search"],
 input[type="number"],
@@ -69,7 +76,14 @@ textarea {
   word-wrap: break-word;
 }
 
-/* Remove default browser focus styles */
+/* remove arrow of inputs type number */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* remove default browser focus styles */
 :focus {
   outline: none;
 }
