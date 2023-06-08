@@ -1,11 +1,13 @@
-import { easeInOutAnimationDislocate } from "@/contants/animate";
-import { COUNTDOWN_FORM, TRANSITION_DURATION } from "@/contants/globals";
-import { ICON_STYLES } from "@/contants/icon";
+import { easeInOutAnimationDislocate } from "@/constants/animate";
+import { COUNTDOWN_FORM, TRANSITION_DURATION } from "@/constants/globals";
 import { useCountdown } from "@/hooks/useCountdown";
 import { convertTimeInSeconds } from "@/utils/convertTimeInSeconds";
-import { CountdownFormData, countdownFormSchema } from "@/validation/countdown-registration";
+import {
+  CountdownFormData,
+  countdownFormSchema,
+} from "@/validation/countdown-registration";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FloppyDiskBack } from "phosphor-react";
+import { User } from "lucide-react";
 import React, { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -73,8 +75,10 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
 
         <Button
           title="Salvar"
-          icon={<FloppyDiskBack {...ICON_STYLES} />}
-          variants={easeInOutAnimationDislocate({ delay: TRANSITION_DURATION / 2 })}
+          icon={<User />}
+          variants={easeInOutAnimationDislocate({
+            delay: TRANSITION_DURATION / 2,
+          })}
           color="success"
           type="submit"
         />

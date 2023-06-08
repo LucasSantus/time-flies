@@ -1,8 +1,6 @@
-import { easeInOutAnimationDislocate } from "@/contants/animate";
-import { ICON_STYLES } from "@/contants/icon";
-import { Dialog } from "@headlessui/react";
-import { motion } from "framer-motion";
-import { PencilSimple } from "phosphor-react";
+import { easeInOutAnimationDislocate } from "@/constants/animate";
+// import { Dialog } from "@headlessui/react";
+import { User } from "lucide-react";
 import React, { Fragment, PropsWithChildren, useState } from "react";
 import { Button, IButtonProps } from "./Button";
 
@@ -18,14 +16,22 @@ export const Modal: React.FC<IModalProps> = ({ button, title, children }) => {
     <Fragment>
       <Button
         title={button?.title ?? ""}
-        icon={button?.icon ?? <PencilSimple {...ICON_STYLES} />}
-        variants={button?.variants ?? easeInOutAnimationDislocate({ delay: 0.7 })}
+        icon={button?.icon ?? <User />}
+        variants={
+          button?.variants ?? easeInOutAnimationDislocate({ delay: 0.7 })
+        }
         color={button?.color ?? "gray"}
         onClick={() => setIsOpen(true)}
       />
 
-      {isOpen && (
-        <Dialog as={motion.div} static open={isOpen} onClose={() => setIsOpen(false)} className="relative z-10">
+      {/* {isOpen && ( 
+        <Dialog
+          as={motion.div}
+          static
+          open={isOpen}
+          onClose={() => setIsOpen(false)}
+          className="relative z-10"
+        >
           <div className="fixed inset-0 bg-black/80" />
           <div className="fixed inset-0 overflow-y-auto">
             <div className="flex h-full items-center justify-center">
@@ -42,7 +48,7 @@ export const Modal: React.FC<IModalProps> = ({ button, title, children }) => {
             </div>
           </div>
         </Dialog>
-      )}
+      )} */}
     </Fragment>
   );
 };

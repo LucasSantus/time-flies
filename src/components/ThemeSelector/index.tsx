@@ -1,6 +1,6 @@
 "use client";
 
-import { THEMES } from "@/contants/themes";
+import { THEMES } from "@/data/themes";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { ThemeSelectorOption } from "./ThemeSelectorOption";

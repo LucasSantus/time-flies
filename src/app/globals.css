@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Reset */
+
+/* Box sizing border-box by default on all elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove text decoration */
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Remove list-style from unordered and ordered lists */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Remove default margin from list items */
+ul,
+ol,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove button styles */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+}
+
+/* Remove default button appearance */
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+/* Remove automatic text breaks on text-type inputs */
+input[type="text"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+textarea {
+  word-break: break-word;
+  word-wrap: break-word;
+}
+
+/* Remove default browser focus styles */
+:focus {
+  outline: none;
+}
