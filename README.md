@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+
 <h6 align="center"> 
 	If you want to view the system, click on <a href="https://time-flies.vercel.app/">here</a>.
 </h6>
@@ -27,6 +29,42 @@ _"Create a simple time-flies project. Aiming at building the application in orde
 - [License](#license)
 
 ---
+
+=======
+
+<h1 align="center">Time Flies</h1>
+
+<h6 align="center"> 
+	If you want to view the system, click on <a href="https://time-flies.vercel.app/">here</a>.
+</h6>
+
+<h6 align="center"> 
+  If you want to view the staging system, click on <a href="https://time-flies-staging.vercel.app/">here</a>.
+</h6>
+
+<h3 id="about">:information_source: About</h3>
+
+> This project was developed using Nextjs, React, TypeScript, TailwindCSS.
+
+The idea is:
+_"Create a simple countdown project. Aiming at building the application in order to improve learning in NextJS, React, TypeScript and TailwindCSS."_
+
+---
+
+<h3 id="contents">:ab: Contents</h3>
+
+- [About](#about)
+- [Contents](#contents)
+- [Status](#status)
+- [Why](#why)
+- [Technologies](#tecnologies)
+- [Project Installation](#install)
+- [Author](#author)
+- [License](#license)
+
+---
+
+> > > > > > > develop
 
 <h3 id="status">:heavy_exclamation_mark: Status</h3>
 
