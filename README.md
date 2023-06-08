@@ -1,15 +1,17 @@
-<h1 align="center">Dev Tree</h1>
+<h6 align="center"> 
+	If you want to view the system, click on <a href="https://countdown.vercel.app/">here</a>.
+</h6>
 
 <h6 align="center"> 
-	If you want to view the system, click <a href="https://lucas-santus-dev.vercel.app">here</a>.
+  If you want to view the staging system, click on <a href="https://countdown-staging.vercel.app/">here</a>.
 </h6>
 
 <h3 id="about">:information_source: About</h3>
 
-> This project was developed using Framework NextJS, React, TypeScript and TailwindCSS.
+> This project was developed using Nextjs, React, TypeScript, TailwindCSS.
 
 The idea is:
-_"Create a simpple project dev tree contents personal datas. Aiming to build the frontend of the application in order to promote learning in the area related to NextJS, React, TypeScript and TailwindCSS."_
+_"Create a simple countdown project. Aiming at building the application in order to improve learning in NextJS, React, TypeScript and TailwindCSS."_
 
 --------------------------------------------------------------------------------------
 
@@ -29,7 +31,7 @@ _"Create a simpple project dev tree contents personal datas. Aiming to build the
 <h3 id="status">:heavy_exclamation_mark: Status</h3>
 
 <h4 align="center">
- ✔️ Finished project ✔️
+ :construction: Project in progress... :construction:
 </h4>
 
 --------------------------------------------------------------------------------------
@@ -129,4 +131,4 @@ Thanks for visiting and good coding!<br />
 
 <h3 id="license">:memo: License</h3>
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/LucasSantus/dev-tree/blob/master/LICENSE) for better details.
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/LucasSantus/countdown/blob/master/LICENSE) for better details.
