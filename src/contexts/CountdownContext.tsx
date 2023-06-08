@@ -1,7 +1,6 @@
-import { DEFAULT_TIME } from "@/contants/globals";
+import { DEFAULT_TIME } from "@/constants/globals";
 import { CountdownContextData } from "@/types/CountdownContextData";
 import { ISeparatedTimes } from "@/types/SeparatedTimes";
-import { ITimeInSecondsType } from "@/types/TimeInSeconds";
 import { formatTime } from "@/utils/formatTime";
 import { getTimeFromCookie } from "@/utils/getTimeFromCookie";
 import { setTimeFromCookie } from "@/utils/setTimeFromCookie";
@@ -9,7 +8,9 @@ import { PropsWithChildren, createContext, useEffect, useState } from "react";
 
 export const CountdownContext = createContext({} as CountdownContextData);
 
-export const CountdownProvider: React.FC<PropsWithChildren> = ({ children }) => {
+export const CountdownProvider: React.FC<PropsWithChildren> = ({
+  children,
+}) => {
   const [secondsAmount, setSecondsAmount] = useState(DEFAULT_TIME);
   const [isActive, setIsActive] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
@@ -29,8 +30,12 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({ children }) => 
     return () => clearInterval(intervalId);
   }, [isActive, secondsAmount]);
 
-  const [hourLeft, hourRight] = formatTime(Math.floor(secondsAmount / 3600)).split("");
-  const [minuteLeft, minuteRight] = formatTime(Math.floor((secondsAmount % 3600) / 60)).split("");
+  const [hourLeft, hourRight] = formatTime(
+    Math.floor(secondsAmount / 3600)
+  ).split("");
+  const [minuteLeft, minuteRight] = formatTime(
+    Math.floor((secondsAmount % 3600) / 60)
+  ).split("");
   const [secondLeft, secondRight] = formatTime(secondsAmount % 60).split("");
 
   const times: ISeparatedTimes = {
@@ -40,12 +45,6 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({ children }) => 
     minuteRight,
     secondLeft,
     secondRight,
-  };
-
-  const separateTime: ITimeInSecondsType = {
-    hours: Number(`${hourLeft}${hourRight}`),
-    minutes: Number(`${minuteLeft}${minuteRight}`),
-    seconds: Number(`${secondLeft}${secondRight}`),
   };
 
   function startCountdown() {
@@ -75,7 +74,6 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({ children }) => 
         isActive,
         isRunning,
         times,
-        separateTime,
         startCountdown,
         changeCountdown,
         resetCountdown,

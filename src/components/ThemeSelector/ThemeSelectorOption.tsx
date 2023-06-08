@@ -1,5 +1,4 @@
 import { ITheme, IThemeSelector } from "@/types/Themes";
-import classNames from "classnames";
 
 interface IThemeSelectorOptionProps {
   theme: ITheme;
@@ -14,15 +13,14 @@ export const ThemeSelectorOption: React.FC<IThemeSelectorOptionProps> = ({
   isSelected,
   onSelectTheme,
 }) => {
-  return (
-    <button
-      aria-label={theme}
-      className={classNames("rounded-lg p-1.5", {
-        "bg-slate-800 dark:bg-custom-gray-800": isSelected,
-      })}
-      onClick={onSelectTheme}
-    >
-      {icon}
-    </button>
-  );
+  if (isSelected)
+    return (
+      <button
+        aria-label={theme}
+        className="rounded-lg bg-slate-700 p-1.5 dark:bg-custom-gray-600"
+        onClick={onSelectTheme}
+      >
+        {icon}
+      </button>
+    );
 };

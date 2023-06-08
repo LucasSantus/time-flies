@@ -23,6 +23,7 @@
   "prettier.semi": true,
   "prettier.jsxSingleQuote": false,
   "prettier.bracketSameLine": false,
+  "prettier.endOfLine": "auto",
 
   // javascript
   "javascript.suggest.autoImports": true,
@@ -31,6 +32,10 @@
   // others
   "breadcrumbs.enabled": true,
   "typescript.suggest.autoImports": true,
-  "typescript.tsdk": "node_modules\\typescript\\lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+  "emmet.syntaxProfiles": {
+    "javascript": "jsx"
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  }
 }
