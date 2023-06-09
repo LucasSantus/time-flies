@@ -1,48 +1,74 @@
-import { easeInOutAnimationDislocate } from "@/contants/animate";
-import { ICON_STYLES } from "@/contants/icon";
-import { Dialog } from "@headlessui/react";
+import { easeInOutAnimationVerticalDislocate } from "@/utils/animation/easeInOutAnimationVerticalDislocate";
+import * as Dialog from "@radix-ui/react-dialog";
 import { motion } from "framer-motion";
-import { PencilSimple } from "phosphor-react";
-import React, { Fragment, PropsWithChildren, useState } from "react";
-import { Button, IButtonProps } from "./Button";
+import { X } from "lucide-react";
+import { Fragment, PropsWithChildren } from "react";
+import { Button, ButtonVariantsProps } from "./Button";
 
-interface IModalProps extends PropsWithChildren {
-  button?: IButtonProps;
+interface ModalProps extends PropsWithChildren {
   title: string;
+  hasCloseButton?: boolean;
+  button:
+    | {
+        type: "default";
+        title?: string;
+        variant: ButtonVariantsProps;
+        icon?: React.ReactNode;
+      }
+    | {
+        type: "other";
+        structure: React.ReactNode;
+      };
 }
 
-export const Modal: React.FC<IModalProps> = ({ button, title, children }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <Fragment>
-      <Button
-        title={button?.title ?? ""}
-        icon={button?.icon ?? <PencilSimple {...ICON_STYLES} />}
-        variants={button?.variants ?? easeInOutAnimationDislocate({ delay: 0.7 })}
-        color={button?.color ?? "gray"}
-        onClick={() => setIsOpen(true)}
-      />
-
-      {isOpen && (
-        <Dialog as={motion.div} static open={isOpen} onClose={() => setIsOpen(false)} className="relative z-10">
-          <div className="fixed inset-0 bg-black/80" />
-          <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex h-full items-center justify-center">
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-slate-100 p-6 text-left align-middle shadow-xl transition-all dark:bg-custom-gray-700">
-                <Dialog.Title
-                  as={motion.h3}
-                  className="text-lg font-medium leading-6 text-gray-900 dark:text-custom-gray-100"
-                  {...easeInOutAnimationDislocate({})}
-                >
-                  {title}
-                </Dialog.Title>
-                {children}
-              </Dialog.Panel>
-            </div>
-          </div>
-        </Dialog>
+export const Modal: React.FC<ModalProps> = ({
+  title,
+  hasCloseButton = true,
+  button,
+  children,
+}) => (
+  <Dialog.Root>
+    <Dialog.Trigger asChild>
+      {button.type === "default" ? (
+        <Button
+          variant={button.variant}
+          framerMotionAnimation={easeInOutAnimationVerticalDislocate({
+            delay: 0.7,
+          })}
+        >
+          {button?.icon}
+          {button?.title}
+        </Button>
+      ) : (
+        <Fragment>{button.structure}</Fragment>
       )}
-    </Fragment>
-  );
-};
+    </Dialog.Trigger>
+    <Dialog.Portal>
+      <motion.div
+        {...easeInOutAnimationVerticalDislocate({ delay: 0.7 })}
+        className="fixed inset-0 flex items-center justify-center bg-black/50"
+      >
+        <Dialog.Content className="data-[state=open] w-full max-w-md transform overflow-hidden rounded-md bg-slate-100 p-4 text-left align-middle shadow-xl transition-all dark:bg-custom-gray-700">
+          <div className="flex items-start justify-between ">
+            <Dialog.Title className="text-lg font-medium leading-6 text-gray-900 dark:text-custom-gray-100">
+              {title}
+            </Dialog.Title>
+
+            {hasCloseButton && (
+              <Dialog.Close asChild>
+                <button
+                  className="flex h-6 w-6 appearance-none items-center justify-center"
+                  aria-label="Close"
+                >
+                  <X className="h-5 w-5 stroke-gray-500 hover:opacity-70" />
+                </button>
+              </Dialog.Close>
+            )}
+          </div>
+
+          {children}
+        </Dialog.Content>
+      </motion.div>
+    </Dialog.Portal>
+  </Dialog.Root>
+);
