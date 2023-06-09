@@ -1,3 +1,5 @@
+<h1 align="center">Time Flies</h1>
+
 <h6 align="center"> 
 	If you want to view the system, click on <a href="https://time-flies.vercel.app/">here</a>.
 </h6>
