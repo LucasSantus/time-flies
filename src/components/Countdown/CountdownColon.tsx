@@ -9,7 +9,7 @@ export const CountdownColon: React.FC<ICountdownColonProps> = ({
   framerMotionAnimation,
 }) => (
   <motion.div {...framerMotionAnimation}>
-    <span className="hidden select-none text-5xl text-custom-green-500 sm:flex sm:text-9xl">
+    <span className="hidden select-none text-custom-green-500 sm:flex sm:text-9xl">
       :
     </span>
 

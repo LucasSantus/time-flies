@@ -20,7 +20,7 @@ export const CountdownInput: React.FC<ICountdownInputProps> = ({
       <input
         id={attribute}
         type="number"
-        className="h-12 w-full rounded border border-slate-200 bg-slate-50 p-2 text-center text-lg font-medium shadow-sm dark:border-none dark:bg-custom-gray-500 dark:text-custom-gray-100"
+        className="h-12 w-full rounded border border-slate-200 bg-slate-50 p-2 text-center text-lg font-medium shadow-sm hover:opacity-70 dark:border-none dark:bg-custom-gray-500 dark:text-custom-gray-100"
         {...register(attribute)}
         {...props}
       />
