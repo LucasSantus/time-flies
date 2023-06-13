@@ -8,6 +8,7 @@ import {
   countdownFormSchema,
 } from "@/validation/countdown-registration";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { DialogClose } from "@radix-ui/react-dialog";
 import { Save } from "lucide-react";
 import React, { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -26,7 +27,7 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
 
   const {
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = countdownForm;
 
   // check if any field has an error
@@ -101,17 +102,31 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
           </fieldset>
         </div>
 
-        <Button
-          variant="success"
-          aria-label="Close"
-          framerMotionAnimation={easeInOutAnimationVerticalDislocate({
-            delay: 0.5,
-          })}
-          type="submit"
-        >
-          <Save />
-          Salvar
-        </Button>
+        {isValid ? (
+          <DialogClose asChild className="w-full">
+            <Button
+              variant="success"
+              framerMotionAnimation={easeInOutAnimationVerticalDislocate({
+                delay: 0.5,
+              })}
+              type="submit"
+            >
+              <Save />
+              Salvar
+            </Button>
+          </DialogClose>
+        ) : (
+          <Button
+            variant="success"
+            framerMotionAnimation={easeInOutAnimationVerticalDislocate({
+              delay: 0.5,
+            })}
+            type="submit"
+          >
+            <Save />
+            Salvar
+          </Button>
+        )}
       </form>
     </FormProvider>
   );
