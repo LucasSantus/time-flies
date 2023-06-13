@@ -10,7 +10,9 @@ import { CountdownButton } from "./CountdownButton";
 import { CountdownForm } from "./CountdownForm";
 import { CountdownStructure } from "./CountdownStructure";
 
-export const Countdown: React.FC = () => {
+interface CountdownProps {}
+
+export const Countdown: React.FC<CountdownProps> = () => {
   const {
     startCountdown,
     changeCountdown,

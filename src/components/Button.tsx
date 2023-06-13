@@ -39,7 +39,7 @@ export interface ButtonProps
   framerMotionAnimation?: Variants;
 }
 
-type ButtonVariantsProps = VariantProps<typeof buttonVariants>["variant"];
+type ButtonVariantProps = VariantProps<typeof buttonVariants>["variant"];
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -69,4 +69,4 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = "Button";
 
 export { Button };
-export type { ButtonVariantsProps };
+export type { ButtonVariantProps as ButtonVariantsProps };

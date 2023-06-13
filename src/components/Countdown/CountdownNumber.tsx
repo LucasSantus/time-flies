@@ -2,12 +2,12 @@ import { ISeparatedTimes } from "@/types/SeparatedTimes";
 import { easeInOutAnimationVerticalDislocate } from "@/utils/animation/easeInOutAnimationVerticalDislocate";
 import { motion } from "framer-motion";
 
-interface ICountdownNumberProps {
+interface CountdownNumberProps {
   attribute: keyof ISeparatedTimes;
   number: string;
 }
 
-export const CountdownNumber: React.FC<ICountdownNumberProps> = ({
+export const CountdownNumber: React.FC<CountdownNumberProps> = ({
   attribute,
   number,
 }) => (

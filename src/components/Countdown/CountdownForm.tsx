@@ -8,7 +8,6 @@ import {
   countdownFormSchema,
 } from "@/validation/countdown-registration";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { DialogClose } from "@radix-ui/react-dialog";
 import { Save } from "lucide-react";
 import React, { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -16,9 +15,11 @@ import { toast } from "react-toastify";
 import { Button } from "../Button";
 import { CountdownInput } from "./CountdownInput";
 
-interface ICountdownFormProps {}
+interface CountdownFormProps {
+  onClose: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-export const CountdownForm: React.FC<ICountdownFormProps> = () => {
+export const CountdownForm: React.FC<CountdownFormProps> = ({ onClose }) => {
   const { setTimeInSeconds, times } = useCountdown();
 
   const countdownForm = useForm<CountdownFormData>({
@@ -27,7 +28,7 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
 
   const {
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = countdownForm;
 
   // check if any field has an error
@@ -102,31 +103,17 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
           </fieldset>
         </div>
 
-        {isValid ? (
-          <DialogClose asChild className="w-full">
-            <Button
-              variant="success"
-              framerMotionAnimation={easeInOutAnimationVerticalDislocate({
-                delay: 0.5,
-              })}
-              type="submit"
-            >
-              <Save />
-              Salvar
-            </Button>
-          </DialogClose>
-        ) : (
-          <Button
-            variant="success"
-            framerMotionAnimation={easeInOutAnimationVerticalDislocate({
-              delay: 0.5,
-            })}
-            type="submit"
-          >
-            <Save />
-            Salvar
-          </Button>
-        )}
+        <Button
+          variant="success"
+          framerMotionAnimation={easeInOutAnimationVerticalDislocate({
+            delay: 0.5,
+          })}
+          type="submit"
+          className="data-[state=closed]"
+        >
+          <Save />
+          Salvar
+        </Button>
       </form>
     </FormProvider>
   );

@@ -7,7 +7,9 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { ThemeSelectorOption } from "./ThemeSelectorOption";
 
-export const ThemeSelector: React.FC = () => {
+interface ThemeSelectorProps {}
+
+export const ThemeSelector: React.FC<ThemeSelectorProps> = () => {
   const [mounted, setMounted] = useState(false);
   const { theme: seletedTheme, setTheme } = useTheme();
 
