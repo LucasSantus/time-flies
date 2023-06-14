@@ -1,6 +1,7 @@
 "use client";
 
 import { useCountdown } from "@/hooks/useCountdown";
+import { useDialog } from "@/hooks/useDialog";
 import { easeInOutAnimationVerticalDislocate } from "@/utils/animation/easeInOutAnimationVerticalDislocate";
 import { convertFormDataInSeconds } from "@/utils/convertFormDataInSeconds";
 import {
@@ -15,12 +16,12 @@ import { toast } from "react-toastify";
 import { Button } from "../Button";
 import { CountdownInput } from "./CountdownInput";
 
-interface CountdownFormProps {
-  onClose: React.Dispatch<React.SetStateAction<boolean>>;
-}
+interface CountdownFormProps {}
 
-export const CountdownForm: React.FC<CountdownFormProps> = ({ onClose }) => {
+export const CountdownForm: React.FC<CountdownFormProps> = () => {
   const { setTimeInSeconds, times } = useCountdown();
+
+  const { setIsOpen: setIsOpenModal } = useDialog();
 
   const countdownForm = useForm<CountdownFormData>({
     resolver: zodResolver(countdownFormSchema),
@@ -51,6 +52,8 @@ export const CountdownForm: React.FC<CountdownFormProps> = ({ onClose }) => {
     toast("Contagem alterada!", {
       type: "success",
     });
+
+    setIsOpenModal(false);
   }
 
   return (
@@ -106,10 +109,9 @@ export const CountdownForm: React.FC<CountdownFormProps> = ({ onClose }) => {
         <Button
           variant="success"
           framerMotionAnimation={easeInOutAnimationVerticalDislocate({
-            delay: 0.5,
+            delay: 0.7,
           })}
           type="submit"
-          className="data-[state=closed]"
         >
           <Save />
           Salvar

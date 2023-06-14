@@ -1,5 +1,6 @@
 "use client";
 
+import { DialogProvider } from "@/contexts/DialogContext";
 import { useCountdown } from "@/hooks/useCountdown";
 import { easeInOutAnimationScale } from "@/utils/animation/easeInOutAnimationScale";
 import { motion } from "framer-motion";
@@ -63,16 +64,14 @@ export const Countdown: React.FC<CountdownProps> = () => {
           />
 
           <div className="w-16">
-            <Modal
-              button={{
-                type: "default",
-                variant: "gray",
-                icon: <Edit />,
-              }}
-              title="Editar Contagem"
-            >
-              <CountdownForm />
-            </Modal>
+            <DialogProvider>
+              <Modal
+                trigger={<CountdownButton icon={<Edit />} variant="gray" />}
+                title="Editar Contagem"
+              >
+                <CountdownForm />
+              </Modal>
+            </DialogProvider>
           </div>
         </div>
       )}

@@ -1,45 +1,23 @@
 "use client";
 
+import { useDialog } from "@/hooks/useDialog";
 import { easeInOutAnimationVerticalDislocate } from "@/utils/animation/easeInOutAnimationVerticalDislocate";
 import * as Dialog from "@radix-ui/react-dialog";
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
 import { PropsWithChildren } from "react";
-import { Button, ButtonVariantsProps } from "./Button";
 
 interface ModalProps extends PropsWithChildren {
   title: string;
-  button:
-    | {
-        type: "default";
-        title?: string;
-        variant: ButtonVariantsProps;
-        icon?: React.ReactNode;
-      }
-    | {
-        type: "other";
-        structure: React.ReactNode;
-      };
+  trigger: React.ReactNode;
 }
 
-export const Modal: React.FC<ModalProps> = ({ title, button, children }) => {
+export const Modal: React.FC<ModalProps> = ({ title, trigger, children }) => {
+  const { isOpen, setIsOpen } = useDialog();
+
   return (
-    <Dialog.Root>
-      <Dialog.Trigger asChild>
-        {button.type === "default" ? (
-          <Button
-            variant={button.variant}
-            framerMotionAnimation={easeInOutAnimationVerticalDislocate({
-              delay: 0.7,
-            })}
-          >
-            {button?.icon}
-            {button?.title}
-          </Button>
-        ) : (
-          button.structure
-        )}
-      </Dialog.Trigger>
+    <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
+      <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
       <Dialog.Portal>
         <motion.div
           {...easeInOutAnimationVerticalDislocate({ delay: 0.7 })}
