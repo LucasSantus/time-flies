@@ -1,11 +1,11 @@
-export type ITheme = "dark" | "light";
+export type Theme = "dark" | "light";
 
-export interface IThemeSelector {
-  theme: ITheme;
+export interface ThemeSelector {
+  theme: Theme;
   icon: JSX.Element;
 }
 
-export interface IThemeContextProps {
-  theme: ITheme;
-  setTheme: React.Dispatch<React.SetStateAction<ITheme>>;
+export interface ThemeContextProps {
+  theme: Theme;
+  setTheme: React.Dispatch<React.SetStateAction<Theme>>;
 }

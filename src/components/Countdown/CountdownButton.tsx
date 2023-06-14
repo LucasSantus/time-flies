@@ -5,8 +5,9 @@ import { Button, ButtonVariantsProps } from "../Button";
 interface CountdownButtonProps {
   variant?: ButtonVariantsProps;
   onClick?: MouseEventHandler<HTMLButtonElement>;
-  title: string;
+  title?: string;
   icon?: React.ReactNode;
+  type?: "button" | "submit" | "reset";
 }
 
 export const CountdownButton: React.FC<CountdownButtonProps> = ({
@@ -14,11 +15,13 @@ export const CountdownButton: React.FC<CountdownButtonProps> = ({
   onClick,
   title,
   icon,
+  type,
 }) => (
   <Button
     variant={variant}
     framerMotionAnimation={easeInOutAnimationVerticalDislocate({ delay: 0.7 })}
     onClick={onClick}
+    type={type}
   >
     {icon!}
     {title}

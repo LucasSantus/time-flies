@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 import React from "react";
 import { useFormContext } from "react-hook-form";
 
-interface ICountdownInputProps
+interface CountdownInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   attribute: string;
 }
 
-export const CountdownInput: React.FC<ICountdownInputProps> = ({
+export const CountdownInput: React.FC<CountdownInputProps> = ({
   attribute,
   ...props
 }) => {
