@@ -1,11 +1,11 @@
 import { Variants, motion } from "framer-motion";
 import React from "react";
 
-interface ICountdownColonProps {
+interface CountdownColonProps {
   framerMotionAnimation?: Variants;
 }
 
-export const CountdownColon: React.FC<ICountdownColonProps> = ({
+export const CountdownColon: React.FC<CountdownColonProps> = ({
   framerMotionAnimation,
 }) => (
   <motion.div {...framerMotionAnimation}>

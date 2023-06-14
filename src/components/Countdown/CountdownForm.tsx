@@ -1,6 +1,7 @@
 "use client";
 
 import { useCountdown } from "@/hooks/useCountdown";
+import { useDialog } from "@/hooks/useDialog";
 import { easeInOutAnimationVerticalDislocate } from "@/utils/animation/easeInOutAnimationVerticalDislocate";
 import { convertFormDataInSeconds } from "@/utils/convertFormDataInSeconds";
 import {
@@ -8,7 +9,6 @@ import {
   countdownFormSchema,
 } from "@/validation/countdown-registration";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { DialogClose } from "@radix-ui/react-dialog";
 import { Save } from "lucide-react";
 import React, { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -16,10 +16,12 @@ import { toast } from "react-toastify";
 import { Button } from "../Button";
 import { CountdownInput } from "./CountdownInput";
 
-interface ICountdownFormProps {}
+interface CountdownFormProps {}
 
-export const CountdownForm: React.FC<ICountdownFormProps> = () => {
+export const CountdownForm: React.FC<CountdownFormProps> = () => {
   const { setTimeInSeconds, times } = useCountdown();
+
+  const { setIsOpen: setIsOpenModal } = useDialog();
 
   const countdownForm = useForm<CountdownFormData>({
     resolver: zodResolver(countdownFormSchema),
@@ -27,7 +29,7 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
 
   const {
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = countdownForm;
 
   // check if any field has an error
@@ -50,6 +52,8 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
     toast("Contagem alterada!", {
       type: "success",
     });
+
+    setIsOpenModal(false);
   }
 
   return (
@@ -102,31 +106,16 @@ export const CountdownForm: React.FC<ICountdownFormProps> = () => {
           </fieldset>
         </div>
 
-        {isValid ? (
-          <DialogClose asChild className="w-full">
-            <Button
-              variant="success"
-              framerMotionAnimation={easeInOutAnimationVerticalDislocate({
-                delay: 0.5,
-              })}
-              type="submit"
-            >
-              <Save />
-              Salvar
-            </Button>
-          </DialogClose>
-        ) : (
-          <Button
-            variant="success"
-            framerMotionAnimation={easeInOutAnimationVerticalDislocate({
-              delay: 0.5,
-            })}
-            type="submit"
-          >
-            <Save />
-            Salvar
-          </Button>
-        )}
+        <Button
+          variant="success"
+          framerMotionAnimation={easeInOutAnimationVerticalDislocate({
+            delay: 0.7,
+          })}
+          type="submit"
+        >
+          <Save />
+          Salvar
+        </Button>
       </form>
     </FormProvider>
   );

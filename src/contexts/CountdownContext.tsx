@@ -33,9 +33,11 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({
   const [hourLeft, hourRight] = formatTime(
     Math.floor(secondsAmount / 3600)
   ).split("");
+
   const [minuteLeft, minuteRight] = formatTime(
     Math.floor((secondsAmount % 3600) / 60)
   ).split("");
+
   const [secondLeft, secondRight] = formatTime(secondsAmount % 60).split("");
 
   const times: ISeparatedTimes = {

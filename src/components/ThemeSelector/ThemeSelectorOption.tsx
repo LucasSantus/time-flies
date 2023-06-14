@@ -1,13 +1,13 @@
-import { ITheme, IThemeSelector } from "@/types/Themes";
+import { Theme, ThemeSelector } from "@/types/Themes";
 
-interface IThemeSelectorOptionProps {
-  theme: ITheme;
-  icon: IThemeSelector["icon"];
+interface ThemeSelectorOptionProps {
+  theme: Theme;
+  icon: ThemeSelector["icon"];
   isSelected: boolean;
   onSelectTheme: () => void;
 }
 
-export const ThemeSelectorOption: React.FC<IThemeSelectorOptionProps> = ({
+export const ThemeSelectorOption: React.FC<ThemeSelectorOptionProps> = ({
   theme,
   icon,
   isSelected,
