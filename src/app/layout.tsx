@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { Inter } from "next/font/google";
 import "react-toastify/dist/ReactToastify.min.css";
 import "./globals.css";
+import { NoScript } from "./no-script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
           inter.className
         )}
       >
+        <NoScript />
         {children}
       </body>
     </html>

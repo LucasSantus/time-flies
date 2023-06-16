@@ -29,7 +29,7 @@ export const CountdownFinished: React.FC<CountdownFinishedProps> = () => {
       </span>
       <Button
         variant="success"
-        framerMotionAnimation={easeInOutAnimationVerticalDislocate({
+        animation={easeInOutAnimationVerticalDislocate({
           delay: 0.7,
         })}
         type="submit"

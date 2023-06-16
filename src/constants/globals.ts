@@ -13,3 +13,11 @@ export const DEFAULT_LOCALE = "en-US";
 export const DEFAULT_THEME = "dark";
 
 export const DEFAULT_TIME = 60 * 25;
+
+export const MIN_FORM_VALUE = 0;
+
+export const MIN_FORM_MESSAGE = "Insira valor maior que 0";
+
+export const MAX_FORM_VALUE = 9;
+
+export const MAX_FORM_MESSAGE = "Insira valor menor que 9";
