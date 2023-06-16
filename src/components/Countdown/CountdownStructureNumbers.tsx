@@ -13,17 +13,19 @@ export const CountdownStructureNumbers: React.FC<
 
   return (
     <motion.section {...easeInOutAnimationVerticalDislocate({ delay: 0.7 })}>
-      <div className="grid items-center gap-3 sm:flex sm:justify-center">
+      <div className="grid h-full gap-3 sm:flex">
         <div className="flex gap-2">
           <CountdownNumber attribute="hourLeft" number={times["hourLeft"]} />
           <CountdownNumber attribute="hourRight" number={times["hourRight"]} />
         </div>
 
-        <CountdownColon
-          framerMotionAnimation={easeInOutAnimationVerticalDislocate({
-            delay: 0.2,
-          })}
-        />
+        <div className="flex h-full flex-col items-center">
+          <CountdownColon
+            animation={easeInOutAnimationVerticalDislocate({
+              delay: 0.2,
+            })}
+          />
+        </div>
 
         <div className="flex gap-2">
           <CountdownNumber
@@ -36,11 +38,13 @@ export const CountdownStructureNumbers: React.FC<
           />
         </div>
 
-        <CountdownColon
-          framerMotionAnimation={easeInOutAnimationVerticalDislocate({
-            delay: 0.2,
-          })}
-        />
+        <div className="flex h-full flex-col items-center">
+          <CountdownColon
+            animation={easeInOutAnimationVerticalDislocate({
+              delay: 0.2,
+            })}
+          />
+        </div>
 
         <div className="flex gap-2">
           <CountdownNumber

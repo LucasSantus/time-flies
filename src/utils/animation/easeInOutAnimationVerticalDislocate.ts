@@ -2,6 +2,12 @@ import { TRANSITION_DURATION } from "@/constants/globals";
 import { StructureAnimation } from "@/types/StructureAnimation";
 import { Variants } from "framer-motion";
 
+/**
+ * Defines an ease-in-out animation for vertical dislocation using framer-motion.
+ * @param delay The delay factor for the animation.
+ * @param transition The duration of the animation transition.
+ * @returns The variants object representing the animation for framer-motion.
+ */
 export function easeInOutAnimationVerticalDislocate({
   delay = 1,
   transition = TRANSITION_DURATION,

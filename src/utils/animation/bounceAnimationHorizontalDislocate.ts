@@ -2,6 +2,12 @@ import { TRANSITION_DURATION } from "@/constants/globals";
 import { StructureAnimation } from "@/types/StructureAnimation";
 import { Variants } from "framer-motion";
 
+/**
+ * Generates a bounce animation with horizontal dislocation.
+ * @param delay The delay factor for the animation.
+ * @param transition The duration of the animation transition.
+ * @returns Animation variants object for bounce animation with horizontal dislocation.
+ */
 export function bounceAnimationHorizontalDislocate({
   delay = 1,
   transition = TRANSITION_DURATION,

@@ -16,7 +16,7 @@ export const CountdownButton = forwardRef<
 >(({ variant, onClick, title, icon, type }, ref) => (
   <Button
     variant={variant}
-    framerMotionAnimation={easeInOutAnimationVerticalDislocate({ delay: 0.7 })}
+    animation={easeInOutAnimationVerticalDislocate({ delay: 0.7 })}
     onClick={onClick}
     type={type}
     ref={ref} // Encaminhe a referência para o elemento interno do botão
