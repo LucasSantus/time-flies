@@ -1,6 +1,6 @@
 import { KEY_TIME_COOKIE } from "@/constants/globals";
-import { setCookieInBrowser } from "./cookies";
+import { setCookieToBrowser } from "./getCookieToBrowser";
 
 export function setTimeFromCookie(time: number) {
-  setCookieInBrowser(KEY_TIME_COOKIE, time.toString());
+  setCookieToBrowser(KEY_TIME_COOKIE, time.toString());
 }
