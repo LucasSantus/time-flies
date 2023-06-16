@@ -1,5 +1,5 @@
 import { easeInOutAnimationVerticalDislocate } from "@/utils/animation/easeInOutAnimationVerticalDislocate";
-import { MouseEventHandler } from "react";
+import { MouseEventHandler, forwardRef } from "react";
 import { Button, ButtonVariantsProps } from "../Button";
 
 interface CountdownButtonProps {
@@ -10,20 +10,19 @@ interface CountdownButtonProps {
   type?: "button" | "submit" | "reset";
 }
 
-export const CountdownButton: React.FC<CountdownButtonProps> = ({
-  variant,
-  onClick,
-  title,
-  icon,
-  type,
-}) => (
+export const CountdownButton = forwardRef<
+  HTMLButtonElement,
+  CountdownButtonProps
+>(({ variant, onClick, title, icon, type }, ref) => (
   <Button
     variant={variant}
     framerMotionAnimation={easeInOutAnimationVerticalDislocate({ delay: 0.7 })}
     onClick={onClick}
     type={type}
+    ref={ref} // Encaminhe a referência para o elemento interno do botão
   >
-    {icon!}
+    {icon}
     {title}
   </Button>
-);
+));
+CountdownButton.displayName = "CountdownButton";

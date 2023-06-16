@@ -1,8 +1,8 @@
 import { DEFAULT_TIME, KEY_TIME_COOKIE } from "@/constants/globals";
-import { getCookieInBrowser } from "./cookies";
+import { getCookieToBrowser } from "./setCookieToBrowser";
 
 export function getTimeFromCookie(): number {
-  const time = getCookieInBrowser(KEY_TIME_COOKIE);
+  const time = getCookieToBrowser(KEY_TIME_COOKIE);
 
   if (time) return Number(time);
 

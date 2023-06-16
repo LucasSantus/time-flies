@@ -14,20 +14,28 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({
   const [secondsAmount, setSecondsAmount] = useState(DEFAULT_TIME);
   const [isActive, setIsActive] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
+  const [isFinished, setIsFinished] = useState(false);
 
   useEffect(() => {
     setSecondsAmount(getTimeFromCookie());
   }, []);
 
   useEffect(() => {
-    let intervalId: NodeJS.Timeout;
+    let interval: NodeJS.Timeout;
     if (isActive && secondsAmount > 0) {
-      intervalId = setInterval(() => {
+      interval = setInterval(() => {
         setSecondsAmount((prevSeconds) => prevSeconds - 1);
       }, 1000);
     }
 
-    return () => clearInterval(intervalId);
+    if (secondsAmount === 0) {
+      setSecondsAmount(getTimeFromCookie());
+      setIsFinished(true);
+      setIsRunning(false);
+      setIsActive(false);
+    }
+
+    return () => clearInterval(interval);
   }, [isActive, secondsAmount]);
 
   const [hourLeft, hourRight] = formatTime(
@@ -52,6 +60,7 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({
   function startCountdown() {
     setIsActive(true);
     setIsRunning(true);
+    setIsFinished(false);
   }
 
   function changeCountdown() {
@@ -62,6 +71,7 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({
     setSecondsAmount(getTimeFromCookie());
     setIsActive(false);
     setIsRunning(false);
+    setIsFinished(false);
   }
 
   function setTimeInSeconds(time: number) {
@@ -75,6 +85,7 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({
         secondsAmount,
         isActive,
         isRunning,
+        isFinished,
         times,
         startCountdown,
         changeCountdown,
