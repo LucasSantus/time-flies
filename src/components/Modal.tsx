@@ -33,7 +33,7 @@ export const Modal: React.FC<ModalProps> = ({
           {...easeInOutAnimationVerticalDislocate({ delay: 0.7 })}
           className="fixed inset-0 flex items-center justify-center bg-black/50"
         >
-          <DialogPrimitive.Content className="data-[state=open] w-full max-w-md transform overflow-hidden rounded-md bg-slate-100 p-4 text-left align-middle shadow-xl transition-all dark:bg-custom-gray-700">
+          <DialogPrimitive.Content className="data-[state=open] w-full max-w-md transform overflow-hidden rounded-md bg-white p-4 text-left align-middle shadow-xl transition-all dark:bg-custom-gray-700">
             <div className="flex items-start justify-between ">
               <DialogPrimitive.Title className="text-lg font-medium leading-6 text-gray-900 dark:text-custom-gray-100">
                 {title}
