@@ -36,26 +36,16 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
-  framerMotionAnimation?: Variants;
+  animation?: Variants;
 }
 
 type ButtonVariantProps = VariantProps<typeof buttonVariants>["variant"];
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
-      className,
-      variant,
-      size,
-      asChild = false,
-      framerMotionAnimation,
-      ...props
-    },
-    ref
-  ) => {
+  ({ className, variant, size, asChild = false, animation, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
     return (
-      <motion.div {...framerMotionAnimation} className="w-full">
+      <motion.div {...animation} className="w-full">
         <Comp
           className={clsx(buttonVariants({ variant, size, className }))}
           ref={ref}

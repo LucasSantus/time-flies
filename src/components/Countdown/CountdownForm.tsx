@@ -108,7 +108,7 @@ export const CountdownForm: React.FC<CountdownFormProps> = () => {
 
         <Button
           variant="success"
-          framerMotionAnimation={easeInOutAnimationVerticalDislocate({
+          animation={easeInOutAnimationVerticalDislocate({
             delay: 0.7,
           })}
           type="submit"

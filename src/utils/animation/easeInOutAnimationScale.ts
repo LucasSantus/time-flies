@@ -2,6 +2,12 @@ import { TRANSITION_DURATION } from "@/constants/globals";
 import { StructureAnimation } from "@/types/StructureAnimation";
 import { Variants } from "framer-motion";
 
+/**
+ * Defines an ease-in-out animation scale variant for Framer Motion.
+ * @param delay The delay factor for the animation.
+ * @param transition The transition duration for the animation.
+ * @returns The variants object for the ease-in-out animation scale.
+ */
 export function easeInOutAnimationScale({
   delay = 1,
   transition = TRANSITION_DURATION,
