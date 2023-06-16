@@ -2,16 +2,16 @@ import { Variants, motion } from "framer-motion";
 import React from "react";
 
 interface CountdownColonProps {
-  framerMotionAnimation?: Variants;
+  animation?: Variants;
 }
 
 export const CountdownColon: React.FC<CountdownColonProps> = ({
-  framerMotionAnimation,
+  animation,
 }) => (
-  <motion.div {...framerMotionAnimation}>
-    <span className="hidden select-none text-custom-green-500 sm:flex sm:text-9xl">
-      :
-    </span>
+  <motion.div {...animation}>
+    <div className="hidden h-full select-none items-center sm:flex">
+      <div className="text-custom-green-500 sm:text-9xl">:</div>
+    </div>
 
     <div className="flex sm:hidden">
       <div className="my-2 w-14 select-none border border-b-custom-green-300" />
