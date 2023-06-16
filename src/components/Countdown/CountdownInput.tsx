@@ -19,6 +19,7 @@ export const CountdownInput: React.FC<CountdownInputProps> = ({
     <motion.div {...easeInOutAnimationVerticalDislocate({ delay: 0.7 })}>
       <input
         id={attribute}
+        aria-label={attribute}
         type="number"
         className="h-12 w-full rounded border border-slate-200 bg-slate-50 p-2 text-center text-lg font-medium shadow-sm hover:opacity-70 dark:border-none dark:bg-custom-gray-500 dark:text-custom-gray-100"
         {...register(attribute)}
