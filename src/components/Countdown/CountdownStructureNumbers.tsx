@@ -4,9 +4,11 @@ import { motion } from "framer-motion";
 import { CountdownColon } from "./CountdownColon";
 import { CountdownNumber } from "./CountdownNumber";
 
-interface CountdownStructureProps {}
+interface CountdownStructureNumberProps {}
 
-export const CountdownStructure: React.FC<CountdownStructureProps> = () => {
+export const CountdownStructureNumbers: React.FC<
+  CountdownStructureNumberProps
+> = () => {
   const { times } = useCountdown();
 
   return (

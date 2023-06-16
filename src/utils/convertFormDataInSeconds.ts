@@ -1,4 +1,5 @@
 import { CountdownFormData } from "@/validation/countdown-registration";
+import { formatNumberToSeparatedTimes } from "./formatNumberToSeparatedTimes";
 
 export function convertFormDataInSeconds(formData: CountdownFormData): number {
   const {
@@ -10,9 +11,9 @@ export function convertFormDataInSeconds(formData: CountdownFormData): number {
     secondRight,
   } = formData;
 
-  const hour = Number(`${hourLeft}${hourRight}`) * 60 * 60;
-  const minute = Number(`${minuteLeft}${minuteRight}`) * 60;
-  const second = Number(`${secondLeft}${secondRight}`);
+  const hour = formatNumberToSeparatedTimes(hourLeft, hourRight) * 60 * 60;
+  const minute = formatNumberToSeparatedTimes(minuteLeft, minuteRight) * 60;
+  const second = formatNumberToSeparatedTimes(secondLeft, secondRight);
 
   return hour + minute + second;
 }

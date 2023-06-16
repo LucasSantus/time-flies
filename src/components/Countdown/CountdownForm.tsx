@@ -1,7 +1,7 @@
 "use client";
 
 import { useCountdown } from "@/hooks/useCountdown";
-import { useDialog } from "@/hooks/useDialog";
+import { useModal } from "@/hooks/useModal";
 import { easeInOutAnimationVerticalDislocate } from "@/utils/animation/easeInOutAnimationVerticalDislocate";
 import { convertFormDataInSeconds } from "@/utils/convertFormDataInSeconds";
 import {
@@ -21,7 +21,7 @@ interface CountdownFormProps {}
 export const CountdownForm: React.FC<CountdownFormProps> = () => {
   const { setTimeInSeconds, times } = useCountdown();
 
-  const { setIsOpen: setIsOpenModal } = useDialog();
+  const { setIsOpen: setIsOpenModal } = useModal();
 
   const countdownForm = useForm<CountdownFormData>({
     resolver: zodResolver(countdownFormSchema),

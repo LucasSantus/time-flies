@@ -1,4 +1,4 @@
-export interface DialogContextData {
+export interface ModalContextData {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
