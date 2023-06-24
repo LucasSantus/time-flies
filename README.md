@@ -4,6 +4,11 @@
 	If you want to view the system, click on <a href="https://time-flies.vercel.app/">here</a>.
 </h6>
 
+<h6 align="center"> 
+  If you want to view the staging system, click on <a href="https://time-flies-staging.vercel.app/">here</a>.
+</h6>
+
+
 <h3 id="about">:information_source: About</h3>
 
 > This project was developed using Nextjs, React, TypeScript, TailwindCSS.
