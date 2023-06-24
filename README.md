@@ -55,13 +55,13 @@ Used tools:
 
 <h3 id="funcionalidades">:sparkles: Features</h3>
 
-- [X] Dark mode: The website offers a dark mode option, providing a visually comfortable interface in low-light environments.
-- [X] Start countdown functionality: Users have the ability to initiate a custom countdown.
-- [X] Pause countdown functionality: It is possible to pause the countdown at any time, allowing users to temporarily halt the countdown.
-- [X] Reset countdown functionality: Users have the option to reset the countdown to zero if they wish to start over.
-- [X] Edit countdown time functionality: There is the capability to edit the countdown time, enabling users to adjust the desired time.
-- [X] Sound notification upon countdown completion: At the end of the countdown, the website emits a simple sound to notify the user that the countdown has finished.
-- [X] Display a message to the user upon completion: After the countdown is complete, a message is displayed to the users, indicating that the countdown has ended.
+- [X] Dark mode.
+- [X] Start countdown functionality.
+- [X] Pause countdown functionality.
+- [X] Reset countdown functionality.
+- [X] Edit countdown time functionality.
+- [X] Sound notification upon countdown completion.
+- [X] Display a message to the user upon completion.
 
 ---
 
