@@ -20,7 +20,7 @@ _"Create a simple countdown project. Aiming at building the application in order
 <h3 id="status">:heavy_exclamation_mark: Status</h3>
 
 <h4 align="center">
- :construction: Project in progress... :construction:
+ ✔️ Finished project ✔️
 </h4>
 
 ---
