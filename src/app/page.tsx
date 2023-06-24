@@ -2,6 +2,8 @@ import { Countdown } from "@/components/Countdown";
 import { ThemeSelector } from "@/components/ThemeSelector";
 
 export default function Home() {
+  console.log("teste");
+
   return (
     <div className="flex flex-col md:h-screen">
       <section className="flex sm:justify-end">
