@@ -42,7 +42,6 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({
       setDataFromCookie({
         isActive,
         isRunning,
-        isFinished,
         secondsAmount,
       });
     }
@@ -53,13 +52,11 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({
     const {
       isActive: isActiveCookie,
       isRunning: isRunningCookie,
-      isFinished: isFinishedCookie,
       secondsAmount: secondsAmountCookie,
     } = getDataFromCookie();
 
     setIsActive(isActiveCookie);
     setIsRunning(isRunningCookie);
-    setIsFinished(isFinishedCookie);
     setSecondsAmount(secondsAmountCookie);
   }, []);
 
@@ -111,7 +108,6 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({
     setDataFromCookie({
       isActive: false,
       isRunning: false,
-      isFinished: false,
       secondsAmount: getTimeFromCookie(),
     });
   }
