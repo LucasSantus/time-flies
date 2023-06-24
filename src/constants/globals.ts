@@ -3,6 +3,8 @@ export const TRANSITION_DURATION = 0.7;
 // KEYS OF COOKIES
 export const KEY_TIME_COOKIE = "time";
 
+export const KEY_DATA_COOKIE = "data";
+
 export const KEY_THEME_COOKIE = "theme";
 
 export const KEY_LOCALE_COOKIE = "locale";
