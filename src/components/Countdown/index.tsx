@@ -4,7 +4,7 @@ import { ModalProvider } from "@/contexts/ModalContext";
 import { useCountdown } from "@/hooks/useCountdown";
 import { easeInOutAnimationScale } from "@/utils/animation/easeInOutAnimationScale";
 import { motion } from "framer-motion";
-import React, { useEffect } from "react";
+import React from "react";
 import { Modal } from "../Modal";
 import { CountdownFinished } from "./CountdownFinished";
 import { CountdownStructureButtons } from "./CountdownStructureButtons";
@@ -14,15 +14,6 @@ interface CountdownProps {}
 
 export const Countdown: React.FC<CountdownProps> = () => {
   const { isFinished } = useCountdown();
-
-  useEffect(() => {
-    if (isFinished) {
-      const sound = new Audio("/sounds/ze-da-manga.mp3");
-      sound.addEventListener("canplaythrough", () => {
-        sound.play();
-      });
-    }
-  }, [isFinished]);
 
   return (
     <motion.section
