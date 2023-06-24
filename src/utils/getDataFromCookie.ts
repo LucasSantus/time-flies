@@ -17,7 +17,6 @@ export function getDataFromCookie(): DataCookie {
     return {
       isActive: false,
       isRunning: false,
-      isFinished: false,
       secondsAmount: DEFAULT_TIME,
     };
   }
