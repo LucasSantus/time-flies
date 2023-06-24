@@ -1,24 +1,13 @@
 "use client";
 
-import { ThemeSelectorData } from "@/types/ThemeSelectorItem";
+import { THEMES } from "@/data/themes";
 import { bounceAnimationHorizontalDislocate } from "@/utils/animation/bounceAnimationHorizontalDislocate";
 import { motion } from "framer-motion";
-import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { ThemeSelectorOption } from "./ThemeSelectorOption";
 
 interface ThemeSelectorProps {}
-
-export const THEMES: ThemeSelectorData = [
-  {
-    theme: "light",
-    icon: <Sun size={23} className="text-white" />,
-  },
-  {
-    theme: "dark",
-    icon: <Moon size={23} className="text-white" />,
-  },
-];
 
 export const ThemeSelector: React.FC<ThemeSelectorProps> = () => {
   const [mounted, setMounted] = useState(false);
@@ -42,15 +31,12 @@ export const ThemeSelector: React.FC<ThemeSelectorProps> = () => {
             delay: 0.2,
           })}
         >
-          {theme !== seletedTheme && (
-            <button
-              aria-label={theme}
-              className="rounded-lg bg-slate-700 p-1.5 dark:bg-custom-gray-600"
-              onClick={() => setTheme(theme)}
-            >
-              {icon}
-            </button>
-          )}
+          <ThemeSelectorOption
+            theme={theme}
+            icon={icon}
+            isSelected={theme !== seletedTheme}
+            onSelectTheme={() => setTheme(theme)}
+          />
         </motion.div>
       ))}
     </div>
