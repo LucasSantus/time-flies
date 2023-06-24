@@ -1,18 +1,21 @@
 "use client";
 
+import { CountdownProvider } from "@/contexts/CountdownContext";
 import { ThemeProvider } from "next-themes";
-import { FC, PropsWithChildren } from "react";
 import { ToastContainer } from "react-toastify";
-import { CountdownProvider } from "./CountdownContext";
 
-export const Providers: FC<PropsWithChildren> = ({ children }) => {
+export default function RootTemplate({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <ThemeProvider
       attribute="class"
+      enableSystem={false}
+      defaultTheme="dark"
       enableColorScheme={false}
       disableTransitionOnChange
-      defaultTheme="system"
-      enableSystem
     >
       <CountdownProvider>
         <ToastContainer
@@ -30,4 +33,4 @@ export const Providers: FC<PropsWithChildren> = ({ children }) => {
       </CountdownProvider>
     </ThemeProvider>
   );
-};
+}

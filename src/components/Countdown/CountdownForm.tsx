@@ -45,7 +45,7 @@ export const CountdownForm: React.FC<CountdownFormProps> = () => {
     }
   }, [errors]);
 
-  function handleSubmitCountdown(data: CountdownFormData) {
+  function handleChangeCountdown(data: CountdownFormData) {
     const timeInSeconds = convertFormDataInSeconds(data);
     setTimeInSeconds(timeInSeconds);
 
@@ -60,7 +60,7 @@ export const CountdownForm: React.FC<CountdownFormProps> = () => {
     <FormProvider {...countdownForm}>
       <form
         className="flex w-full flex-col items-center justify-center gap-2 pt-2"
-        onSubmit={handleSubmit(handleSubmitCountdown)}
+        onSubmit={handleSubmit(handleChangeCountdown)}
       >
         <div className="grid w-full grid-cols-12 gap-2">
           <fieldset className="col-span-6 sm:col-span-2">

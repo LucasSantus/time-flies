@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import { easeInOutAnimationVerticalDislocate } from "@/utils/animation/easeInOutAnimationVerticalDislocate";
 import { motion } from "framer-motion";
 import React from "react";
