@@ -1,9 +1,3 @@
-import {
-  MAX_FORM_MESSAGE,
-  MAX_FORM_VALUE,
-  MIN_FORM_MESSAGE,
-  MIN_FORM_VALUE,
-} from "@/constants/globals";
 import { formatNumberToSeparatedTimes } from "@/utils/formatNumberToSeparatedTimes";
 import { z } from "zod";
 
@@ -11,28 +5,28 @@ export const countdownFormSchema = z
   .object({
     hourLeft: z.coerce
       .number()
-      .min(MIN_FORM_VALUE, MIN_FORM_MESSAGE)
-      .max(MAX_FORM_VALUE, MAX_FORM_MESSAGE),
+      .min(0, "MIN_FORM_VALUE")
+      .max(2, "MAX_FORM_VALUE"),
     hourRight: z.coerce
       .number()
-      .min(MIN_FORM_VALUE, MIN_FORM_MESSAGE)
-      .max(MAX_FORM_VALUE, MAX_FORM_MESSAGE),
+      .min(0, "MIN_FORM_VALUE")
+      .max(9, "MAX_FORM_VALUE"),
     minuteLeft: z.coerce
       .number()
-      .min(MIN_FORM_VALUE, MIN_FORM_MESSAGE)
-      .max(MAX_FORM_VALUE, MAX_FORM_MESSAGE),
+      .min(0, "MIN_FORM_VALUE")
+      .max(5, "MAX_FORM_VALUE"),
     minuteRight: z.coerce
       .number()
-      .min(MIN_FORM_VALUE, MIN_FORM_MESSAGE)
-      .max(MAX_FORM_VALUE, MAX_FORM_MESSAGE),
+      .min(0, "MIN_FORM_VALUE")
+      .max(9, "MAX_FORM_VALUE"),
     secondLeft: z.coerce
       .number()
-      .min(MIN_FORM_VALUE, MIN_FORM_MESSAGE)
-      .max(MAX_FORM_VALUE, MAX_FORM_MESSAGE),
+      .min(1, "MIN_FORM_VALUE")
+      .max(5, "MAX_FORM_VALUE"),
     secondRight: z.coerce
       .number()
-      .min(MIN_FORM_VALUE, MIN_FORM_MESSAGE)
-      .max(MAX_FORM_VALUE, MAX_FORM_MESSAGE),
+      .min(0, "MIN_FORM_VALUE")
+      .max(9, "MAX_FORM_VALUE"),
   })
   .refine(({ hourLeft, hourRight }) => {
     const hour = formatNumberToSeparatedTimes(hourLeft, hourRight);
