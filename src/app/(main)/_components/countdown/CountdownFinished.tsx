@@ -1,22 +1,18 @@
 "use client";
 
-import { useCountdown } from "@/hooks/useCountdown";
-import { useModal } from "@/hooks/useModal";
-import { easeInOutAnimationVerticalDislocate } from "@/utils/animation/easeInOutAnimationVerticalDislocate";
+import { Button } from "@/components/ui/button";
+import { useCountdown } from "@/hooks/use-countdown";
 import { BadgeCheck, Check } from "lucide-react";
-import React, { useEffect } from "react";
-import { Button } from "../Button";
+import React from "react";
 
 interface CountdownFinishedProps {}
 
 export const CountdownFinished: React.FC<CountdownFinishedProps> = () => {
   const { isFinished } = useCountdown();
 
-  const { setIsOpen: setIsOpenModal } = useModal();
-
-  useEffect(() => {
-    setIsOpenModal(isFinished);
-  }, [isFinished, setIsOpenModal]);
+  // useEffect(() => {
+  //   setIsOpenModal(isFinished);
+  // }, [isFinished, setIsOpenModal]);
 
   return (
     <div className="flex flex-col items-center gap-3">
@@ -29,13 +25,10 @@ export const CountdownFinished: React.FC<CountdownFinishedProps> = () => {
       </span>
       <Button
         variant="success"
-        animation={easeInOutAnimationVerticalDislocate({
-          delay: 0.7,
-        })}
         type="submit"
-        onClick={() => setIsOpenModal(false)}
+        icon={<BadgeCheck className="size-5" />}
+        // onClick={() => setIsOpenModal(false)}
       >
-        <BadgeCheck />
         Fechar
       </Button>
     </div>

@@ -1,22 +1,51 @@
-import { DEFAULT_TIME } from "@/constants/globals";
-import { CountdownContextData } from "@/types/CountdownContextData";
-import { ISeparatedTimes } from "@/types/SeparatedTimes";
+"use client";
+
+import { DEFAULT_TIME, KEY_COUNTDOWN_LOCAL_STORAGE } from "@/constants/globals";
+import { SeparatedTimesData } from "@/types/separated-times";
 import { formatTime } from "@/utils/formatTime";
-import { getDataFromCookie } from "@/utils/getDataFromCookie";
-import { getTimeFromCookie } from "@/utils/getTimeFromCookie";
-import { setDataFromCookie } from "@/utils/setDataFromCookie";
-import { setTimeFromCookie } from "@/utils/setTimeFromCookie";
 import { PropsWithChildren, createContext, useEffect, useState } from "react";
+import { useLocalStorage } from "usehooks-ts";
+
+export interface CountdownContextData {
+  secondsAmount: number;
+  isActive: boolean;
+  isRunning: boolean;
+  isFinished: boolean;
+  times: SeparatedTimesData;
+  startCountdown: () => void;
+  changeCountdown: () => void;
+  resetCountdown: () => void;
+  setTimeInSeconds: (time: number) => void;
+}
+
+interface CountdownData {
+  isActive: boolean;
+  isRunning: boolean;
+  isFinished: boolean;
+  secondsAmount: number;
+}
 
 export const CountdownContext = createContext({} as CountdownContextData);
 
 export const CountdownProvider: React.FC<PropsWithChildren> = ({
   children,
 }) => {
-  const [secondsAmount, setSecondsAmount] = useState(DEFAULT_TIME);
-  const [isActive, setIsActive] = useState(false);
-  const [isRunning, setIsRunning] = useState(false);
-  const [isFinished, setIsFinished] = useState(false);
+  const initialValues: CountdownData = {
+    isActive: false,
+    isFinished: false,
+    isRunning: false,
+    secondsAmount: DEFAULT_TIME,
+  };
+
+  const [countdownOnStorage, setCountdownOnStorage] =
+    useLocalStorage<CountdownData>(KEY_COUNTDOWN_LOCAL_STORAGE, initialValues);
+
+  const [secondsAmount, setSecondsAmount] = useState(
+    countdownOnStorage.secondsAmount,
+  );
+  const [isActive, setIsActive] = useState(countdownOnStorage.isActive);
+  const [isRunning, setIsRunning] = useState(countdownOnStorage.isRunning);
+  const [isFinished, setIsFinished] = useState(countdownOnStorage.isFinished);
 
   // show message of user exit page on countdown
   useEffect(() => {
@@ -39,26 +68,27 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({
   // sync data of cookies
   useEffect(() => {
     if (isActive || isRunning) {
-      setDataFromCookie({
+      setCountdownOnStorage({
         isActive,
         isRunning,
+        isFinished,
         secondsAmount,
       });
     }
   }, [isActive, isFinished, isRunning, secondsAmount]);
 
   // get data from cookies
-  useEffect(() => {
-    const {
-      isActive: isActiveCookie,
-      isRunning: isRunningCookie,
-      secondsAmount: secondsAmountCookie,
-    } = getDataFromCookie();
+  // useEffect(() => {
+  //   const {
+  //     isActive: isActiveCookie,
+  //     isRunning: isRunningCookie,
+  //     secondsAmount: secondsAmountCookie,
+  //   } = getDataFromCookie();
 
-    setIsActive(isActiveCookie);
-    setIsRunning(isRunningCookie);
-    setSecondsAmount(secondsAmountCookie);
-  }, []);
+  //   setIsActive(isActiveCookie);
+  //   setIsRunning(isRunningCookie);
+  //   setSecondsAmount(secondsAmountCookie);
+  // }, []);
 
   // logic of countdown
   useEffect(() => {
@@ -70,10 +100,11 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({
     }
 
     if (secondsAmount === 0) {
-      setSecondsAmount(getTimeFromCookie());
-      setIsFinished(true);
-      setIsRunning(false);
-      setIsActive(false);
+      setCountdownOnStorage({
+        ...initialValues,
+        secondsAmount: countdownOnStorage.secondsAmount,
+        isFinished: true,
+      });
     }
 
     return () => clearInterval(interval);
@@ -100,40 +131,43 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({
   }
 
   function resetCountdown() {
-    setSecondsAmount(getTimeFromCookie());
+    setSecondsAmount(countdownOnStorage.secondsAmount);
     setIsActive(false);
     setIsRunning(false);
     setIsFinished(false);
 
-    setDataFromCookie({
-      isActive: false,
-      isRunning: false,
-      secondsAmount: getTimeFromCookie(),
+    setCountdownOnStorage({
+      ...initialValues,
+      secondsAmount: countdownOnStorage.secondsAmount,
     });
   }
 
   function setTimeInSeconds(time: number) {
-    setTimeFromCookie(time);
     setSecondsAmount(time);
+
+    setCountdownOnStorage({
+      ...countdownOnStorage,
+      secondsAmount: time,
+    });
   }
 
   const [hourLeft, hourRight] = formatTime(
-    Math.floor(secondsAmount / 3600)
+    Math.floor(secondsAmount / 3600),
   ).split("");
 
   const [minuteLeft, minuteRight] = formatTime(
-    Math.floor((secondsAmount % 3600) / 60)
+    Math.floor((secondsAmount % 3600) / 60),
   ).split("");
 
   const [secondLeft, secondRight] = formatTime(secondsAmount % 60).split("");
 
-  const times: ISeparatedTimes = {
-    hourLeft,
-    hourRight,
-    minuteLeft,
-    minuteRight,
-    secondLeft,
-    secondRight,
+  const times: SeparatedTimesData = {
+    hourLeft: Number(hourLeft),
+    hourRight: Number(hourRight),
+    minuteLeft: Number(minuteLeft),
+    minuteRight: Number(minuteRight),
+    secondLeft: Number(secondLeft),
+    secondRight: Number(secondRight),
   };
 
   return (

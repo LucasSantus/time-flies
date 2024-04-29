@@ -1,22 +1,18 @@
-import { useCountdown } from "@/hooks/useCountdown";
+import { useCountdown } from "@/hooks/use-countdown";
 import { easeInOutAnimationVerticalDislocate } from "@/utils/animation/easeInOutAnimationVerticalDislocate";
 import { motion } from "framer-motion";
 import { CountdownColon } from "./CountdownColon";
 import { CountdownNumber } from "./CountdownNumber";
 
-interface CountdownStructureNumberProps {}
-
-export const CountdownStructureNumbers: React.FC<
-  CountdownStructureNumberProps
-> = () => {
+export function CountdownStructureNumbers(): JSX.Element {
   const { times } = useCountdown();
 
   return (
     <motion.section {...easeInOutAnimationVerticalDislocate({ delay: 0.7 })}>
       <div className="grid h-full gap-3 sm:flex">
         <div className="flex gap-2">
-          <CountdownNumber attribute="hourLeft" number={times["hourLeft"]} />
-          <CountdownNumber attribute="hourRight" number={times["hourRight"]} />
+          <CountdownNumber name="hourLeft" value={times["hourLeft"]} />
+          <CountdownNumber name="hourRight" value={times["hourRight"]} />
         </div>
 
         <div className="flex h-full flex-col items-center">
@@ -28,14 +24,8 @@ export const CountdownStructureNumbers: React.FC<
         </div>
 
         <div className="flex gap-2">
-          <CountdownNumber
-            attribute="minuteLeft"
-            number={times["minuteLeft"]}
-          />
-          <CountdownNumber
-            attribute="minuteRight"
-            number={times["minuteRight"]}
-          />
+          <CountdownNumber name="minuteLeft" value={times["minuteLeft"]} />
+          <CountdownNumber name="minuteRight" value={times["minuteRight"]} />
         </div>
 
         <div className="flex h-full flex-col items-center">
@@ -47,16 +37,10 @@ export const CountdownStructureNumbers: React.FC<
         </div>
 
         <div className="flex gap-2">
-          <CountdownNumber
-            attribute="secondLeft"
-            number={times["secondLeft"]}
-          />
-          <CountdownNumber
-            attribute="secondRight"
-            number={times["secondRight"]}
-          />
+          <CountdownNumber name="secondLeft" value={times["secondLeft"]} />
+          <CountdownNumber name="secondRight" value={times["secondRight"]} />
         </div>
       </div>
     </motion.section>
   );
-};
+}

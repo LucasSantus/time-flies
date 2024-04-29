@@ -1,8 +1,10 @@
-import { CountdownContext } from "@/contexts/CountdownContext";
-import { CountdownContextData } from "@/types/CountdownContextData";
+import {
+  CountdownContext,
+  CountdownContextData,
+} from "@/contexts/countdown-context";
 import { useContext } from "react";
 
-export const useCountdown = (): CountdownContextData => {
+export function useCountdown(): CountdownContextData {
   const context = useContext(CountdownContext);
 
   if (!context) {
@@ -10,4 +12,4 @@ export const useCountdown = (): CountdownContextData => {
   }
 
   return context;
-};
+}
