@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 
 import { fontSans } from "@/config/fonts";
 import { projectConfig } from "@/config/project";
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import clsx from "clsx";
 import { Metadata } from "next";
 import { Providers } from "./providers";
@@ -30,7 +30,9 @@ export default function RootLayout({
         )}
       >
         <Providers>
-        <SpeedInsights />{children}</Providers>
+          <SpeedInsights />
+          {children}
+        </Providers>
       </body>
     </html>
   );
