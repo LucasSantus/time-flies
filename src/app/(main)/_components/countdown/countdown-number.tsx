@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 interface CountdownNumberProps {
   name: keyof SeparatedTimesData;
-  value: string;
+  value: number;
 }
 
 export function CountdownNumber({

@@ -11,7 +11,7 @@ import { Save } from "lucide-react";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { CountdownInput } from "./CountdownInput";
+import { CountdownInput } from "./countdown-input";
 
 interface CountdownFormProps {}
 

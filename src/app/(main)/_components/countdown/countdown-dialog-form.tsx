@@ -8,9 +8,9 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Edit } from "lucide-react";
-import { CountdownForm } from "./CountdownForm";
+import { CountdownForm } from "./countdown-form";
 
-export function CountdownDialog(): JSX.Element {
+export function CountdownDialogForm(): JSX.Element {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -23,7 +23,7 @@ export function CountdownDialog(): JSX.Element {
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Share link</DialogTitle>
+          <DialogTitle>Editar Contagem</DialogTitle>
           <DialogDescription>
             Anyone who has this link will be able to view this.
           </DialogDescription>

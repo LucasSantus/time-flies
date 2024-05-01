@@ -21,7 +21,7 @@ export const countdownFormSchema = z
       .max(9, "MAX_FORM_VALUE"),
     secondLeft: z.coerce
       .number()
-      .min(1, "MIN_FORM_VALUE")
+      .min(0, "MIN_FORM_VALUE")
       .max(5, "MAX_FORM_VALUE"),
     secondRight: z.coerce
       .number()
@@ -38,7 +38,7 @@ export const countdownFormSchema = z
   }, "Os minutos inseridos são inválidos!")
   .refine(({ secondLeft, secondRight }) => {
     const second = formatNumberToSeparatedTimes(secondLeft, secondRight);
-    return second >= 0 && second <= 59;
+    return second > 0 && second <= 59;
   }, "Os segundos inseridos são inválidos!");
 
 export type CountdownFormData = z.infer<typeof countdownFormSchema>;

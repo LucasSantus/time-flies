@@ -1,8 +1,10 @@
+"use client";
+
 import { useCountdown } from "@/hooks/use-countdown";
 import { easeInOutAnimationVerticalDislocate } from "@/utils/animation/easeInOutAnimationVerticalDislocate";
 import { motion } from "framer-motion";
-import { CountdownColon } from "./CountdownColon";
-import { CountdownNumber } from "./CountdownNumber";
+import { CountdownColon } from "./countdown-colon";
+import { CountdownNumber } from "./countdown-number";
 
 export function CountdownStructureNumbers(): JSX.Element {
   const { times } = useCountdown();

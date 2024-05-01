@@ -1,11 +1,8 @@
-"use client";
-
-import { CountdownStructureButtons } from "./CountdownStructureButtons";
-import { CountdownStructureNumbers } from "./CountdownStructureNumbers";
+import { CountdownDialogFinished } from "./countdown-dialog-finished";
+import { CountdownStructureButtons } from "./countdown-structure-buttons";
+import { CountdownStructureNumbers } from "./countdown-structure-numbers";
 
 export function Countdown(): JSX.Element {
-  // const { isFinished } = useCountdown();
-
   return (
     <section className="flex h-full w-full items-start justify-center sm:items-center">
       <div
@@ -16,13 +13,7 @@ export function Countdown(): JSX.Element {
 
         <CountdownStructureButtons />
 
-        {/* {isFinished && (
-        <ModalProvider>
-          <Modal isOpenDefault={true}>
-            <CountdownFinished />
-          </Modal>
-        </ModalProvider>
-      )} */}
+        <CountdownDialogFinished />
       </div>
     </section>
   );

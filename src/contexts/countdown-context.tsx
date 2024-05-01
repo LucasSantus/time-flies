@@ -15,6 +15,7 @@ export interface CountdownContextData {
   startCountdown: () => void;
   changeCountdown: () => void;
   resetCountdown: () => void;
+  finishedCountdown: () => void;
   setTimeInSeconds: (time: number) => void;
 }
 
@@ -23,6 +24,7 @@ interface CountdownData {
   isRunning: boolean;
   isFinished: boolean;
   secondsAmount: number;
+  startedSecondsAmount: number;
 }
 
 export const CountdownContext = createContext({} as CountdownContextData);
@@ -35,21 +37,64 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({
     isFinished: false,
     isRunning: false,
     secondsAmount: DEFAULT_TIME,
+    startedSecondsAmount: DEFAULT_TIME,
   };
 
   const [countdownOnStorage, setCountdownOnStorage] =
     useLocalStorage<CountdownData>(KEY_COUNTDOWN_LOCAL_STORAGE, initialValues);
 
-  const [secondsAmount, setSecondsAmount] = useState(
-    countdownOnStorage.secondsAmount,
-  );
-  const [isActive, setIsActive] = useState(countdownOnStorage.isActive);
-  const [isRunning, setIsRunning] = useState(countdownOnStorage.isRunning);
-  const [isFinished, setIsFinished] = useState(countdownOnStorage.isFinished);
+  const [countdown, setCountdown] = useState<CountdownData>(countdownOnStorage);
+
+  function startCountdown() {
+    setCountdown((current) => ({
+      ...current,
+      isActive: true,
+      isRunning: true,
+      isFinished: false,
+    }));
+  }
+
+  function changeCountdown() {
+    setCountdown((current) => ({
+      ...current,
+      isActive: !current.isActive,
+    }));
+  }
+
+  function resetCountdown() {
+    setCountdown(({ startedSecondsAmount }) => ({
+      ...initialValues,
+      secondsAmount: startedSecondsAmount,
+      startedSecondsAmount,
+    }));
+
+    setCountdownOnStorage(countdown);
+  }
+
+  function finishedCountdown() {
+    const finishedValues: CountdownData = {
+      ...initialValues,
+      secondsAmount: countdown?.startedSecondsAmount ?? DEFAULT_TIME,
+    };
+
+    setCountdownOnStorage(finishedValues);
+  }
+
+  function setTimeInSeconds(time: number) {
+    // setSecondsAmount(time);
+
+    setCountdown(() => ({
+      ...initialValues,
+      secondsAmount: time,
+      startedSecondsAmount: time,
+    }));
+
+    setCountdownOnStorage(countdown);
+  }
 
   // show message of user exit page on countdown
   useEffect(() => {
-    if (isActive) {
+    if (countdown.isActive) {
       const handleUnload = (event: BeforeUnloadEvent) => {
         event.preventDefault();
 
@@ -63,103 +108,58 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({
         window.removeEventListener("beforeunload", handleUnload);
       };
     }
-  }, [isActive]);
-
-  // sync data of cookies
-  useEffect(() => {
-    if (isActive || isRunning) {
-      setCountdownOnStorage({
-        isActive,
-        isRunning,
-        isFinished,
-        secondsAmount,
-      });
-    }
-  }, [isActive, isFinished, isRunning, secondsAmount]);
-
-  // get data from cookies
-  // useEffect(() => {
-  //   const {
-  //     isActive: isActiveCookie,
-  //     isRunning: isRunningCookie,
-  //     secondsAmount: secondsAmountCookie,
-  //   } = getDataFromCookie();
-
-  //   setIsActive(isActiveCookie);
-  //   setIsRunning(isRunningCookie);
-  //   setSecondsAmount(secondsAmountCookie);
-  // }, []);
+  }, [countdown.isActive]);
 
   // logic of countdown
   useEffect(() => {
     let interval: NodeJS.Timeout;
-    if (isActive && secondsAmount > 0) {
+    if (countdown.isActive && countdown.secondsAmount > 0) {
       interval = setInterval(() => {
-        setSecondsAmount((prevSeconds) => prevSeconds - 1);
+        setCountdown((current) => ({
+          ...current,
+          secondsAmount: current.secondsAmount - 1,
+        }));
+
+        setCountdownOnStorage(countdown);
       }, 1000);
     }
 
-    if (secondsAmount === 0) {
-      setCountdownOnStorage({
-        ...initialValues,
-        secondsAmount: countdownOnStorage.secondsAmount,
+    if (countdown.secondsAmount === 0) {
+      setCountdown(({ startedSecondsAmount }) => ({
+        isActive: false,
+        isRunning: false,
+        secondsAmount: startedSecondsAmount,
         isFinished: true,
-      });
+        startedSecondsAmount,
+      }));
+
+      setCountdownOnStorage(countdown);
     }
 
     return () => clearInterval(interval);
-  }, [isActive, secondsAmount]);
+  }, [countdown.isActive, countdown.secondsAmount]);
 
   // sound in finished project
   useEffect(() => {
-    if (isFinished) {
+    if (countdown.isFinished) {
       const sound = new Audio("/sounds/short-sound.mp3");
       sound.addEventListener("canplaythrough", () => {
         sound.play();
       });
     }
-  }, [isFinished]);
-
-  function startCountdown() {
-    setIsActive(true);
-    setIsRunning(true);
-    setIsFinished(false);
-  }
-
-  function changeCountdown() {
-    setIsActive((current) => !current);
-  }
-
-  function resetCountdown() {
-    setSecondsAmount(countdownOnStorage.secondsAmount);
-    setIsActive(false);
-    setIsRunning(false);
-    setIsFinished(false);
-
-    setCountdownOnStorage({
-      ...initialValues,
-      secondsAmount: countdownOnStorage.secondsAmount,
-    });
-  }
-
-  function setTimeInSeconds(time: number) {
-    setSecondsAmount(time);
-
-    setCountdownOnStorage({
-      ...countdownOnStorage,
-      secondsAmount: time,
-    });
-  }
+  }, [countdown.isFinished]);
 
   const [hourLeft, hourRight] = formatTime(
-    Math.floor(secondsAmount / 3600),
+    Math.floor(countdown.secondsAmount / 3600),
   ).split("");
 
   const [minuteLeft, minuteRight] = formatTime(
-    Math.floor((secondsAmount % 3600) / 60),
+    Math.floor((countdown.secondsAmount % 3600) / 60),
   ).split("");
 
-  const [secondLeft, secondRight] = formatTime(secondsAmount % 60).split("");
+  const [secondLeft, secondRight] = formatTime(
+    countdown.secondsAmount % 60,
+  ).split("");
 
   const times: SeparatedTimesData = {
     hourLeft: Number(hourLeft),
@@ -173,14 +173,15 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({
   return (
     <CountdownContext.Provider
       value={{
-        secondsAmount,
-        isActive,
-        isRunning,
-        isFinished,
+        secondsAmount: countdown.secondsAmount,
+        isActive: countdown.isActive,
+        isRunning: countdown.isRunning,
+        isFinished: countdown.isFinished,
         times,
         startCountdown,
         changeCountdown,
         resetCountdown,
+        finishedCountdown,
         setTimeInSeconds,
       }}
     >

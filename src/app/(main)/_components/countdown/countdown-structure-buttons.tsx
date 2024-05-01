@@ -1,11 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-
 import { useCountdown } from "@/hooks/use-countdown";
 import { Pause, Play, Timer } from "lucide-react";
 import { Fragment } from "react";
-import { CountdownDialog } from "./countdown-dialog";
+import { CountdownDialogForm } from "./countdown-dialog-form";
 
 export function CountdownStructureButtons(): JSX.Element {
   const {
@@ -56,14 +55,7 @@ export function CountdownStructureButtons(): JSX.Element {
             Começar
           </Button>
 
-          <CountdownDialog />
-
-          {/* <Modal
-              trigger={<Button icon={<Edit />} variant="gray" />}
-              title="Editar Contagem"
-            >
-              <CountdownForm />
-            </Modal> */}
+          <CountdownDialogForm />
         </div>
       )}
     </Fragment>
