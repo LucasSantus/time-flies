@@ -1,11 +1,10 @@
+import "@/styles/globals.css";
+
 import { fontSans } from "@/config/fonts";
 import { projectConfig } from "@/config/project";
-import { Providers } from "@/contexts/Providers";
 import clsx from "clsx";
 import { Metadata } from "next";
-import "react-toastify/dist/ReactToastify.min.css";
-import "./globals.css";
-import { NoScript } from "./no-script";
+import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: {
@@ -21,21 +20,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="pt-BR" suppressHydrationWarning>
       <body
+        suppressHydrationWarning
         className={clsx(
-          "h-screen bg-slate-800 dark:bg-custom-gray-800",
-          fontSans.variable
+          "min-h-screen bg-primary font-sans antialiased transition-all delay-150 duration-150 dark:bg-background",
+          fontSans.variable,
         )}
       >
-        <Providers>
-          <NoScript />
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
