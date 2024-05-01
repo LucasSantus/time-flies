@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 
 import { fontSans } from "@/config/fonts";
 import { projectConfig } from "@/config/project";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import clsx from "clsx";
 import { Metadata } from "next";
 import { Providers } from "./providers";
@@ -12,10 +13,6 @@ export const metadata: Metadata = {
     template: `%s - ${projectConfig.name}`,
   },
   description: projectConfig.description,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
 };
 
 export default function RootLayout({
@@ -32,7 +29,10 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <SpeedInsights />
+          {children}
+        </Providers>
       </body>
     </html>
   );
