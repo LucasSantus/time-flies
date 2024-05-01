@@ -1,11 +1,10 @@
 "use client";
 
-interface NoScriptProps {}
-
-export const NoScript: React.FC<NoScriptProps> = () => (
-  <noscript>
-    <style type="text/css">
-      {`
+export function NoScript(): JSX.Element {
+  return (
+    <noscript>
+      <style type="text/css">
+        {`
         * {
           overflow: hidden;
           margin: 0;
@@ -15,10 +14,10 @@ export const NoScript: React.FC<NoScriptProps> = () => (
           display: none;
         }
       `}
-    </style>
-    <div className="flex h-screen w-full items-center justify-center bg-slate-900 text-2xl text-white">
-      O JavaScript está desativado, active-o para que o sistema funcione
-      corretamente!
-    </div>
-  </noscript>
-);
+      </style>
+      <div className="flex h-screen w-full items-center justify-center bg-slate-900 text-2xl text-white">
+        Ative o JavaScript para o sistema funcionar corretamente.
+      </div>
+    </noscript>
+  );
+}
