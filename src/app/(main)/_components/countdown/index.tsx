@@ -7,7 +7,7 @@ export function Countdown(): JSX.Element {
     <section className="flex h-full w-full items-start justify-center sm:items-center">
       <div
         // {...easeInOutAnimationScale({})}
-        className="grid min-w-fit items-center justify-center gap-8 rounded-md bg-slate-700 p-7 transition-all delay-150 duration-150 dark:bg-custom-gray-700"
+        className="grid min-w-fit items-center justify-center gap-8 rounded-md bg-custom-gray-700 p-7 transition-all delay-150 duration-150"
       >
         <CountdownStructureNumbers />
 

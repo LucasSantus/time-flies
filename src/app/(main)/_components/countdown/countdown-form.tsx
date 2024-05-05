@@ -62,27 +62,27 @@ export const CountdownForm: React.FC<CountdownFormProps> = () => {
       >
         <div className="grid w-full grid-cols-12 gap-2">
           <div className="col-span-6 sm:col-span-2">
-            <CountdownInput control={control} name="hourLeft" />
+            <CountdownInput control={control} name="hourLeft" maxValue={2} />
           </div>
 
           <div className="col-span-6 sm:col-span-2">
-            <CountdownInput control={control} name="hourRight" />
+            <CountdownInput control={control} name="hourRight" maxValue={9} />
           </div>
 
           <div className="col-span-6 sm:col-span-2">
-            <CountdownInput control={control} name="minuteLeft" />
+            <CountdownInput control={control} name="minuteLeft" maxValue={5} />
           </div>
 
           <div className="col-span-6 sm:col-span-2">
-            <CountdownInput control={control} name="minuteRight" />
+            <CountdownInput control={control} name="minuteRight" maxValue={9} />
           </div>
 
           <div className="col-span-6 sm:col-span-2">
-            <CountdownInput control={control} name="secondLeft" />
+            <CountdownInput control={control} name="secondLeft" maxValue={5} />
           </div>
 
           <div className="col-span-6 sm:col-span-2">
-            <CountdownInput control={control} name="secondRight" />
+            <CountdownInput control={control} name="secondRight" maxValue={9} />
           </div>
         </div>
 
