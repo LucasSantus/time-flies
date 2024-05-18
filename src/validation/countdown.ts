@@ -45,11 +45,11 @@ export const countdownFormSchema = z
 
       return !timeIsValid;
     },
-    "Insira um valor para contabilizar!",
+    "Insira um valor para contabilizar a contagem!",
   )
   .refine(({ hourLeft, hourRight }) => {
     const hour = formatNumberToSeparatedTimes(hourLeft, hourRight);
-    return hour >= 0 && hour <= 23;
+    return hour >= 0 && hour <= 29;
   }, "As horas inseridas são inválidas!")
   .refine(({ minuteLeft, minuteRight }) => {
     const minute = formatNumberToSeparatedTimes(minuteLeft, minuteRight);

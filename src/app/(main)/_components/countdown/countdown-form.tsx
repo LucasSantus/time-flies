@@ -33,6 +33,7 @@ export const CountdownForm: React.FC<CountdownFormProps> = () => {
   const {
     handleSubmit,
     control,
+    getValues,
     formState: { isValid, errors },
   } = form;
 
