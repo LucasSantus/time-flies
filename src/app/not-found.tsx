@@ -1,35 +1,37 @@
-"use client";
-
-import { easeInOutAnimationVerticalDislocate } from "@/utils/animation/easeInOutAnimationVerticalDislocate";
-import { motion } from "framer-motion";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { BugIcon, LayoutGridIcon } from "lucide-react";
 import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="flex h-screen items-center justify-center">
-      <section className="flex flex-col items-center justify-center gap-2 rounded-lg">
-        <motion.span
-          {...easeInOutAnimationVerticalDislocate({ delay: 0.3 })}
-          className="text-9xl font-bold text-slate-200"
+    <main className="flex h-screen flex-1 flex-col items-center justify-center bg-foreground text-center text-background">
+      <div className="space-y-3">
+        <BugIcon className="inline-block size-16" />
+        <h1 className="text-3xl font-bold tracking-tighter md:text-4xl lg:text-7xl">
+          404 Not Found
+        </h1>
+        <h3 className="text-lg font-medium tracking-tighter md:text-xl lg:text-2xl">
+          Uh oh! Está página não existe!
+        </h3>
+        <p className="mx-auto max-w-lg px-2 text-muted-foreground">
+          Essa rota não existe. O melhor a fazer é dar meia volta e regressar a
+          um local seguro.
+        </p>
+        <Link
+          className={cn(
+            buttonVariants({
+              variant: "gray",
+              size: "default",
+              className: "items-center gap-1 !text-primary-foreground",
+            }),
+          )}
+          href="/"
         >
-          404
-        </motion.span>
-        <motion.span
-          {...easeInOutAnimationVerticalDislocate({ delay: 0.6 })}
-          className="text-xl font-medium text-slate-200"
-        >
-          A página solicitada não foi encontrada!
-        </motion.span>
-
-        <motion.div {...easeInOutAnimationVerticalDislocate({ delay: 0.9 })}>
-          <Link
-            href="/"
-            className="mt-4 text-blue-500 underline hover:text-blue-400"
-          >
-            Ir para a tela principal
-          </Link>
-        </motion.div>
-      </section>
-    </div>
+          <LayoutGridIcon className="size-4" />
+          Voltar para Home
+        </Link>
+      </div>
+    </main>
   );
 }

@@ -1,39 +1,41 @@
+import "@/styles/globals.css";
+
 import { fontSans } from "@/config/fonts";
 import { projectConfig } from "@/config/project";
-import { Providers } from "@/contexts/Providers";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import clsx from "clsx";
 import { Metadata } from "next";
-import "react-toastify/dist/ReactToastify.min.css";
-import "./globals.css";
-import { NoScript } from "./no-script";
+import { Providers } from "./providers";
 
 export const metadata: Metadata = {
+  authors: [{ name: projectConfig.creator, url: projectConfig.links.github }],
+  category: projectConfig.category,
+  creator: projectConfig.creator,
   title: {
-    default: projectConfig.name,
-    template: `%s - ${projectConfig.name}`,
+    absolute: projectConfig.name,
+    template: "%s | " + projectConfig.name,
   },
   description: projectConfig.description,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
+  keywords: projectConfig.keywords,
+  publisher: projectConfig.creator,
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="pt-BR" suppressHydrationWarning>
       <body
+        suppressHydrationWarning
         className={clsx(
-          "h-screen bg-slate-800 dark:bg-custom-gray-800",
-          fontSans.variable
+          "min-h-screen bg-background font-sans antialiased transition-all delay-300 duration-300 dark:bg-custom-gray-800",
+          fontSans.variable,
         )}
       >
         <Providers>
-          <NoScript />
+          <SpeedInsights />
           {children}
         </Providers>
       </body>
