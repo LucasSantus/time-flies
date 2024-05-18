@@ -28,7 +28,7 @@ export const CountdownInput: React.FC<CountdownInputProps> = ({
               aria-label={name}
               type="number"
               className={cn(
-                "h-12 w-full rounded border p-2 text-center text-lg font-medium text-custom-gray-100 shadow-sm hover:opacity-70",
+                "h-12 w-full rounded border p-2 text-center text-lg font-medium shadow-sm hover:opacity-70 dark:text-custom-gray-100",
                 // error ? "border-red-200" : "border-slate-200",
               )}
               maxLength={1}

@@ -1,8 +1,8 @@
 "use client";
 
+import { Framing } from "@/components/framer-motion/framing";
 import { useCountdown } from "@/hooks/use-countdown";
 import { easeInOutAnimationVerticalDislocate } from "@/utils/animation/easeInOutAnimationVerticalDislocate";
-import { motion } from "framer-motion";
 import { CountdownColon } from "./countdown-colon";
 import { CountdownNumber } from "./countdown-number";
 
@@ -10,7 +10,10 @@ export function CountdownStructureNumbers(): JSX.Element {
   const { times } = useCountdown();
 
   return (
-    <motion.section {...easeInOutAnimationVerticalDislocate({ delay: 0.7 })}>
+    <Framing
+      as="section"
+      {...easeInOutAnimationVerticalDislocate({ delay: 0.7 })}
+    >
       <div className="grid h-full gap-3 sm:flex">
         <div className="flex gap-2">
           <CountdownNumber name="hourLeft" value={times["hourLeft"]} />
@@ -43,6 +46,6 @@ export function CountdownStructureNumbers(): JSX.Element {
           <CountdownNumber name="secondRight" value={times["secondRight"]} />
         </div>
       </div>
-    </motion.section>
+    </Framing>
   );
 }

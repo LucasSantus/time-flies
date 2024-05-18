@@ -21,6 +21,7 @@ export function CountdownStructureButtons(): JSX.Element {
         <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
           {isActive ? (
             <Button
+              aria-label="Interromper"
               icon={<Pause className="size-6" />}
               variant="destructive"
               onClick={changeCountdown}
@@ -29,6 +30,7 @@ export function CountdownStructureButtons(): JSX.Element {
             </Button>
           ) : (
             <Button
+              aria-label="Continuar"
               icon={<Play className="size-6" />}
               variant="success"
               onClick={changeCountdown}
@@ -38,6 +40,7 @@ export function CountdownStructureButtons(): JSX.Element {
           )}
 
           <Button
+            aria-label="Resetar"
             icon={<Timer className="size-6" />}
             variant="warning"
             onClick={resetCountdown}
@@ -48,6 +51,7 @@ export function CountdownStructureButtons(): JSX.Element {
       ) : (
         <div className="flex gap-1">
           <Button
+            aria-label="Começar"
             icon={<Play className="size-6" />}
             variant="success"
             onClick={startCountdown}
