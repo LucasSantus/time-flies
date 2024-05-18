@@ -40,16 +40,17 @@ This is a totally free project!
 
 Used tools:
 
-- [NextJS v13.4.4](https://nextjs.org/)
-- [Next Themes v0.2.1](https://github.com/pacocoursey/next-themes)
-- [CLSX v1.2.1](https://www.npmjs.com/package/clsx)
-- [Eslint v8.42.0](https://github.com/eslint/eslint)
-- [Lucide React v0.240.0](https://lucide.dev/)
-- [Prettier v2.8.8](https://prettier.io/)
-- [React v18.2.0](https://pt-br.reactjs.org/)
+- [NextJS v14.2.3](https://nextjs.org/)
+- [Next Themes v0.3.0](https://github.com/pacocoursey/next-themes)
+- [Eslint v9.1.1](https://github.com/eslint/eslint)
+- [Lucide React v0.376.0](https://lucide.dev/)
+- [Prettier v3.2.5](https://prettier.io/)
+- [React v18.3.1](https://pt-br.reactjs.org/)
 - [TypeScript v5.1.3](https://www.typescriptlang.org/)
 - [TailwindCSS v3.3.2](https://tailwindcss.com/docs/installation)
-- [Framer Motion v10.12.16](https://www.npmjs.com/package/framer-motion)
+- [Framer Motion v11.1.7](https://www.npmjs.com/package/framer-motion)
+- [Use Hooks v3.1.0](https://usehooks-ts.com/)
+- [Zod v3.23.4](https://zod.dev/)
 
 ---
 
