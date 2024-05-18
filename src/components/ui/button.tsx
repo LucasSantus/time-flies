@@ -19,7 +19,6 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-
         success:
           "border-custom-green-500/30 bg-custom-green-500 hover:bg-custom-green-500/60 text-white",
         error:
@@ -80,7 +79,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...rest}
       >
         {isLoading ? (
-          <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
+          <Loader2Icon className="mr-2 size-4 animate-spin" />
         ) : (
           icon
         )}{" "}

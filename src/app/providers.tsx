@@ -8,14 +8,19 @@ import { NoScript } from "./no-script";
 
 export const Providers: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <ThemeProvider attribute="class" defaultTheme="dark">
-      <CountdownProvider>
+    <CountdownProvider>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
         <Toaster duration={4000} richColors closeButton visibleToasts={9} />
 
         <NoScript />
 
         {children}
-      </CountdownProvider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </CountdownProvider>
   );
 };

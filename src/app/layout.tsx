@@ -8,11 +8,16 @@ import { Metadata } from "next";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
+  authors: [{ name: projectConfig.creator, url: projectConfig.links.github }],
+  category: projectConfig.category,
+  creator: projectConfig.creator,
   title: {
-    default: projectConfig.name,
-    template: `%s - ${projectConfig.name}`,
+    absolute: projectConfig.name,
+    template: "%s | " + projectConfig.name,
   },
   description: projectConfig.description,
+  keywords: projectConfig.keywords,
+  publisher: projectConfig.creator,
 };
 
 export default function RootLayout({
@@ -25,7 +30,7 @@ export default function RootLayout({
       <body
         suppressHydrationWarning
         className={clsx(
-          "min-h-screen bg-primary font-sans antialiased transition-all delay-150 duration-150 dark:bg-background",
+          "min-h-screen bg-background font-sans antialiased transition-all delay-300 duration-300 dark:bg-custom-gray-800",
           fontSans.variable,
         )}
       >

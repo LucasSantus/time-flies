@@ -8,14 +8,12 @@ import { convertFormDataInSeconds } from "@/utils/convertFormDataInSeconds";
 import { CountdownFormData, countdownFormSchema } from "@/validation/countdown";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Save } from "lucide-react";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { CountdownInput } from "./countdown-input";
 
-interface CountdownFormProps {}
-
-export const CountdownForm: React.FC<CountdownFormProps> = () => {
+export function CountdownForm(): JSX.Element {
   const { setTimeInSeconds, times } = useCountdown();
 
   const form = useForm<CountdownFormData>({
@@ -33,6 +31,7 @@ export const CountdownForm: React.FC<CountdownFormProps> = () => {
   const {
     handleSubmit,
     control,
+    getValues,
     formState: { isValid, errors },
   } = form;
 
@@ -62,27 +61,27 @@ export const CountdownForm: React.FC<CountdownFormProps> = () => {
       >
         <div className="grid w-full grid-cols-12 gap-2">
           <div className="col-span-6 sm:col-span-2">
-            <CountdownInput control={control} name="hourLeft" />
+            <CountdownInput control={control} name="hourLeft" maxValue={2} />
           </div>
 
           <div className="col-span-6 sm:col-span-2">
-            <CountdownInput control={control} name="hourRight" />
+            <CountdownInput control={control} name="hourRight" maxValue={9} />
           </div>
 
           <div className="col-span-6 sm:col-span-2">
-            <CountdownInput control={control} name="minuteLeft" />
+            <CountdownInput control={control} name="minuteLeft" maxValue={5} />
           </div>
 
           <div className="col-span-6 sm:col-span-2">
-            <CountdownInput control={control} name="minuteRight" />
+            <CountdownInput control={control} name="minuteRight" maxValue={9} />
           </div>
 
           <div className="col-span-6 sm:col-span-2">
-            <CountdownInput control={control} name="secondLeft" />
+            <CountdownInput control={control} name="secondLeft" maxValue={5} />
           </div>
 
           <div className="col-span-6 sm:col-span-2">
-            <CountdownInput control={control} name="secondRight" />
+            <CountdownInput control={control} name="secondRight" maxValue={9} />
           </div>
         </div>
 
@@ -108,4 +107,4 @@ export const CountdownForm: React.FC<CountdownFormProps> = () => {
       </form>
     </Form>
   );
-};
+}

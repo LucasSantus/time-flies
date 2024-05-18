@@ -16,9 +16,7 @@ import { Fragment } from "react";
 import Confetti from "react-confetti";
 import { useWindowSize } from "usehooks-ts";
 
-interface CountdownDialogFinishedProps {}
-
-export function CountdownDialogFinished({}: CountdownDialogFinishedProps): JSX.Element | null {
+export function CountdownDialogFinished(): JSX.Element | null {
   const { isFinished, finishedCountdown } = useCountdown();
   const { width, height } = useWindowSize();
 
@@ -34,7 +32,7 @@ export function CountdownDialogFinished({}: CountdownDialogFinishedProps): JSX.E
                 size={80}
                 className="w-full stroke-custom-green-500 text-center"
               />
-              <AlertDialogTitle className="text-center text-3xl font-medium  dark:font-normal">
+              <AlertDialogTitle className="text-center text-3xl font-normal">
                 Contagem Finalizada!
               </AlertDialogTitle>
 

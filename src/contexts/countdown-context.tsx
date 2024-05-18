@@ -81,8 +81,6 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({
   }
 
   function setTimeInSeconds(time: number) {
-    // setSecondsAmount(time);
-
     setCountdown(() => ({
       ...initialValues,
       secondsAmount: time,
@@ -94,7 +92,7 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({
 
   // show message of user exit page on countdown
   useEffect(() => {
-    if (countdown.isActive) {
+    if (countdown.isRunning) {
       const handleUnload = (event: BeforeUnloadEvent) => {
         event.preventDefault();
 
@@ -108,7 +106,7 @@ export const CountdownProvider: React.FC<PropsWithChildren> = ({
         window.removeEventListener("beforeunload", handleUnload);
       };
     }
-  }, [countdown.isActive]);
+  }, [countdown.isRunning]);
 
   // logic of countdown
   useEffect(() => {
