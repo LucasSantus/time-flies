@@ -13,7 +13,7 @@ export function Framing({
   as: element = "div",
   children,
   ...rest
-}: FramingProps & MotionProps) {
+}: FramingProps & MotionProps): JSX.Element {
   const Component = motion[element as MotionElement] || motion.div;
 
   return <Component {...rest}>{children}</Component>;

@@ -21,11 +21,7 @@ export function CountdownStructureNumbers(): JSX.Element {
         </div>
 
         <div className="flex h-full flex-col items-center">
-          <CountdownColon
-            animation={easeInOutAnimationVerticalDislocate({
-              delay: 0.2,
-            })}
-          />
+          <CountdownColon />
         </div>
 
         <div className="flex gap-2">
@@ -34,11 +30,7 @@ export function CountdownStructureNumbers(): JSX.Element {
         </div>
 
         <div className="flex h-full flex-col items-center">
-          <CountdownColon
-            animation={easeInOutAnimationVerticalDislocate({
-              delay: 0.2,
-            })}
-          />
+          <CountdownColon />
         </div>
 
         <div className="flex gap-2">

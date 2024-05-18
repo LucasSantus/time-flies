@@ -7,6 +7,6 @@ interface PresenceProps extends AnimatePresenceProps {
   children: ReactNode;
 }
 
-export function Presence({ children, ...props }: PresenceProps) {
+export function Presence({ children, ...props }: PresenceProps): JSX.Element {
   return <AnimatePresence {...props}>{children}</AnimatePresence>;
 }

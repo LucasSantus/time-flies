@@ -25,7 +25,8 @@ export function CountdownDialogForm(): JSX.Element {
         <DialogHeader>
           <DialogTitle>Editar Contagem</DialogTitle>
           <DialogDescription>
-            Anyone who has this link will be able to view this.
+            Por favor, insira os valores abaixo para registrar a contagem no
+            sistema.
           </DialogDescription>
         </DialogHeader>
 

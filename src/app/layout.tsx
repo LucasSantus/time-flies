@@ -8,11 +8,16 @@ import { Metadata } from "next";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
+  authors: [{ name: projectConfig.creator, url: projectConfig.links.github }],
+  category: projectConfig.category,
+  creator: projectConfig.creator,
   title: {
-    default: projectConfig.name,
-    template: `%s - ${projectConfig.name}`,
+    absolute: projectConfig.name,
+    template: "%s | " + projectConfig.name,
   },
   description: projectConfig.description,
+  keywords: projectConfig.keywords,
+  publisher: projectConfig.creator,
 };
 
 export default function RootLayout({

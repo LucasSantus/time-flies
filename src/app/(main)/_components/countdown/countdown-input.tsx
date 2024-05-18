@@ -1,7 +1,6 @@
 import { FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { CountdownFormData } from "@/validation/countdown";
-import React from "react";
 import { Control } from "react-hook-form";
 
 interface CountdownInputProps {
@@ -10,11 +9,11 @@ interface CountdownInputProps {
   maxValue?: number;
 }
 
-export const CountdownInput: React.FC<CountdownInputProps> = ({
+export function CountdownInput({
   name,
   control,
   maxValue,
-}) => {
+}: CountdownInputProps): JSX.Element {
   return (
     <FormField
       control={control}
@@ -50,4 +49,4 @@ export const CountdownInput: React.FC<CountdownInputProps> = ({
       )}
     />
   );
-};
+}

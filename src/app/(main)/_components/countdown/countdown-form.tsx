@@ -8,14 +8,12 @@ import { convertFormDataInSeconds } from "@/utils/convertFormDataInSeconds";
 import { CountdownFormData, countdownFormSchema } from "@/validation/countdown";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Save } from "lucide-react";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { CountdownInput } from "./countdown-input";
 
-interface CountdownFormProps {}
-
-export const CountdownForm: React.FC<CountdownFormProps> = () => {
+export function CountdownForm(): JSX.Element {
   const { setTimeInSeconds, times } = useCountdown();
 
   const form = useForm<CountdownFormData>({
@@ -109,4 +107,4 @@ export const CountdownForm: React.FC<CountdownFormProps> = () => {
       </form>
     </Form>
   );
-};
+}

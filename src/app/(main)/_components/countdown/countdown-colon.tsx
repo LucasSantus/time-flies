@@ -1,20 +1,20 @@
-import { Variants, motion } from "framer-motion";
-import React from "react";
+import { Framing } from "@/components/framer-motion/framing";
+import { easeInOutAnimationVerticalDislocate } from "@/utils/animation/easeInOutAnimationVerticalDislocate";
 
-interface CountdownColonProps {
-  animation?: Variants;
+export function CountdownColon(): JSX.Element {
+  return (
+    <Framing
+      {...easeInOutAnimationVerticalDislocate({
+        delay: 0.2,
+      })}
+    >
+      <div className="hidden h-full select-none items-center sm:flex">
+        <div className="text-custom-green-500 sm:text-9xl">:</div>
+      </div>
+
+      <div className="flex sm:hidden">
+        <div className="my-2 w-14 select-none border border-b-custom-green-300" />
+      </div>
+    </Framing>
+  );
 }
-
-export const CountdownColon: React.FC<CountdownColonProps> = ({
-  animation,
-}) => (
-  <motion.div {...animation}>
-    <div className="hidden h-full select-none items-center sm:flex">
-      <div className="text-custom-green-500 sm:text-9xl">:</div>
-    </div>
-
-    <div className="flex sm:hidden">
-      <div className="my-2 w-14 select-none border border-b-custom-green-300" />
-    </div>
-  </motion.div>
-);

@@ -16,9 +16,7 @@ import { Fragment } from "react";
 import Confetti from "react-confetti";
 import { useWindowSize } from "usehooks-ts";
 
-interface CountdownDialogFinishedProps {}
-
-export function CountdownDialogFinished({}: CountdownDialogFinishedProps): JSX.Element | null {
+export function CountdownDialogFinished(): JSX.Element | null {
   const { isFinished, finishedCountdown } = useCountdown();
   const { width, height } = useWindowSize();
 
